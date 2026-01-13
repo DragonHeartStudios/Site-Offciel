@@ -16,5 +16,5 @@ Vous avez des questions ou vous souhaitez collaborer avec nous ?
 ---
 © 2024 Dragon Heart Studios - *Forgeons ensemble des mondes légendaires.*
 
-![Logo](<img src="logo-dragon-heart-studios.png" alt="Logo Dragon Heart Studios">)
+![Logo Dragon Heart Studios](logo-dragon-heart-studios.png)
 
