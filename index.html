@@ -3,8 +3,13 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="shortcut icon"
+            href="images/studio_logo.png"
+            type="image/x-icon"
+        />
         <link rel="stylesheet" href="style.css" />
-        <title>Dragon Heart Studios</title>
+        <title>Dragon Heart Studios - MAIN</title>
     </head>
     <body>
         <img id="background-image" src="images/background_image.png" />
@@ -24,27 +29,14 @@
             <img src="images/studio_logo.png" />
         </div>
 
-        <div id="fe">
+        <div id="main-pages-infos">
             <h1>Votre studio de jeux indépendant!</h1>
             <h2>
                 Boosté par
-                <b
-                    style="
-                        background-color: #448cc3;
-                        padding: 5px 10px;
-                        border-radius: 10px;
-                    "
-                    >Godot</b
-                >
+                <b id="godotisation">Godot</b>
             </h2>
-
             <a
-                href="https://developer.mozilla.org/fr/docs/Web/HTML/Reference/Elements"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Doc Web de Mozilla</a
-            >
-            <a
+                id="button"
                 href="https://discord.gg/wRPJ4urraU"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -52,7 +44,20 @@
             >
         </div>
 
-        <h3>"Mettre les projets du studio ici" WolfY_D3v</h3>
+        <div style="width: 100%">
+            <h2 style="width: 100%; text-align: center">
+                <u>Nos nouvelles sorties</u>
+            </h2>
+            <div id="new-releases-container"></div>
+        </div>
+
+        <div style="width: 100%; height: 35px; background-color: yellow">
+            <h3 style="color: black">Explorez nos univers narratifs</h3>
+        </div>
+
+        <a id="button" style="width: 80%; align-items: center" href="games.html"
+            >Voir nos jeux</a
+        >
 
         <div>
             <div>
@@ -79,3 +84,75 @@
         <h4>contacter nous a : Dragon-heart-studios@proton.me</h4>
     </body>
 </html>
+
+<script>
+    var newReleasesH2 = [];
+    var newReleasesImg = [];
+
+    const newReleasesJSONFile = "new_releases.json";
+    const newReleasesHTMLLocationID = "new-releases-container";
+    const newReleaseBaseHTMLFile = "new_release_base.html";
+
+    var elementToModify;
+
+    async function addGame(to, htmlPage, gameName, coverImagePath, idx) {
+        try {
+            const response = await fetch(htmlPage);
+            if (response.ok) {
+                var htmlContent = await response.text();
+                htmlContent.id = "new-release";
+                document.getElementById(to).innerHTML += htmlContent;
+
+                newReleasesH2 = document.querySelectorAll(".new-game-name");
+                elementToModify = newReleasesH2[idx];
+                elementToModify.innerText = gameName;
+
+                newReleasesImg = document.querySelectorAll(".new-game-cover");
+                elementToModify = newReleasesImg[idx];
+                elementToModify.src = coverImagePath;
+            } else {
+                console.error("Erreur lors du chargement : " + response.status);
+            }
+        } catch (error) {
+            console.error("Erreur réseau : ", error);
+        }
+    }
+
+    async function loadJSON(JSONFile) {
+        try {
+            const response = await fetch(JSONFile);
+            if (response.ok) {
+                var JSONContent = await response.text();
+                return JSONContent;
+            } else {
+                console.error(response.status);
+            }
+        } catch (error) {
+            console.error("new_release_base.html");
+        }
+    }
+
+    async function loadNewReleases() {
+        const newReleasesAsJSON = await loadJSON(newReleasesJSONFile);
+        console.log("New releases data:");
+        console.log(newReleasesAsJSON);
+
+        const newReleasesData = JSON.parse(newReleasesAsJSON);
+        var currentNewReleaseData;
+        var gameIdx = 0;
+
+        for (const gameListed in newReleasesData) {
+            currentNewReleaseData = newReleasesData[gameListed];
+            await addGame(
+                newReleasesHTMLLocationID,
+                newReleaseBaseHTMLFile,
+                currentNewReleaseData.gameName,
+                currentNewReleaseData.coverImagePath,
+                gameIdx,
+            );
+            gameIdx++;
+        }
+    }
+
+    loadNewReleases();
+</script>

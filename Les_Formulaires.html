@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>07 - Les Formulaires </title>
+  </head>
+  <body>
+
+    <form action="" method="">
+      <input type="hidden" value="99" name="id_product" />
+      <fieldset>
+        <label for="firstName">Your first name :</label>
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          maxlength="5"
+          required
+          autofocus
+        />
+
+        <br />
+        <br />
+
+        <label for="email">Your email :</label>
+        <input
+          type="email"
+          id="email"
+          value="test@mail.com"
+          name="email"
+          readonly
+        />
+
+        <br />
+        <br />
+
+        <label for="password">Your password :</label>
+        <input type="password" id="password" name="password" />
+
+        <br />
+        <br />
+
+        <label for="date">Your birthday :</label>
+        <input type="date" id="date" name="birthday" />
+
+        <br />
+        <br />
+
+        <p>Choose your hobby :</p>
+
+        <label for="cinema">Cinema</label>
+        <input
+          type="checkbox"
+          id="cinema"
+          checked
+          value="cinema"
+          name="hobby"
+        />
+
+        <label for="theatre">Theatre</label>
+        <input
+          type="checkbox"
+          id="theatre"
+          checked
+          value="theatre"
+          name="hobby"
+        />
+
+        <label for="painting">Painting</label>
+        <input type="checkbox" id="painting" value="painting" name="hobby" />
+
+        <br />
+        <br />
+
+        <p>Choose your sexe :</p>
+
+        <label for="male">Male</label>
+        <input type="radio" id="male" value="m" name="sexe" />
+
+        <label for="female">Female</label>
+        <input type="radio" id="female" value="f" name="sexe" />
+
+        <br />
+        <br />
+
+        <p>Choose your country :</p>
+
+        <label for="country">List of countries :</label>
+        <select name="country" multiple>
+          <option value="" disabled>Choose your country</option>
+
+          <optgroup label="Europe">
+            <option value="fr">France</option>
+            <option value="sp">Spain</option>
+            <option value="it">Italy</option>
+          </optgroup>
+
+          <optgroup label="South America">
+            <option value="br">Brazil</option>
+            <option value="col">Colombia</option>
+          </optgroup>
+        </select>
+
+        <br />
+        <br />
+
+        <textarea
+          rows="5"
+          cols="33"
+          placeholder="Enter your text here..."
+        ></textarea>
+
+        <br />
+        <br />
+
+        <input type="submit" value="Subscribe" />
+
+        <input type="reset" value="Reset" />
+      </fieldset>
+
+    </form>
+
+  </body>
+</html>
