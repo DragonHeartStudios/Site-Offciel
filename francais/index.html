@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <title>Dragonheart Studios</title>
+    <link rel="icon" type="image/png" href="./images/favicon.png">
+
+</head>
+<body>
+    <div id="background">
+        <img src="./images/background.png" alt="Background Image">
+    </div>
+    <div id="gradient">
+
+        <div id="topbar">
+            <img src="./images/logo_large.png" alt="Logo Dragonheart Studios" id="logo">
+            <div class="nav-links">
+                <p id="accueil">Accueil</p>
+                <p id="nous_rejoindre">Nous rejoindre</p>
+                <p id="projets_link">Projets</p>
+                <p id="a_propos_de_nous">À propos de nous</p>
+            </div>
+            <p id="langue">FR</p>
+        </div>
+
+        <div id="slogan">
+            <p id="slogan_p">Votre studio de jeux indé</p>
+            <p id="slogan_boost">Boosté par <span class="godot-engine">Godot Engine</span></p>
+        </div>
+
+        <div id="medias">
+            <p class="medias_p">Nos réseaux</p>
+            <div id="social_buttons">
+                <button id="discord" aria-label="Rejoindre notre Discord">
+                    <img src="./images/discord.png" alt="" id="discord_img">
+                </button>
+                <button id="youtube" aria-label="Visiter notre chaîne YouTube">
+                    <img src="./images/youtube.png" alt="" id="youtube_img">
+                </button>
+                <button id="github" aria-label="Voir notre GitHub">
+                    <img src="./images/github.png" alt="" id="github_img">
+                </button>
+            </div>
+        </div>
+
+        <div id="projects">
+            <p id="projects_p">Nos projets</p>
+            <div class="projects-container">
+                <!-- Card 1 -->
+                <div class="project-card" data-url="empty">
+                    <img src="./images/nightmare_or_dream.png" alt="Nightmare or Dream" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Nightmare or Dream</h3>
+                        <p class="project-description">Un jeu d'horreur psychologique où la frontière entre cauchemar et réalité s'estompe.</p>
+                        <span class="project-tag in-developpement">En développement</span>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="project-card" data-url="https://wolfy400.itch.io/water-corporate">
+                    <img src="./images/water_corporate.png" alt="Water Corporate" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Water Corporate</h3>
+                        <p class="project-description">Un jeu simple de pompage d'eau, idle/incrémental, que l'on pourrait considérer comme un mauvais boulot bien payé.</p>
+                        <span class="project-tag in-developpement">En développement</span>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="project-card" data-url="https://www.jeuxvideo.com/jeux/jeu-77946/">
+                    <img src="./images/the_last_of_us.png" alt="The Last of Us" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">The Last of Us</h3>
+                        <p class="project-description">Un jeu dans un univers post-apocalyptique suite à une pandémie. Joel et Ellie traversent les États-Unis en ruines.</p>
+                        <span class="project-tag completed">Terminé</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="about_us">
+            <p id="about_us_p">À propos de nous</p>
+            <p id="about_us_text">Dragonheart Studio est un studio de développement de jeux vidéo indépendant fondé en 2025. Notre mission est de créer des expériences de jeu immersives et innovantes qui captivent les joueurs du monde entier. Nous croyons en la puissance des histoires bien racontées et des mécaniques de jeu engageantes pour offrir des aventures inoubliables.</p>
+            <ul>
+                <li>Solutions open-source</li>
+                <li>Création de jeux innovants</li>
+                <li>Expériences immersives</li>
+                <li>Communauté passionnée</li>
+            </ul>
+        </div>
+
+        <div id="footer">
+            <p>© 2025 Dragonheart Studio. Tous droits réservés.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
