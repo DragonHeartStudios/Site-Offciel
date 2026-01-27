@@ -16,6 +16,7 @@
   langFoldersCollection.set("en", "english");
   
   const redirectionHTMLFile = "/index.html";
+  var redirectionFolderName = langFoldersCollection.get("en");
   
   const userLang = (navigator.language || navigator.userLanguage).toLowerCase();
   console.log("User language: " + userLang);
@@ -23,8 +24,8 @@
   for (var [lang, folderName] of langFoldersCollection) {
     if (userLang.startsWith(lang)) {
       console.log("Redirection found for: " + lang);
-      window.location.replace(folderName + redirectionHTMLFile);
-      break;
+      redirectionFolderName = folderName;
     }
   }
+  window.location.replace(redirectionFolderName + redirectionHTMLFile);
 </script>
