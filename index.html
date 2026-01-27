@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Redirection...</title>
+    </head>
+    <body>
+        <h4>Redirection...</h4>
+    </body>
+</html>
+
+<script>
+  const langFoldersCollection = new Map();
+  langFoldersCollection.set("fr", "francais");
+  langFoldersCollection.set("en", "english");
+  
+  const redirectionHTMLFile = "/index.html";
+  
+  const userLang = (navigator.language || navigator.userLanguage).toLowerCase();
+  console.log("User language: " + userLang);
+  
+  for (var [lang, folderName] of langFoldersCollection) {
+    if (userLang.startsWith(lang)) {
+      console.log("Redirection found for: " + lang);
+      window.location.replace(folderName + redirectionHTMLFile);
+      break;
+    }
+  }
+</script>
