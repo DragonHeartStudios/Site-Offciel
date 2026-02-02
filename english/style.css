@@ -85,6 +85,15 @@ p {
     transition: color 0.3s;
 }
 
+.nous_rejoindre_a {
+    color: white;
+    text-decoration: none;
+}
+
+.nous_rejoindre_a:hover {
+    color: rgba(190, 16, 77, 1);
+}
+
 #accueil:hover, #nous_rejoindre:hover, #projets_link:hover, #a_propos_de_nous:hover {
     color: rgba(190, 16, 77, 1);
 }

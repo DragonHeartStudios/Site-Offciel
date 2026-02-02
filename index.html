@@ -1,31 +1,48 @@
 <!doctype html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Redirection...</title>
-    </head>
-    <body>
-        <h4>Redirection...</h4>
-    </body>
-</html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dragon Heart — Rejoindre</title>
+    <meta name="description" content="Rejoignez l'équipe Dragon Heart et participez à nos projets de développement de jeux vidéo.">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background fixe avec gradient -->
+    <div id="background">
+        <img src="../images/background.png" alt="Background Dragon Heart">
+    </div>
+    <div id="gradient"></div>
 
-<script>
-  const langFoldersCollection = new Map();
-  langFoldersCollection.set("fr", "francais");
-  langFoldersCollection.set("en", "english");
-  
-  const redirectionHTMLFile = "/index.html";
-  var redirectionFolderName = langFoldersCollection.get("en");
-  
-  const userLang = (navigator.language || navigator.userLanguage).toLowerCase();
-  console.log("User language: " + userLang);
-  
-  for (var [lang, folderName] of langFoldersCollection) {
-    if (userLang.startsWith(lang)) {
-      console.log("Redirection found for: " + lang);
-      redirectionFolderName = folderName;
-    }
-  }
-  window.location.replace(redirectionFolderName + redirectionHTMLFile);
-</script>
+    <header>
+        <div id="topbar">
+            <nav>
+                <a href="../francais/index.html">Accueil</a>
+                <a href="/rejoindre">Rejoindre</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>Rejoindre Dragon Heart</h1>
+        <p>Vous souhaitez participer à nos projets de développement de jeux vidéo ? Remplissez le formulaire ci-dessous et nous vous contacterons rapidement.</p>
+
+        <form id="form">
+            <input name="nom" type="text" placeholder="Votre nom complet" required aria-label="Nom complet" />
+            <textarea name="message" placeholder="Parlez-nous de vous, de vos compétences et de votre motivation..." required aria-label="Message de présentation"></textarea>
+            <button type="submit">Envoyer ma candidature</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Dragon Heart — Tous droits réservés</p>
+    </footer>
+
+    <script>
+        // Affiche l'année courante dans le footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -11,7 +11,7 @@ document.getElementById('accueil').addEventListener('click', function() {
 });
 
 document.getElementById('nous_rejoindre').addEventListener('click', function() {
-    document.getElementById('medias').scrollIntoView({ behavior: 'smooth' });
+    document.location.relplace("../rejoindre/index.html");
 });
 
 document.getElementById('projets_link').addEventListener('click', function() {

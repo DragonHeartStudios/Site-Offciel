@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonheart Studios — Rejoindre</title>
+    <meta name="description" content="Rejoignez l'équipe Dragonheart Studios et participez à la création de jeux innovants.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+</head>
+<body>
+    <div id="background">
+        <img src="../images/background.png" alt="Background Image">
+    </div>
+    
+    <div id="gradient">
+        <div id="topbar">
+            <img src="../images/logo_large.png" alt="Logo Dragonheart Studios" id="logo">
+            <div class="nav-links">
+                <p id="accueil" data-lang-fr="Accueil" data-lang-en="Home">Accueil</p>
+                <p id="nous_rejoindre" data-lang-fr="Nous rejoindre" data-lang-en="Join Us">Nous rejoindre</p>
+                <p id="projets_link" data-lang-fr="Projets" data-lang-en="Projects">Projets</p>
+                <p id="a_propos_de_nous" data-lang-fr="À propos de nous" data-lang-en="About Us">À propos de nous</p>
+            </div>
+            <p id="langue">FR</p>
+        </div>
+
+        <main>
+            <h1 data-lang-fr="Rejoindre l'équipe" data-lang-en="Join the Team">Rejoindre l'équipe</h1>
+            <p class="intro-text" data-lang-fr="Vous êtes passionné par le développement de jeux vidéo ? Rejoignez notre équipe et participez à la création d'expériences inoubliables !" data-lang-en="Passionate about game development? Join our team and help create unforgettable experiences!">
+                Vous êtes passionné par le développement de jeux vidéo ? Rejoignez notre équipe et participez à la création d'expériences inoubliables !
+            </p>
+
+            <form id="form">
+                <h2 data-lang-fr="Informations générales" data-lang-en="General Information">Informations générales</h2>
+                <div class="form-group">
+                    <input name="pseudo" placeholder="Pseudo *" type="text" required data-placeholder-fr="Pseudo *" data-placeholder-en="Username *" />
+                    <input name="age" placeholder="Âge" type="number" min="13" max="99" data-placeholder-fr="Âge" data-placeholder-en="Age" />
+                    <input name="email" placeholder="Email *" type="email" required data-placeholder-fr="Email *" data-placeholder-en="Email *" />
+                </div>
+
+                <h2 data-lang-fr="Poste(s) souhaité(s)" data-lang-en="Desired Position(s)">Poste(s) souhaité(s)</h2>
+                <fieldset>
+                    <legend data-lang-fr="Sélectionnez un ou plusieurs postes" data-lang-en="Select one or more positions">Sélectionnez un ou plusieurs postes</legend>
+                    <div class="checkbox-grid">
+                        <label>
+                            <input type="checkbox" name="poste" value="developpeur">
+                            <span data-lang-fr="Développeur" data-lang-en="Developer">Développeur</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="poste" value="graphiste">
+                            <span data-lang-fr="Graphiste" data-lang-en="Graphic Designer">Graphiste</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="poste" value="compositeur">
+                            <span data-lang-fr="Compositeur" data-lang-en="Composer">Compositeur</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="poste" value="game_designer">
+                            <span data-lang-fr="Game Designer" data-lang-en="Game Designer">Game Designer</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="poste" value="modelisateur_3d">
+                            <span data-lang-fr="Modélisateur 3D" data-lang-en="3D Modeler">Modélisateur 3D</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="poste" value="vfx_designer">
+                            <span data-lang-fr="VFX Designer" data-lang-en="VFX Designer">VFX Designer</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="poste" value="doubleur">
+                            <span data-lang-fr="Doubleur" data-lang-en="Voice Actor">Doubleur</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="poste" value="community_manager">
+                            <span data-lang-fr="Community Manager" data-lang-en="Community Manager">Community Manager</span>
+                        </label>
+                        <label class="checkbox-other">
+                            <input type="checkbox" name="poste" value="autre" id="poste_autre_check">
+                            <span data-lang-fr="Autre" data-lang-en="Other">Autre</span>
+                        </label>
+                    </div>
+                    <input type="text" name="poste_autre" id="poste_autre_text" placeholder="Précisez le poste..." disabled data-placeholder-fr="Précisez le poste..." data-placeholder-en="Specify position...">
+                </fieldset>
+
+                <h2 data-lang-fr="Compétences & Expérience" data-lang-en="Skills & Experience">Compétences & Expérience</h2>
+                <div class="form-group">
+                    <textarea name="competences" placeholder="Décrivez vos compétences et expériences. Si vous avez déjà travaillé avec d'autres studios, n'hésitez pas à donner des détails." rows="6" data-placeholder-fr="Décrivez vos compétences et expériences. Si vous avez déjà travaillé avec d'autres studios, n'hésitez pas à donner des détails." data-placeholder-en="Describe your skills and experience. If you've worked with other studios, feel free to provide details."></textarea>
+                    <input name="outils" placeholder="Quels outils maîtrisez-vous ? (ex: Unity, Blender, Photoshop...)" type="text" data-placeholder-fr="Quels outils maîtrisez-vous ? (ex: Unity, Blender, Photoshop...)" data-placeholder-en="What tools do you master? (e.g., Unity, Blender, Photoshop...)"/>
+                </div>
+
+                <h2 data-lang-fr="Vos Projets" data-lang-en="Your Projects">Vos Projets</h2>
+                <div class="form-group">
+                    <textarea name="projets" placeholder="Décrivez vos projets personnels ou professionnels (vous pouvez inclure des liens)." rows="6" data-placeholder-fr="Décrivez vos projets personnels ou professionnels (vous pouvez inclure des liens)." data-placeholder-en="Describe your personal or professional projects (you can include links)."></textarea>
+                    <input name="portfolio" placeholder="Lien vers votre portfolio, GitHub, ArtStation, etc." type="url" data-placeholder-fr="Lien vers votre portfolio, GitHub, ArtStation, etc." data-placeholder-en="Link to your portfolio, GitHub, ArtStation, etc."/>
+                </div>
+
+                <h2 data-lang-fr="Motivation" data-lang-en="Motivation">Motivation</h2>
+                <div class="form-group">
+                    <textarea name="motivation" placeholder="Pourquoi souhaitez-vous rejoindre Dragonheart Studios ?" rows="4" data-placeholder-fr="Pourquoi souhaitez-vous rejoindre Dragonheart Studios ?" data-placeholder-en="Why do you want to join Dragonheart Studios?"></textarea>
+                </div>
+                
+                <button type="submit" id="submit-btn">
+                    <span data-lang-fr="Envoyer ma candidature" data-lang-en="Submit Application">Envoyer ma candidature</span>
+                </button>
+            </form>
+        </main>
+
+        <div id="footer">
+            <p>&copy; <span id="year"></span> Dragonheart Studios. <span data-lang-fr="Tous droits réservés." data-lang-en="All rights reserved.">Tous droits réservés.</span></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

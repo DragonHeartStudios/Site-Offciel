@@ -1,0 +1,610 @@
+/* =========================================
+   DRAGONHEART STUDIOS - PAGE REJOINDRE
+   Style unifié avec le thème principal
+   ========================================= */
+
+/* ================
+   RESET & VARIABLES
+   ================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Couleurs principales */
+    --primary-gradient-start: rgb(190, 16, 170);
+    --primary-gradient-end: rgb(190, 16, 53);
+    --primary-color: rgba(190, 16, 77, 1);
+    --primary-hover: rgba(190, 16, 77, 0.8);
+    
+    /* Couleurs de fond */
+    --bg-main: #000000;
+    --bg-card: rgba(20, 20, 20, 0.9);
+    --bg-card-light: rgba(30, 30, 30, 0.8);
+    --bg-input: rgba(40, 40, 40, 0.6);
+    --bg-input-focus: rgba(50, 50, 50, 0.8);
+    
+    /* Couleurs de texte */
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --text-muted: rgba(255, 255, 255, 0.6);
+    --text-placeholder: rgba(255, 255, 255, 0.4);
+    
+    /* Bordures */
+    --border-light: rgba(255, 255, 255, 0.1);
+    --border-primary: rgba(190, 16, 77, 0.8);
+    
+    /* Espacements */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 30px;
+    --spacing-lg: 40px;
+    --spacing-xl: 60px;
+    
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 20px;
+    
+    /* Fonts */
+    --font-primary: 'PTSansNarrow-Regular', sans-serif;
+    --font-display: 'Mooli', 'Poetsen One', sans-serif;
+}
+
+/* ================
+   FONTS
+   ================ */
+@font-face {
+    font-family: 'PTSansNarrow-Regular';
+    src: url('../fonts/Mooli,PT_Sans_Narrow/PT_Sans_Narrow/PTSansNarrow-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mooli';
+    src: url('../fonts/Mooli,PT_Sans_Narrow/Mooli/Mooli-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ================
+   STYLES DE BASE
+   ================ */
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+body {
+    background-color: var(--bg-main);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ================
+   BACKGROUND FIXE
+   ================ */
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    z-index: 0;
+}
+
+#background img {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0.5;
+    will-change: transform;
+}
+
+#gradient {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 30%);
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    z-index: 0;
+}
+
+/* ================
+   TOPBAR
+   ================ */
+#topbar {
+    position: relative;
+    z-index: 2;
+    width: calc(100% - 40px);
+    min-height: 60px;
+    background-color: var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px var(--spacing-md);
+    margin: 20px;
+    border-radius: var(--radius-md);
+    box-sizing: border-box;
+}
+
+#logo {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#logo:hover {
+    transform: scale(1.05);
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--spacing-lg);
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links p {
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 16px;
+    margin: 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links p::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary-gradient-start), var(--primary-gradient-end));
+    transition: width 0.3s ease;
+}
+
+.nav-links p:hover {
+    color: var(--primary-color);
+}
+
+.nav-links p:hover::after {
+    width: 100%;
+}
+
+#langue {
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 16px;
+    margin: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-sm);
+}
+
+#langue:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* ================
+   MAIN CONTENT
+   ================ */
+main {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 0 20px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+    font-family: var(--font-display);
+    text-align: center;
+    margin-bottom: 20px;
+    background: linear-gradient(to top right, var(--primary-gradient-start), var(--primary-gradient-end));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.intro-text {
+    color: var(--text-secondary);
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.8;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ================
+   FORMULAIRE
+   ================ */
+#form {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.8s ease-out 0.2s both;
+}
+
+#form:hover {
+    border-color: var(--border-primary);
+    box-shadow: 0 10px 30px rgba(190, 16, 77, 0.2);
+}
+
+h2 {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 24px;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-primary);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ================
+   FIELDSET & LEGEND
+   ================ */
+fieldset {
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    background: rgba(30, 30, 30, 0.4);
+    transition: border-color 0.3s ease;
+}
+
+fieldset:focus-within {
+    border-color: var(--border-primary);
+}
+
+legend {
+    color: var(--text-secondary);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+/* ================
+   CHECKBOXES
+   ================ */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+fieldset label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+}
+
+fieldset label:hover {
+    background: rgba(190, 16, 77, 0.1);
+    color: var(--primary-color);
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.checkbox-other {
+    grid-column: 1 / -1;
+}
+
+/* ================
+   INPUTS & TEXTAREA
+   ================ */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="url"],
+textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-placeholder);
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--primary-color);
+    background: var(--bg-input-focus);
+    box-shadow: 0 0 0 3px rgba(190, 16, 77, 0.15);
+}
+
+input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(30, 30, 30, 0.4);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: var(--font-primary);
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#poste_autre_text {
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+/* ================
+   BOUTON SUBMIT
+   ================ */
+button[type="submit"] {
+    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+    color: var(--text-primary);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-primary);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    touch-action: manipulation;
+}
+
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.5s ease;
+}
+
+button[type="submit"]:hover::before {
+    left: 100%;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(190, 16, 77, 0.4);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+button[type="submit"]:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+button[type="submit"]:disabled::before {
+    display: none;
+}
+
+/* ================
+   FOOTER
+   ================ */
+#footer {
+    position: relative;
+    z-index: 2;
+    color: var(--text-muted);
+    text-align: center;
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+    border-top: 1px solid var(--border-light);
+    font-size: 14px;
+}
+
+#footer p {
+    margin: 0;
+    color: var(--text-muted);
+    font-family: var(--font-primary);
+}
+
+/* ================
+   FOCUS VISIBLE
+   ================ */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+.nav-links p:focus-visible,
+#langue:focus-visible,
+#logo:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* ================
+   ANIMATIONS
+   ================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================
+   RESPONSIVE
+   ================ */
+@media (max-width: 1024px) {
+    #topbar {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+    }
+    
+    #logo {
+        width: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 36px;
+    }
+    
+    .intro-text {
+        font-size: 16px;
+    }
+    
+    main {
+        margin: 60px auto;
+        padding: 0 16px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+    
+    #form {
+        padding: var(--spacing-md);
+        gap: 25px;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="url"],
+    textarea {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+    
+    button[type="submit"] {
+        padding: 14px 28px;
+        font-size: 16px;
+    }
+    
+    textarea {
+        min-height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    #topbar {
+        width: calc(100% - 20px);
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    main {
+        margin: 40px auto;
+    }
+    
+    #form {
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    #logo {
+        width: 100px;
+    }
+}
