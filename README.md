@@ -6,7 +6,7 @@ Bienvenue sur le dépôt officiel du site web de **Dragon Heart Studios**. Nous 
 Ce site vitrine a pour but de présenter nos dernières créations, notre équipe et notre univers aux joueurs du monde entier. et a recruter.
 
 * **Lien du site :** https://dragonheartstudios.github.io/Site-Offciel/
-* **Technologies utilisées :** HTML5, CSS
+* **Technologies utilisées :** HTML5, CSS, JavaScript
 
 ## 📬 Contact
 Vous avez des questions ou vous souhaitez collaborer avec nous ?
