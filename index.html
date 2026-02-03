@@ -1,46 +1,48 @@
 <!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="refresh" content="0; url=/english/index.html" />
-        <title>Dragon Heart - Redirecting...</title>
-        <style>
-            body {
-                font-family: system-ui, -apple-system, sans-serif;
-                background-color: #000;
-                color: #fff;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
-                margin: 0;
-                text-align: center;
-            }
-            .loader {
-                display: inline-block;
-                width: 20px;
-                height: 20px;
-                border: 3px solid rgba(190, 16, 77, 0.3);
-                border-radius: 50%;
-                border-top-color: rgb(190, 16, 77);
-                animation: spin 1s ease-in-out infinite;
-            }
-            @keyframes spin {
-                to { transform: rotate(360deg); }
-            }
-        </style>
-    </head>
-    <body>
-        <div>
-            <div class="loader"></div>
-            <h4>Redirecting to English version...</h4>
-            <p>If you are not redirected, <a href="/english/index.html" style="color: rgb(190, 16, 77);">click here</a>.</p>
-        </div>
-    </body>
-</html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dragon Heart — Rejoindre</title>
+    <meta name="description" content="Rejoignez l'équipe Dragon Heart et participez à nos projets de développement de jeux vidéo.">
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background fixe avec gradient -->
+    <div id="background">
+        <img src="../images/background.png" alt="Background Dragon Heart">
+    </div>
+    <div id="gradient"></div>
 
-<script>
-    // Redirection immédiate vers la version anglaise
-    window.location.replace("english/index.html");
-</script>
+    <header>
+        <div id="topbar">
+            <nav>
+                <a href="../francais/index.html">Accueil</a>
+                <a href="/rejoindre">Rejoindre</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>Rejoindre Dragon Heart</h1>
+        <p>Vous souhaitez participer à nos projets de développement de jeux vidéo ? Remplissez le formulaire ci-dessous et nous vous contacterons rapidement.</p>
+
+        <form id="form">
+            <input name="nom" type="text" placeholder="Votre nom complet" required aria-label="Nom complet" />
+            <textarea name="message" placeholder="Parlez-nous de vous, de vos compétences et de votre motivation..." required aria-label="Message de présentation"></textarea>
+            <button type="submit">Envoyer ma candidature</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Dragon Heart — Tous droits réservés</p>
+    </footer>
+
+    <script>
+        // Affiche l'année courante dans le footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

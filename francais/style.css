@@ -127,21 +127,24 @@ p {
 }
 
 #slogan_boost {
-    font-size: 24px;
+    font-size: 28px;
     font-family: 'PTSansNarrow-Regular', sans-serif;
     font-weight: normal;
     color: white;
     text-align: left;
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .godot-engine {
     background-color: #478cbf;
-    padding: 4px 12px;
-    border-radius: 6px;
+    padding: 6px 16px;
+    border-radius: 8px;
     display: inline-block;
     font-weight: bold;
-    margin-left: 8px;
+    font-size: 28px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -176,16 +179,16 @@ p {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 30px;
+    gap: 25px;
 }
 
 #discord, #youtube, #github {
     border: none;
     background: rgba(30, 30, 30, 0.8);
     cursor: pointer;
-    padding: 10px;
-    width: 70px;
-    height: 70px;
+    padding: 12px;
+    width: 80px;
+    height: 80px;
     border-radius: 16px;
     transition: all 0.3s ease;
     display: flex;
@@ -196,14 +199,20 @@ p {
 
 #discord:hover, #youtube:hover, #github:hover {
     background: rgba(190, 16, 77, 0.8);
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.05);
     border-color: rgba(190, 16, 77, 1);
+    box-shadow: 0 10px 25px rgba(190, 16, 77, 0.4);
 }
 
 #discord_img, #youtube_img, #github_img {
     width: 50px;
     height: 50px;
     object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+#discord:hover img, #youtube:hover img, #github:hover img {
+    transform: scale(1.1);
 }
 
 /* PROJETS */
@@ -305,6 +314,7 @@ p {
     margin-top: auto;
 }
 
+.project-tag.in-development,
 .project-tag.in-developpement {
     background-color: rgba(190, 16, 77, 0.8);
 }

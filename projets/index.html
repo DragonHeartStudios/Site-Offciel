@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../francais/style.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <title>Projets - Dragonheart Studios</title>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <style>
+        #projects {
+            margin-top: 50px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: bold;
+            font-family: 'Mooli', 'Poetsen One', sans-serif;
+            background: linear-gradient(to top right, rgb(190, 16, 170), rgb(190, 16, 53));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .page-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div id="background">
+        <img src="../images/background.png" alt="Background Image">
+    </div>
+    <div id="gradient">
+
+        <div id="topbar">
+            <img src="../images/logo_large.png" alt="Logo Dragonheart Studios" id="logo">
+            <div class="nav-links">
+                <p id="accueil" data-i18n="nav.home">Accueil</p>
+                <p id="nous_rejoindre" data-i18n="nav.join">Nous rejoindre</p>
+                <p id="projets_link" data-i18n="nav.projects">Projets</p>
+                <p id="a_propos_de_nous" data-i18n="nav.about">À propos</p>
+            </div>
+            <div id="langue">FR</div>
+        </div>
+
+        <div class="page-header">
+            <h1 class="page-title" data-i18n="projectsPage.title">Tous nos projets</h1>
+            <p class="page-description" data-i18n="projectsPage.description">Découvrez l'ensemble de nos créations, des projets terminés aux jeux en développement.</p>
+        </div>
+
+        <div id="projects">
+            <div class="projects-container" id="projects-list">
+                <!-- Les projets seront chargés dynamiquement par JavaScript -->
+            </div>
+        </div>
+
+        <div id="footer">
+            <p>© <span id="year"></span> Dragonheart Studios. <span data-i18n="footer.rights">Tous droits réservés.</span></p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../data/translations.js"></script>
+    <script src="../data/games.js"></script>
+    <script src="../data/team.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+        // Afficher l'année courante
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Charger tous les projets
+        if (typeof GAMES_DATA !== 'undefined') {
+            const container = document.getElementById('projects-list');
+            GAMES_DATA.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.dataset.gameId = game.id;
+                card.innerHTML = `
+                    <img src="${game.image}" alt="${game.title.fr}" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">${game.title.fr}</h3>
+                        <p class="project-description">${game.shortDescription.fr}</p>
+                        <span class="project-tag ${game.status}">${getStatusText(game.status)}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            function getStatusText(status) {
+                const map = {
+                    'in-development': 'En développement',
+                    'completed': 'Terminé',
+                    'upcoming': 'À venir'
+                };
+                return map[status] || status;
+            }
+        }
+    </script>
+</body>
+</html>
