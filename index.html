@@ -1,48 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dragon Heart — Rejoindre</title>
-    <meta name="description" content="Rejoignez l'équipe Dragon Heart et participez à nos projets de développement de jeux vidéo.">
-    <link rel="icon" type="image/png" href="../images/favicon.png">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=/francais/index.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonheart Studios - Redirection...</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        
+        .loader {
+            max-width: 400px;
+            padding: 40px;
+        }
+        
+        .logo {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        h1 {
+            font-size: 2em;
+            background: linear-gradient(to right, rgb(190, 16, 170), rgb(190, 16, 53));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto;
+            border: 4px solid rgba(190, 16, 77, 0.2);
+            border-top-color: rgb(190, 16, 77);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        a {
+            color: rgb(190, 16, 77);
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <!-- Background fixe avec gradient -->
-    <div id="background">
-        <img src="../images/background.png" alt="Background Dragon Heart">
+    <div class="loader">
+        <div class="logo">🐲</div>
+        <h1>Dragonheart Studios</h1>
+        <p>Redirection en cours...</p>
+        <div class="spinner"></div>
+        <p style="margin-top: 30px; font-size: 0.9em;">
+            <a href="/francais/index.html">Cliquez ici si vous n'êtes pas redirigé automatiquement</a>
+        </p>
     </div>
-    <div id="gradient"></div>
-
-    <header>
-        <div id="topbar">
-            <nav>
-                <a href="../francais/index.html">Accueil</a>
-                <a href="/rejoindre">Rejoindre</a>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <h1>Rejoindre Dragon Heart</h1>
-        <p>Vous souhaitez participer à nos projets de développement de jeux vidéo ? Remplissez le formulaire ci-dessous et nous vous contacterons rapidement.</p>
-
-        <form id="form">
-            <input name="nom" type="text" placeholder="Votre nom complet" required aria-label="Nom complet" />
-            <textarea name="message" placeholder="Parlez-nous de vous, de vos compétences et de votre motivation..." required aria-label="Message de présentation"></textarea>
-            <button type="submit">Envoyer ma candidature</button>
-        </form>
-    </main>
-
-    <footer>
-        <p>&copy; <span id="year"></span> Dragon Heart — Tous droits réservés</p>
-    </footer>
-
+    
     <script>
-        // Affiche l'année courante dans le footer
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // Redirection JavaScript de secours au cas où la meta refresh ne fonctionne pas
+        setTimeout(() => {
+            window.location.href = '/francais/index.html';
+        }, 100);
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
