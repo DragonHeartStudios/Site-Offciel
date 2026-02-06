@@ -91,8 +91,8 @@ const App = (() => {
         }
 
         // Navigation
-        if (el.logo) el.logo.addEventListener('click', () => navigateTo('/francais/index.html'));
-        if (el.accueil) el.accueil.addEventListener('click', () => navigateTo('/francais/index.html'));
+        if (el.logo) el.logo.addEventListener('click', () => navigateTo('./francais/index.html'));
+        if (el.accueil) el.accueil.addEventListener('click', () => navigateTo('./francais/index.html'));
         if (el.nousRejoindre) el.nousRejoindre.addEventListener('click', () => window.location.reload());
         if (el.projetsLink) el.projetsLink.addEventListener('click', () => scrollToSection('projects'));
         if (el.aProposDeNous) el.aProposDeNous.addEventListener('click', () => scrollToSection('about_us'));
