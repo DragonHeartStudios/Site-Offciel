@@ -2,100 +2,113 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=francais/index.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragonheart Studios - Redirection...</title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-        
-        .loader {
-            max-width: 400px;
-            padding: 40px;
-        }
-        
-        .logo {
-            font-size: 4em;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
-        
-        h1 {
-            font-size: 2em;
-            background: linear-gradient(to right, rgb(190, 16, 170), rgb(190, 16, 53));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-        
-        p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 30px;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto;
-            border: 4px solid rgba(190, 16, 77, 0.2);
-            border-top-color: rgb(190, 16, 77);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
-        }
-        
-        a {
-            color: rgb(190, 16, 77);
-            text-decoration: none;
-            margin-top: 20px;
-            display: inline-block;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <title>Dragonheart Studios</title>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
 </head>
 <body>
-    <div class="loader">
-        <div class="logo">🐲</div>
-        <h1>Dragonheart Studios</h1>
-        <p>Redirection en cours...</p>
-        <div class="spinner"></div>
-        <p style="margin-top: 30px; font-size: 0.9em;">
-            <a href="francais/index.html">Cliquez ici si vous n'êtes pas redirigé automatiquement</a>
-        </p>
+    <div id="background">
+        <img src="assets/images/background.png" alt="Background Image">
     </div>
-    
+    <div id="gradient">
+
+        <div id="topbar">
+            <img src="assets/images/logo_large.png" alt="Logo Dragonheart Studios" id="logo">
+            <div class="nav-links">
+                <p id="accueil" data-i18n="nav.home">Accueil</p>
+                <p id="nous_rejoindre" data-i18n="nav.join">Nous rejoindre</p>
+                <p id="projets_link" data-i18n="nav.projects">Projets</p>
+                <p id="a_propos_de_nous" data-i18n="nav.about">À propos</p>
+            </div>
+            <div id="langue">FR</div>
+        </div>
+
+        <div id="slogan">
+            <p id="slogan_p" data-i18n="home.slogan">Votre studio de jeux indé</p>
+            <p id="slogan_boost"><span data-i18n="home.poweredBy">Propulsé par</span> <span class="godot-engine">Godot Engine</span></p>
+        </div>
+
+        <div id="medias">
+            <p class="medias_p" data-i18n="home.socialMedia">Nos réseaux</p>
+            <div id="social_buttons">
+                <button id="discord" aria-label="Rejoindre notre Discord">
+                    <img src="assets/images/discord.png" alt="Discord" id="discord_img">
+                </button>
+                <button id="youtube" aria-label="Visiter notre chaîne YouTube">
+                    <img src="assets/images/youtube.png" alt="YouTube" id="youtube_img">
+                </button>
+                <button id="github" aria-label="Voir notre GitHub">
+                    <img src="assets/images/github.png" alt="GitHub" id="github_img">
+                </button>
+            </div>
+        </div>
+
+        <div id="projects">
+            <p id="projects_p" data-i18n="home.featuredProjects">Projets en vedette</p>
+            <div class="projects-container">
+                <!-- Card 1 - Nightmare or Dream -->
+                <div class="project-card" data-game-id="nightmare-or-dream">
+                    <img src="assets/images/nightmare_or_dream.png" alt="Nightmare or Dream" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Nightmare or Dream</h3>
+                        <p class="project-description">Un jeu d'horreur psychologique où la frontière entre cauchemar et réalité s'estompe.</p>
+                        <span class="project-tag in-development">En développement</span>
+                    </div>
+                </div>
+                
+                <!-- Card 2 - Water Corporate -->
+                <div class="project-card" data-game-id="water-corporate">
+                    <img src="assets/images/water_corporate.png" alt="Water Corporate" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Water Corporate</h3>
+                        <p class="project-description">Un jeu simple de pompage d'eau, idle/incrémental, que l'on pourrait considérer comme un mauvais boulot bien payé.</p>
+                        <span class="project-tag in-development">En développement</span>
+                    </div>
+                </div>
+                
+                <!-- Card 3 - The Last of Us -->
+                <div class="project-card" data-game-id="KBoom">
+                    <img src="assets/images/flutter.png" alt="KBoom" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">KBoom</h3>
+                        <p class="project-description">Un jeu dans un univers post-apocalyptique suite à une pandémie. Joel et Ellie traversent les États-Unis en ruines.</p>
+                        <span class="project-tag completed">En développement</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="about_us">
+            <p id="about_us_p" data-i18n="home.aboutTitle">À propos de nous</p>
+            <p id="about_us_text" data-i18n="home.aboutText">Dragonheart Studios est un studio de développement de jeux vidéo indépendant fondé en 2023. Notre mission est de créer des jeux touchants avec des expériences immersives et innovantes qui captivent les joueurs du monde entier. Nous croyons en la puissance des histoires bien racontées et des mécaniques de jeu engageantes pour offrir des aventures inoubliables.</p>
+            <ul>
+                <li data-i18n="home.aboutPoints.openSource">Solutions open-source</li>
+                <li data-i18n="home.aboutPoints.innovative">Création de jeux innovants</li>
+                <li data-i18n="home.aboutPoints.immersive">Expériences immersives</li>
+                <li data-i18n="home.aboutPoints.touching">Jeux touchants</li>
+                <li data-i18n="home.aboutPoints.community">Communauté passionnée</li>
+            </ul>
+        </div>
+
+        <div id="footer">
+            <p>© <span id="year"></span> Dragonheart Studios. <span data-i18n="footer.rights">Tous droits réservés.</span></p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/data/translations.js"></script>
+    <script src="assets/data/games.js"></script>
+    <script src="assets/data/team.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="script.js"></script>
     <script>
-        // Redirection JavaScript de secours au cas où la meta refresh ne fonctionne pas
-        setTimeout(() => {
-            window.location.href = 'francais/index.html';
-        }, 100);
+        // Afficher l'année courante
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
