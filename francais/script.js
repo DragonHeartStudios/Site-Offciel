@@ -10,9 +10,9 @@ document.getElementById('accueil').addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-document.getElementById('nous_rejoindre').addEventListener('click', function() {
-    document.getElementById('medias').scrollIntoView({ behavior: 'smooth' });
-});
+//document.getElementById('nous_rejoindre').addEventListener('click', function() {
+//    document.getElementById('medias').scrollIntoView({ behavior: 'smooth' });
+//});
 
 document.getElementById('projets_link').addEventListener('click', function() {
     document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
