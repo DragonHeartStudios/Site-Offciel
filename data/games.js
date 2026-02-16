@@ -95,7 +95,7 @@ const GAMES_DATA = [
             it: 'KBoom'
         },
         shortDescription: {
-            fr: 'Un jeu familial qui met non pas qui met',
+            fr: 'Kboom est un jeu multijoueur de rapidité et de vocabulaire. Une lettre est données, les joueurs doivent trouver un maximum de mots correspondants dans un temps limité. Les mots uniques (trouvés par toi seul) rapportent plus de points que ceux trouvés par plusieurs joueurs.',
             en: 'A game set in a post-apocalyptic world following a pandemic. Joel and Ellie traverse the ruins of the United States.',
             es: 'Un juego ambientado en un mundo post-apocalíptico tras una pandemia. Joel y Ellie atraviesan las ruinas de Estados Unidos.',
             de: 'Ein Spiel in einer postapokalyptischen Welt nach einer Pandemie. Joel und Ellie durchqueren die Ruinen der Vereinigten Staaten.',
