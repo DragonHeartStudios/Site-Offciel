@@ -491,3 +491,5 @@ if (document.readyState === 'loading') {
 
 // Exposer globalement
 window.DragonheartApp = DragonheartApp;
+
+

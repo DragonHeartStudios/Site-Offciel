@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../css/global.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
@@ -18,17 +17,17 @@
     <div id="header-container"></div>
     <script>
     function loadHeader() {
-        fetch('assets/components/header.html') // chemin correct vers ton header
+        fetch('assets/components/header.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('header-container').innerHTML = html;
 
-                // Initialise la navigation si tu as des événements
+                // CETTE LIGNE EST LA CLÉ :
+                // Elle relance la détection du menu de langue et des textes
                 if (window.DragonheartApp) {
-                    DragonheartApp.init();
+                    DragonheartApp.init(); 
                 }
-            })
-            .catch(err => console.error('Erreur chargement header :', err));
+            });
     }
 
     if (document.readyState === 'loading') {

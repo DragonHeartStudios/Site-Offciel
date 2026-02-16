@@ -45,18 +45,10 @@
     <div id="background">
         <img src="../assets/images/background.png" alt="Background Image">
     </div>
-    <div id="gradient">
 
-        <div id="topbar">
-            <img src="../assets/images/logo_large.png" alt="Logo Dragonheart Studios" id="logo">
-            <div class="nav-links">
-                <p id="accueil" data-i18n="nav.home">Accueil</p>
-                <p id="nous_rejoindre" data-i18n="nav.join">Nous rejoindre</p>
-                <p id="projets_link" data-i18n="nav.projects">Projets</p>
-                <p id="a_propos_de_nous" data-i18n="nav.about">À propos</p>
-            </div>
-            <div id="langue">FR</div>
-        </div>
+    <div id="header-container"></div>
+
+    <div id="gradient">
 
         <div class="page-header">
             <h1 class="page-title" data-i18n="projectsPage.title">Tous nos projets</h1>
@@ -65,8 +57,7 @@
 
         <div id="projects">
             <div class="projects-container" id="projects-list">
-                <!-- Les projets seront chargés dynamiquement par JavaScript -->
-            </div>
+                </div>
         </div>
 
         <div id="footer">
@@ -74,41 +65,67 @@
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="../assets/data/translations.js"></script>
     <script src="../assets/data/games.js"></script>
     <script src="../assets/data/team.js"></script>
-    <script src="./assets/js/app.js"></script>
+    
+    <script src="../script.js"></script>
+
     <script>
-        // Afficher l'année courante
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // 2. CHARGEMENT DYNAMIQUE DU HEADER
+        function loadHeader() {
+            fetch('../assets/components/header.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('header-container').innerHTML = html;
 
-        // Charger tous les projets
-        if (typeof GAMES_DATA !== 'undefined') {
-            const container = document.getElementById('projects-list');
-            GAMES_DATA.forEach(game => {
-                const card = document.createElement('div');
-                card.className = 'project-card';
-                card.dataset.gameId = game.id;
-                card.innerHTML = `
-                    <img src="${game.image}" alt="${game.title.fr}" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">${game.title.fr}</h3>
-                        <p class="project-description">${game.shortDescription.fr}</p>
-                        <span class="project-tag ${game.status}">${getStatusText(game.status)}</span>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
+                    // Initialiser la langue après le chargement du header
+                    const savedLang = localStorage.getItem('dragonheart_lang') || 'fr';
+                    if (typeof TranslationEngine !== 'undefined') {
+                        TranslationEngine.updateContent(savedLang);
+                        
+                        // Mise à jour visuelle du bouton de langue
+                        const currentLangDisplay = document.getElementById('current-lang');
+                        if (currentLangDisplay) {
+                            const emoji = savedLang === 'fr' ? '🇫🇷' : '🇬🇧';
+                            currentLangDisplay.innerHTML = `${emoji} ${savedLang.toUpperCase()} <span class="arrow">▼</span>`;
+                        }
+                    }
+                })
+                .catch(err => console.error('Erreur chargement header :', err));
+        }
 
-            function getStatusText(status) {
-                const map = {
-                    'in-development': 'En développement',
-                    'completed': 'Terminé',
-                    'upcoming': 'À venir'
-                };
-                return map[status] || status;
+        document.addEventListener('DOMContentLoaded', () => {
+            loadHeader();
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Chargement des projets
+            if (typeof GAMES_DATA !== 'undefined') {
+                const container = document.getElementById('projects-list');
+                GAMES_DATA.forEach(game => {
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+                    card.dataset.gameId = game.id;
+                    card.innerHTML = `
+                        <img src="${game.image}" alt="${game.title.fr}" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">${game.title.fr}</h3>
+                            <p class="project-description">${game.shortDescription.fr}</p>
+                            <span class="project-tag ${game.status}">${getStatusText(game.status)}</span>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
             }
+        });
+
+        function getStatusText(status) {
+            const map = {
+                'in-development': 'En développement',
+                'completed': 'Terminé',
+                'upcoming': 'À venir'
+            };
+            return map[status] || status;
         }
     </script>
 </body>

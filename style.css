@@ -449,3 +449,126 @@ p {
         height: 40px;
     }
 }
+
+/* ===========================
+   SOULIGNEMENT TOPBAR
+   =========================== */
+/* Le conteneur de tes liens (pour l'espacement) */
+.nav-links p {
+    color: #ffffff; /* Ta couleur de texte */
+    font-size: 16px;
+    cursor: pointer;
+    position: relative; /* Indispensable pour positionner la barre */
+    transition: color 0.3s ease;
+    padding-bottom: 5px; /* Espace pour la barre */
+}
+
+/* La barre de soulignement invisible par défaut (width: 0) */
+.nav-links p::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, rgb(190, 16, 170), rgb(190, 16, 53));
+    transition: width 0.3s ease; /* C'est ici que l'animation se passe */
+}
+
+/* L'effet au survol : la barre passe à 100% de largeur */
+.nav-links p:hover {
+    color: rgba(190, 16, 77, 1); /* Optionnel : change aussi la couleur du texte */
+}
+
+.nav-links p:hover::after {
+    width: 100%;
+}
+
+
+/* --- SYSTEME DE LANGUE (CORRIGÉ) --- */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Bouton principal */
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.dropbtn:hover {
+    border-color: rgba(190, 16, 77, 1);
+    color: rgba(190, 16, 77, 1);
+}
+
+/* Contenu du menu */
+.dropdown-content {
+    display: none; 
+    position: absolute;
+    right: 0;
+    top: 100%; /* Colle exactement au bas du bouton */
+    padding-top: 5px; /* Petit espace interne pour laisser respirer sans casser le hover */
+    background-color: transparent; /* Fond transparent pour ne pas voir le padding */
+    min-width: 150px;
+    z-index: 1000;
+    flex-direction: column;
+}
+
+/* On applique le style visuel aux boutons eux-mêmes */
+.dropdown-content button {
+    width: 100%;
+    background-color: rgba(20, 20, 20, 0.98); /* Fond bien opaque */
+    border: none;
+    border-left: 1px solid rgba(190, 16, 77, 0.3);
+    border-right: 1px solid rgba(190, 16, 77, 0.3);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: block;
+}
+
+/* Arrondis pour le premier et le dernier bouton du menu */
+.dropdown-content button:first-child {
+    border-top: 1px solid rgba(190, 16, 77, 0.3);
+    border-radius: 12px 12px 0 0;
+}
+
+.dropdown-content button:last-child {
+    border-bottom: 1px solid rgba(190, 16, 77, 0.3);
+    border-radius: 0 0 12px 12px;
+}
+
+.dropdown-content button:hover {
+    background-color: rgba(190, 16, 77, 0.3);
+    color: rgba(190, 16, 77, 1);
+}
+
+/* Affichage au survol */
+.dropdown:hover .dropdown-content {
+    display: flex; /* Utilise flex pour afficher les boutons les uns sous les autres */
+}
+
+.arrow {
+    font-size: 10px;
+    transition: transform 0.3s;
+}
+
+.dropdown:hover .arrow {
+    transform: rotate(180deg);
+}

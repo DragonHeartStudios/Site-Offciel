@@ -6,6 +6,7 @@
     <title>Dragonheart Studios — Rejoindre</title>
     <meta name="description" content="Rejoignez l'équipe Dragonheart Studios et participez à la création de jeux innovants.">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
@@ -17,17 +18,41 @@
     </div>
     
     <div id="gradient">
-        <div id="topbar">
-            <img src="../assets/images/logo_large.png" alt="Logo Dragonheart Studios" id="logo">
-            <div class="nav-links">
-                <p id="accueil" data-lang-fr="Accueil" data-lang-en="Home">Accueil</p>
-                <p id="nous_rejoindre" data-lang-fr="Nous rejoindre" data-lang-en="Join Us">Nous rejoindre</p>
-                <p id="projets_link" data-lang-fr="Projets" data-lang-en="Projects">Projets</p>
-                <p id="a_propos_de_nous" data-lang-fr="À propos de nous" data-lang-en="About Us">À propos de nous</p>
-            </div>
-            <p id="langue">FR</p>
-        </div>
+        <div id="header-container"></div>
 
+<script src="../assets/data/translations.js"></script>
+<script src="../script.js"></script>
+
+<script>
+    // 1. Charger le header dynamiquement
+    function loadHeader() {
+        fetch('../assets/components/header.html') // Chemin vers votre fichier header
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+                
+                // 2. Une fois chargé, on initialise la langue
+                const savedLang = localStorage.getItem('dragonheart_lang') || 'fr';
+                if (typeof TranslationEngine !== 'undefined') {
+                    TranslationEngine.updateContent(savedLang);
+                    
+                    // Mise à jour visuelle du bouton de langue dans le header chargé
+                    const currentLangDisplay = document.getElementById('current-lang');
+                    if (currentLangDisplay) {
+                        const emoji = savedLang === 'fr' ? '🇫🇷' : '🇬🇧';
+                        currentLangDisplay.innerHTML = `${emoji} ${savedLang.toUpperCase()} <span class="arrow">▼</span>`;
+                    }
+                }
+            })
+            .catch(err => console.error('Erreur chargement header :', err));
+    }
+
+    // Lancer au chargement
+    document.addEventListener('DOMContentLoaded', () => {
+        loadHeader();
+        document.getElementById('year').textContent = new Date().getFullYear();
+    });
+</script>
         <main>
             <h1 data-lang-fr="Rejoindre l'équipe" data-lang-en="Join the Team">Rejoindre l'équipe</h1>
             <p class="intro-text" data-lang-fr="Vous êtes passionné par le développement de jeux vidéo ? Rejoignez notre équipe et participez à la création d'expériences inoubliables !" data-lang-en="Passionate about game development? Join our team and help create unforgettable experiences!">
