@@ -1,9 +1,11 @@
+@echo off
+
 git add .
 
-$msg = Read-Host "Message du commit"
+set /p msg=Message du commit : 
 
-git commit -m "$msg"
+git commit -m "%msg%"
 
 git push
 
-Pause
+pause
