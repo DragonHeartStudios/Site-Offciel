@@ -43,7 +43,7 @@ const GAMES_DATA = [
             es: 'En un extraño pueblo medieval que refleja una versión paralela de la vida del protagonista, un niño emprende una investigación después de reconocer a sus propios padres en el aviso de desaparición del noble local, una búsqueda que lo enfrentará al maquiavélico Merlín el Encantador y lo llevará a una verdad conmovedora sobre el duelo y la realidad. Resuelve acertijos y enfrenta un pasado oscuro.',
             de: 'In einem seltsamen mittelalterlichen Dorf, das eine parallele Version des Lebens des Protagonisten widerspiegelt, beginnt ein Kind eine Untersuchung, nachdem es seine eigenen Eltern auf der Vermisstenanzeige des örtlichen Adligen erkannt hat, eine Suche, die es gegen den machiavellistischen Merlin den Zauberer stellen und zu einer ergreifenden Wahrheit über Trauer und Realität führen wird. Löse Rätsel und konfrontiere eine dunkle Vergangenheit.',
             it: 'In uno strano villaggio medievale che riflette una versione parallela della vita del protagonista, un bambino inizia un\'indagine dopo aver riconosciuto i propri genitori nell\'avviso di scomparsa del nobile locale, una ricerca che lo metterà contro il machiavellico Merlino l\'Incantatore e lo porterà a una verità toccante sul lutto e la realtà. Risolvi enigmi e affronta un passato oscuro.'
-        },
+        },      
         image: '../images/nightmare_or_dream.png', 
         screenshots: ['../images/nightmare_or_dream.png'],
         status: 'in-development',
@@ -95,18 +95,18 @@ const GAMES_DATA = [
             it: 'KBoom'
         },
         shortDescription: {
-            fr: 'Un jeu familial qui met non pas qui met',
-            en: 'A game set in a post-apocalyptic world following a pandemic. Joel and Ellie traverse the ruins of the United States.',
-            es: 'Un juego ambientado en un mundo post-apocalíptico tras una pandemia. Joel y Ellie atraviesan las ruinas de Estados Unidos.',
-            de: 'Ein Spiel in einer postapokalyptischen Welt nach einer Pandemie. Joel und Ellie durchqueren die Ruinen der Vereinigten Staaten.',
-            it: 'Un gioco ambientato in un mondo post-apocalittico dopo una pandemia. Joel ed Ellie attraversano le rovine degli Stati Uniti.'
+            fr: 'Kboom est un jeu multijoueur de rapidité où les joueurs trouvent des mots à partir d’une lettre donnée avant la fin du temps.',
+            en: 'Kboom est un jeu multijoueur de rapidité où les joueurs trouvent des mots à partir d’une lettre donnée avant la fin du temps.',
+            es: 'Kboom est un jeu multijoueur de rapidité où les joueurs trouvent des mots à partir d’une lettre donnée avant la fin du temps.',
+            de: 'Kboom est un jeu multijoueur de rapidité où les joueurs trouvent des mots à partir d’une lettre donnée avant la fin du temps.',
+            it: 'Kboom est un jeu multijoueur de rapidité où les joueurs trouvent des mots à partir d’une lettre donnée avant la fin du temps.'
         },
         fullDescription: {
-            fr: 'The Last of Us est notre premier grand projet terminé. Dans un monde dévasté par une pandémie fongique, suivez l\'histoire poignante de Joel et Ellie alors qu\'ils traversent une Amérique en ruines. Un mélange de survival, action et narration émotionnelle qui a marqué nos débuts en tant que studio.',
-            en: 'The Last of Us is our first major completed project. In a world devastated by a fungal pandemic, follow the poignant story of Joel and Ellie as they traverse a ruined America. A blend of survival, action, and emotional storytelling that marked our debut as a studio.',
-            es: 'The Last of Us es nuestro primer gran proyecto completado. En un mundo devastado por una pandemia fúngica, sigue la conmovedora historia de Joel y Ellie mientras atraviesan una América en ruinas. Una mezcla de supervivencia, acción y narración emocional que marcó nuestro debut como estudio.',
-            de: 'The Last of Us ist unser erstes großes abgeschlossenes Projekt. In einer von einer Pilzpandemie verwüsteten Welt folgen Sie der ergreifenden Geschichte von Joel und Ellie, während sie durch ein zerstörtes Amerika reisen. Eine Mischung aus Survival, Action und emotionalem Storytelling, die unser Debüt als Studio markierte.',
-            it: 'The Last of Us è il nostro primo grande progetto completato. In un mondo devastato da una pandemia fungina, segui la storia toccante di Joel ed Ellie mentre attraversano un\'America in rovina. Un mix di survival, azione e narrazione emotiva che ha segnato il nostro debutto come studio.'
+            fr: 'Kboom est un jeu multijoueur de rapidité où les joueurs trouvent des mots à partir d’une lettre donnée avant la fin du temps.l\'histoire poignante de Joel et Ellie alors qu\'ils traversent une Amérique en ruines. Un mélange de survival, action et narration émotionnelle qui a marqué nos débuts en tant que studio.',
+            en: 'Kboom est un jeu multijoueur de rapidité où les joueurs trouvent des mots à partir d’une lettre donnée avant la fin du temps.',
+            es: 'Kboom est un jeu multijoueur de rapidité où les joueurs trouvent des mots à partir d’une lettre donnée avant la fin du temps.The Last of Us es nuestro primer gran proyecto completado. En un mundo devastado por una pandemia fúngica, sigue la conmovedora historia de Joel y Ellie mientras atraviesan una América en ruinas. Una mezcla de supervivencia, acción y narración emocional que marcó nuestro debut como estudio.',
+            de: 'Kboom est un jeu multijoueur de rapidité où les joueurs trouvent des mots à partir d’une lettre donnée avant la fin du temps.',
+            it: 'Kboom est un jeu multijoueur de rapidité où les joueurs trouvent des mots à partir d’une lettre donnée avant la fin du temps.n\'America in rovina. Un mix di survival, azione e narrazione emotiva che ha segnato il nostro debutto come studio.'
         },
         image: '../images/flutter.png',
         screenshots: ['../images/flutter.png'],
