@@ -86,16 +86,16 @@ const GAMES_DATA = [
         featured: true
     },
     {
-        id: 'the-last-of-us',
+        id: 'KBoom',
         title: {
-            fr: 'The Last of Us',
-            en: 'The Last of Us',
-            es: 'The Last of Us',
-            de: 'The Last of Us',
-            it: 'The Last of Us'
+            fr: 'KBoom',
+            en: 'KBoom',
+            es: 'KBoom',
+            de: 'KBoom',
+            it: 'KBoom'
         },
         shortDescription: {
-            fr: 'Un jeu dans un univers post-apocalyptique suite à une pandémie. Joel et Ellie traversent les États-Unis en ruines.',
+            fr: 'Un jeu familial qui met non pas qui met',
             en: 'A game set in a post-apocalyptic world following a pandemic. Joel and Ellie traverse the ruins of the United States.',
             es: 'Un juego ambientado en un mundo post-apocalíptico tras una pandemia. Joel y Ellie atraviesan las ruinas de Estados Unidos.',
             de: 'Ein Spiel in einer postapokalyptischen Welt nach einer Pandemie. Joel und Ellie durchqueren die Ruinen der Vereinigten Staaten.',
@@ -109,9 +109,9 @@ const GAMES_DATA = [
             it: 'The Last of Us è il nostro primo grande progetto completato. In un mondo devastato da una pandemia fungina, segui la storia toccante di Joel ed Ellie mentre attraversano un\'America in rovina. Un mix di survival, azione e narrazione emotiva che ha segnato il nostro debutto come studio.'
         },
         image: '../images/the_last_of_us.png',
-        screenshots: ['../images/the_last_of_us.png'],
-        status: 'completed',
-        technologies: ['Godot Engine', 'GDScript', '3D Modeling'],
+        screenshots: ['../images/the_last_of_us.png','../images/the_last_of_us.png'],
+        status: 'in-development',
+        technologies: ['Flutter', 'GDScript', '3D Modeling'],
         itchUrl: 'https://www.jeuxvideo.com/jeux/jeu-77946/',
         releaseDate: '2024',
         trailer: '',
