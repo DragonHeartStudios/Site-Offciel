@@ -44,7 +44,7 @@ const GAMES_DATA = [
             de: 'In einem seltsamen mittelalterlichen Dorf, das eine parallele Version des Lebens des Protagonisten widerspiegelt, beginnt ein Kind eine Untersuchung, nachdem es seine eigenen Eltern auf der Vermisstenanzeige des örtlichen Adligen erkannt hat, eine Suche, die es gegen den machiavellistischen Merlin den Zauberer stellen und zu einer ergreifenden Wahrheit über Trauer und Realität führen wird. Löse Rätsel und konfrontiere eine dunkle Vergangenheit.',
             it: 'In uno strano villaggio medievale che riflette una versione parallela della vita del protagonista, un bambino inizia un\'indagine dopo aver riconosciuto i propri genitori nell\'avviso di scomparsa del nobile locale, una ricerca che lo metterà contro il machiavellico Merlino l\'Incantatore e lo porterà a una verità toccante sul lutto e la realtà. Risolvi enigmi e affronta un passato oscuro.'
         },
-        image: '../images/nightmare_or_dream.png',
+        image: '../images/nightmare_or_dream.png', 
         screenshots: ['../images/nightmare_or_dream.png'],
         status: 'in-development',
         technologies: ['Godot Engine', 'GDScript', 'Pixel Art'],
@@ -108,7 +108,7 @@ const GAMES_DATA = [
             de: 'The Last of Us ist unser erstes großes abgeschlossenes Projekt. In einer von einer Pilzpandemie verwüsteten Welt folgen Sie der ergreifenden Geschichte von Joel und Ellie, während sie durch ein zerstörtes Amerika reisen. Eine Mischung aus Survival, Action und emotionalem Storytelling, die unser Debüt als Studio markierte.',
             it: 'The Last of Us è il nostro primo grande progetto completato. In un mondo devastato da una pandemia fungina, segui la storia toccante di Joel ed Ellie mentre attraversano un\'America in rovina. Un mix di survival, azione e narrazione emotiva che ha segnato il nostro debutto come studio.'
         },
-        image: '../images/flutter',
+        image: '../images/flutter.png',
         screenshots: ['../images/flutter.png'],
         status: 'in-development',
         technologies: ['Flutter', 'GDScript', '3D Modeling'],
