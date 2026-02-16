@@ -1,4 +1,9 @@
 git add .
-git commit -m "zalyto"
+
+$msg = Read-Host "Message du commit"
+
+git commit -m "$msg"
+
 git push
-PAUSE
+
+Pause
