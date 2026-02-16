@@ -108,8 +108,8 @@ const GAMES_DATA = [
             de: 'The Last of Us ist unser erstes großes abgeschlossenes Projekt. In einer von einer Pilzpandemie verwüsteten Welt folgen Sie der ergreifenden Geschichte von Joel und Ellie, während sie durch ein zerstörtes Amerika reisen. Eine Mischung aus Survival, Action und emotionalem Storytelling, die unser Debüt als Studio markierte.',
             it: 'The Last of Us è il nostro primo grande progetto completato. In un mondo devastato da una pandemia fungina, segui la storia toccante di Joel ed Ellie mentre attraversano un\'America in rovina. Un mix di survival, azione e narrazione emotiva che ha segnato il nostro debutto come studio.'
         },
-        image: '../images/the_last_of_us.png',
-        screenshots: ['../images/the_last_of_us.png','../images/the_last_of_us.png'],
+        image: '../images/flutter',
+        screenshots: ['../images/flutter.png','../images/flutter.png'],
         status: 'in-development',
         technologies: ['Flutter', 'GDScript', '3D Modeling'],
         itchUrl: 'https://www.jeuxvideo.com/jeux/jeu-77946/',
