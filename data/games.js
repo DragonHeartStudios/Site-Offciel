@@ -95,21 +95,21 @@ const GAMES_DATA = [
             it: 'KBoom'
         },
         shortDescription: {
-            fr: 'Kboom est un jeu multijoueur de rapidité et de vocabulaire. Une lettre est données, les joueurs doivent trouver un maximum de mots correspondants dans un temps limité. Les mots uniques (trouvés par toi seul) rapportent plus de points que ceux trouvés par plusieurs joueurs.',
+            fr: 'Un jeu familial qui met non pas qui met',
             en: 'A game set in a post-apocalyptic world following a pandemic. Joel and Ellie traverse the ruins of the United States.',
             es: 'Un juego ambientado en un mundo post-apocalíptico tras una pandemia. Joel y Ellie atraviesan las ruinas de Estados Unidos.',
             de: 'Ein Spiel in einer postapokalyptischen Welt nach einer Pandemie. Joel und Ellie durchqueren die Ruinen der Vereinigten Staaten.',
             it: 'Un gioco ambientato in un mondo post-apocalittico dopo una pandemia. Joel ed Ellie attraversano le rovine degli Stati Uniti.'
         },
         fullDescription: {
-            fr: 'Kboom est un jeu multijoueur de rapidité et de vocabulaire où les joueurs doivent trouver un maximum de mots commençant par une lettre imposée, dans un temps limité. Les mots trouvés uniquement par un joueur rapportent plus de points que ceux trouvés par plusieurs.Au début de chaque partie, une lettre aléatoire est choisie. Tous les joueurs ont alors deux à trois minutes pour trouver chacuns leurs tours un mot commencant par la lettre tirée.La stratégie du jeu consiste à trouver un équilibre entre rapidité et originalité. Il faut trouver rapidement les mots évidents avant que tout le monde ne les trouve, mais aussi chercher des mots plus rares ou techniques que personne d\'autre ne pensera à donner. Prendre des risques avec des mots limites peut rapporter gros, mais il ne faut pas perdre trop de temps sur des mots douteux qui risquent d\'être refusés.Kboom est un jeu multijoueur de rapidité et de vocabulaire. Une lettre est données, les joueurs doivent trouver un maximum de mots correspondants dans un temps limité. Les mots uniques (trouvés par toi seul) rapportent plus de points que ceux trouvés par plusieurs joueurs.',
-            en: '',
+            fr: 'The Last of Us est notre premier grand projet terminé. Dans un monde dévasté par une pandémie fongique, suivez l\'histoire poignante de Joel et Ellie alors qu\'ils traversent une Amérique en ruines. Un mélange de survival, action et narration émotionnelle qui a marqué nos débuts en tant que studio.',
+            en: 'The Last of Us is our first major completed project. In a world devastated by a fungal pandemic, follow the poignant story of Joel and Ellie as they traverse a ruined America. A blend of survival, action, and emotional storytelling that marked our debut as a studio.',
             es: 'The Last of Us es nuestro primer gran proyecto completado. En un mundo devastado por una pandemia fúngica, sigue la conmovedora historia de Joel y Ellie mientras atraviesan una América en ruinas. Una mezcla de supervivencia, acción y narración emocional que marcó nuestro debut como estudio.',
             de: 'The Last of Us ist unser erstes großes abgeschlossenes Projekt. In einer von einer Pilzpandemie verwüsteten Welt folgen Sie der ergreifenden Geschichte von Joel und Ellie, während sie durch ein zerstörtes Amerika reisen. Eine Mischung aus Survival, Action und emotionalem Storytelling, die unser Debüt als Studio markierte.',
             it: 'The Last of Us è il nostro primo grande progetto completato. In un mondo devastato da una pandemia fungina, segui la storia toccante di Joel ed Ellie mentre attraversano un\'America in rovina. Un mix di survival, azione e narrazione emotiva che ha segnato il nostro debutto come studio.'
         },
         image: '../images/flutter',
-        screenshots: ['../images/flutter.png','../images/flutter.png'],
+        screenshots: ['../images/flutter.png'],
         status: 'in-development',
         technologies: ['Flutter', 'GDScript', '3D Modeling'],
         itchUrl: 'https://www.jeuxvideo.com/jeux/jeu-77946/',
