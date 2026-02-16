@@ -6,14 +6,6 @@ window.addEventListener('scroll', function() {
 });
 
 
-//document.getElementById('nous_rejoindre').addEventListener('click', function() {
-//    document.getElementById('medias').scrollIntoView({ behavior: 'smooth' });
-//});
-
-//document.getElementById('projets_link').addEventListener('click', function() {
-//    document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
-//});
-
 document.getElementById('a_propos_de_nous').addEventListener('click', function() {
     document.getElementById('about_us').scrollIntoView({ behavior: 'smooth' });
 });

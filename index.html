@@ -15,18 +15,31 @@
     <div id="background">
         <img src="assets/images/background.png" alt="Background Image">
     </div>
+    <div id="header-container"></div>
+    <script>
+    function loadHeader() {
+        fetch('assets/components/header.html') // chemin correct vers ton header
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+
+                // Initialise la navigation si tu as des événements
+                if (window.DragonheartApp) {
+                    DragonheartApp.init();
+                }
+            })
+            .catch(err => console.error('Erreur chargement header :', err));
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadHeader);
+    } else {
+        loadHeader();
+    }
+    </script>
     <div id="gradient">
 
-        <div id="topbar">
-            <img src="assets/images/logo_large.png" alt="Logo Dragonheart Studios" id="logo">
-            <div class="nav-links">
-                <p id="accueil" data-i18n="nav.home">Accueil</p>
-                <p id="nous_rejoindre" data-i18n="nav.join">Nous rejoindre</p>
-                <p id="projets_link" data-i18n="nav.projects">Projets</p>
-                <p id="a_propos_de_nous" data-i18n="nav.about">À propos</p>
-            </div>
-            <div id="langue">FR</div>
-        </div>
+        
 
         <div id="slogan">
             <p id="slogan_p" data-i18n="home.slogan">Votre studio de jeux indé</p>
@@ -98,6 +111,7 @@
         <div id="footer">
             <p>© <span id="year"></span> Dragonheart Studios. <span data-i18n="footer.rights">Tous droits réservés.</span></p>
         </div>
+
     </div>
 
     <!-- Scripts -->
