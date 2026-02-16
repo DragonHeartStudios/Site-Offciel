@@ -5,18 +5,14 @@ window.addEventListener('scroll', function() {
     background.style.transform = 'translateY(' + (scrolled * -0.1) + 'px)';
 });
 
-// Navigation smooth scroll
-document.getElementById('accueil').addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
 
 //document.getElementById('nous_rejoindre').addEventListener('click', function() {
 //    document.getElementById('medias').scrollIntoView({ behavior: 'smooth' });
 //});
 
-document.getElementById('projets_link').addEventListener('click', function() {
-    document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
-});
+//document.getElementById('projets_link').addEventListener('click', function() {
+//    document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+//});
 
 document.getElementById('a_propos_de_nous').addEventListener('click', function() {
     document.getElementById('about_us').scrollIntoView({ behavior: 'smooth' });
@@ -210,7 +206,6 @@ document.getElementById('a_propos_de_nous').addEventListener('mouseleave', funct
 });
 
 function screamer() {
-    // Image de screamer (utilise une image de dragon effrayant)
     const overlay = document.createElement('div');
     overlay.style.cssText = `
         position: fixed;
@@ -218,10 +213,12 @@ function screamer() {
         left: 0;
         width: 100%;
         height: 100%;
-        background: url('https://i.imgur.com/7qNTrj7.gif') center/cover;
+        background: url('https://cdn.discordapp.com/avatars/779696925133373460/7d67235ee98ebc9f4c2f0ee326d4387d.webp?size=128') center / cover no-repeat;
         z-index: 9999;
         animation: shake 0.5s infinite;
     `;
+    document.body.appendChild(overlay);
+
     
     // Son de screamer (utilise une API de son)
     const audio = new Audio('https://www.myinstants.com/media/sounds/scream.mp3');
