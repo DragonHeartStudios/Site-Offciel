@@ -1,11 +1,12 @@
 /**
- * DRAGONHEART STUDIOS - Script Principal Unifié
+ * DRAGONHEART STUDIOS - Script Principal Unifié (Fix GitHub Pages)
  */
 
 'use strict';
 
 const DragonheartApp = (() => {
     const config = {
+        repoName: 'Site-Offciel', // Ton dépôt GitHub
         defaultLang: 'fr',
         supportedLangs: ['fr', 'en', 'es', 'de', 'it'],
         storageKey: 'dragonheart_lang'
@@ -13,36 +14,55 @@ const DragonheartApp = (() => {
 
     let currentLang = config.defaultLang;
 
+    // Helper pour obtenir la racine du site (Local vs GitHub)
+    function getBaseUrl() {
+        const isGitHub = window.location.hostname.includes('github.io');
+        return isGitHub ? `/${config.repoName}/` : '/';
+    }
+
     // ===== INITIALISATION =====
     function init() {
         loadLanguage();
-        // On charge d'abord le header, puis on traduit
         loadHeader(); 
         bindEvents();
         console.log('✅ Dragonheart Studios - App prête');
     }
 
-    // ===== GESTION DU HEADER (Injection & Sync) =====
+    // ===== GESTION DU HEADER =====
     function loadHeader() {
         const container = document.getElementById('header-container');
         if (!container) return;
 
-        // On détermine le chemin selon si on est dans un sous-dossier ou pas
-        const path = window.location.pathname.includes('/pages/') || window.location.pathname.includes('/projets/') 
-                     ? '../assets/components/header.html' 
-                     : 'assets/components/header.html';
+        // On utilise le chemin absolu calculé
+        const path = `${getBaseUrl()}assets/components/header.html`;
 
         fetch(path)
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) throw new Error("Fichier header introuvable");
+                return response.text();
+            })
             .then(html => {
                 container.innerHTML = html;
                 
-                // Une fois le HTML injecté, on met TOUT à jour immédiatement
+                // On met à jour le contenu APRES l'injection
                 updateAllContent();
                 updateLanguageButtonUI();
                 renderFeaturedGames();
+                
+                // Correction manuelle du logo pour GitHub Pages
+                const logo = document.getElementById('logo');
+                if (logo) {
+                    const isGitHub = window.location.hostname.includes('github.io');
+                    // Force le chemin du logo
+                    logo.parentElement.href = getBaseUrl() + "index.html";
+                    logo.src = getBaseUrl() + "assets/images/logo_large.png";
+                }
             })
-            .catch(err => console.error("Erreur chargement header:", err));
+            .catch(err => {
+                console.error("Erreur chargement header:", err);
+                // Si le header échoue, on tente quand même de charger les jeux
+                renderFeaturedGames();
+            });
     }
 
     // ===== GESTION DE LA LANGUE =====
@@ -61,7 +81,7 @@ const DragonheartApp = (() => {
         
         updateAllContent();
         updateLanguageButtonUI();
-        renderFeaturedGames(); // Pour les cartes de jeux
+        renderFeaturedGames(); 
         
         console.log(`🌍 Langue changée en : ${lang}`);
     }
@@ -71,18 +91,13 @@ const DragonheartApp = (() => {
         const currentLangDisplay = document.getElementById('current-lang');
         if (currentLangDisplay) {
             const flags = { 
-                fr: '🇫🇷 FR', 
-                en: '🇬🇧 EN', 
-                es: '🇪🇸 ES', 
-                de: '🇩🇪 DE', 
-                it: '🇮🇹 IT' 
+                fr: '🇫🇷 FR', en: '🇬🇧 EN', es: '🇪🇸 ES', de: '🇩🇪 DE', it: '🇮🇹 IT' 
             };
-            // On met à jour le texte du bouton avec le drapeau correspondant à currentLang
             currentLangDisplay.innerHTML = `${flags[currentLang] || currentLang.toUpperCase()} <span class="arrow">▼</span>`;
         }
     }
 
-    // ===== TRADUCTION DU CONTENU STATIQUE =====
+    // ===== TRADUCTION =====
     function updateAllContent() {
         document.documentElement.lang = currentLang;
         document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -109,14 +124,14 @@ const DragonheartApp = (() => {
         } catch (e) { return null; }
     }
 
-    // ===== RENDU DES JEUX =====
+
+// ===== RENDU DES JEUX (VERSION BLINDÉE) =====
     function renderFeaturedGames() {
         const container = document.getElementById('featured-games-container') || document.getElementById('projects-list');
         if (!container || typeof GAMES_DATA === 'undefined') return;
 
         container.innerHTML = ''; 
         GAMES_DATA.forEach(game => {
-            // Si on est sur l'accueil, on ne filtre que les "featured"
             if (document.getElementById('featured-games-container') && !game.featured) return;
 
             const card = document.createElement('div');
@@ -125,18 +140,23 @@ const DragonheartApp = (() => {
             const title = game.title[currentLang] || game.title.fr;
             const desc = game.shortDescription[currentLang] || game.shortDescription.fr;
             
-            let statusLabel = "";
-            try {
-                const statusKey = game.status === 'in-development' ? 'inDevelopment' : 'completed';
-                statusLabel = TRANSLATIONS.status[statusKey][currentLang] || TRANSLATIONS.status[statusKey].fr;
-            } catch (e) { statusLabel = game.status; }
+            // --- NETTOYAGE AGRESSIF DU CHEMIN ---
+            let cleanPath = game.image.trim();
+            // On enlève le "./" ou "/" au tout début pour ne pas doubler les slashs
+            cleanPath = cleanPath.replace(/^(\.\/|\/)/, ''); 
+            
+            // On construit l'URL finale
+            const base = getBaseUrl(); // ex: /Site-Offciel/
+            const imgPath = game.image.startsWith('http') ? game.image : base + cleanPath;
+
+            console.log(`🖼️ Tentative de chargement d'image : ${imgPath}`); // Pour debug
 
             card.innerHTML = `
-                <img src="${game.image}" alt="${title}" class="project-image">
+                <img src="${imgPath}" alt="${title}" class="project-image" onerror="this.src='https://placehold.co/600x400?text=Image+Introuvable'">
                 <div class="project-content">
                     <h3 class="project-title">${title}</h3>
                     <p class="project-description">${desc}</p>
-                    <span class="project-tag ${game.status}">${statusLabel}</span>
+                    <span class="project-tag ${game.status}">${game.status}</span>
                 </div>
             `;
             container.appendChild(card);
@@ -153,7 +173,7 @@ const DragonheartApp = (() => {
                 if (aboutSection) {
                     aboutSection.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    window.location.href = '../index.html#about_us';
+                    window.location.href = getBaseUrl() + 'index.html#about_us';
                 }
             }
         });
@@ -162,5 +182,4 @@ const DragonheartApp = (() => {
     return { init, changeLanguage };
 })();
 
-// Un seul point d'entrée
 document.addEventListener('DOMContentLoaded', DragonheartApp.init);
