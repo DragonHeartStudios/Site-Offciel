@@ -80,46 +80,42 @@
 
     <script src="../assets/data/translations.js"></script>
     <script src="../assets/js/app.js"></script>
-
-    <script>
-        async function loadRecruitmentPage() {
+    <script src="recruitment.js"></script> <script>
+        // ON UTILISE UNE SEULE FONCTION D'INITIALISATION
+        async function initPage() {
             try {
-                // 1. Chargement du header
+                // 1. On charge le header manuellement pour être sûr du chemin
                 const response = await fetch('../assets/components/header.html');
                 const html = await response.text();
                 document.getElementById('header-container').innerHTML = html;
 
-                // 2. Initialisation globale via app.js
+                // 2. On initialise la traduction (app.js)
                 if (window.DragonheartApp) {
-                    // On charge la langue depuis le localStorage et on traduit
                     DragonheartApp.init(); 
                     
-                    // 3. FORCE la mise à jour visuelle du bouton immédiatement
-                    // On attend un tout petit peu que le DOM du header soit stable
+                    // On force la mise à jour visuelle du bouton avec un mini délai
                     setTimeout(() => {
-                        if (typeof DragonheartApp.updateLanguageButtonUI === 'function') {
+                        const savedLang = localStorage.getItem('dragonheart_lang') || 'fr';
+                        // Met à jour la balise HTML pour que RecruitmentApp lise la bonne langue
+                        document.documentElement.lang = savedLang; 
+                        
+                        // Appelle la fonction de mise à jour du drapeau de app.js
+                        if(typeof DragonheartApp.updateLanguageButtonUI === 'function') {
                             DragonheartApp.updateLanguageButtonUI();
                         }
-                    }, 50); 
+                    }, 50);
                 }
+
+                // 3. On initialise le formulaire (RecruitmentApp)
+                if (window.RecruitmentApp) {
+                    RecruitmentApp.init();
+                }
+
             } catch (err) {
-                console.error("Erreur chargement header recrutement:", err);
+                console.error("Erreur d'initialisation :", err);
             }
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            loadRecruitmentPage();
-
-            // Logique pour le champ "Autre"
-            const checkAutre = document.getElementById('poste_autre_check');
-            const textAutre = document.getElementById('poste_autre_text');
-            if (checkAutre && textAutre) {
-                checkAutre.addEventListener('change', () => {
-                    textAutre.disabled = !checkAutre.checked;
-                    if (checkAutre.checked) textAutre.focus();
-                });
-            }
-        });
+        // On lance tout d'un coup proprement
+        document.addEventListener('DOMContentLoaded', initPage);
     </script>
-</body>
-</html>

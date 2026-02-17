@@ -34,7 +34,7 @@ p {
 }
 
 #gradient {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0, 1) 30%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(3, 3, 3) 30%);
     width: 100%;
     min-height: 100vh;
     flex-grow: 1;
@@ -44,18 +44,33 @@ p {
 
 /* TOPBAR */
 #topbar {
-    position: relative;
-    z-index: 2;
+    position: sticky; /* Recommandé pour voir l'effet de flou quand on scrolle sur les images */
+    top: 20px;
+    z-index: 1000;
     width: calc(100% - 40px);
     min-height: 60px;
-    background-color: rgba(20, 20, 20, 0.9);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 30px;
     box-sizing: border-box;
-    margin: 20px;
+    margin: 20px auto; /* Centrage automatique */
     border-radius: 16px;
+
+    /* --- L'EFFET LIQUIDE / GLASSMORPHISM --- */
+    
+    /* 1. Fond sombre mais très transparent */
+    background: rgba(10, 10, 10, 0.747); 
+
+    /* 2. Le flou d'arrière-plan (l'effet magique) */
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+
+    /* 3. Une bordure subtile pour accrocher la lumière */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    /* 4. Ombre douce pour décoller la barre du fond */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 #logo {
@@ -119,11 +134,11 @@ p {
 
 #slogan_p {
     color: white;
-    font-size: 48px;
+    font-size: 78px;
     font-weight: bold;
     font-family: 'Poetsen One', 'Mooli', sans-serif;
     text-align: left;
-    margin: 0 0 15px 0;
+    margin: 0 0 5px 0;
 }
 
 #slogan_boost {
@@ -183,32 +198,38 @@ p {
 }
 
 #discord, #youtube, #github {
-    border: none;
-    background: rgba(30, 30, 30, 0.8);
     cursor: pointer;
     padding: 12px;
     width: 80px;
     height: 80px;
     border-radius: 16px;
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* --- EFFET GLASSMORPHISM --- */
+    background: rgba(255, 255, 255, 0.05); /* Fond très léger */
+    backdrop-filter: blur(10px);           /* Flou de l'arrière-plan */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Bordure fine style "verre" */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 #discord:hover, #youtube:hover, #github:hover {
-    background: rgba(190, 16, 77, 0.8);
-    transform: translateY(-5px) scale(1.05);
-    border-color: rgba(190, 16, 77, 1);
-    box-shadow: 0 10px 25px rgba(190, 16, 77, 0.4);
+    /* On garde ta couleur d'accentuation mais avec de la transparence */
+    background: rgba(190, 16, 77, 0.3); 
+    transform: translateY(-8px) scale(1.05);
+    border-color: rgba(190, 16, 77, 0.6);
+    box-shadow: 0 15px 30px rgba(190, 16, 77, 0.4);
 }
 
 #discord_img, #youtube_img, #github_img {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     object-fit: contain;
     transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
 
 #discord:hover img, #youtube:hover img, #github:hover img {
@@ -219,7 +240,7 @@ p {
 #projects {
     position: relative;
     z-index: 2;
-    color: white;
+    color: rgb(255, 255, 255);
     margin-top: 100px;
     max-width: 1400px;
     margin-left: auto;
@@ -249,38 +270,53 @@ p {
     margin: 0 auto;
 }
 
-/* Styles des cards */
+/* Styles des cards - EFFET GLASSMORPHISM */
 .project-card {
-    background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
-    border-radius: 16px;
+    /* Fond très légèrement blanc et transparent */
+    background: rgba(255, 255, 255, 0.03); 
+    
+    /* Le flou qui crée l'effet de verre dépoli */
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    
+    /* Bordure fine pour simuler l'épaisseur du verre */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    border-radius: 20px; /* Un peu plus arrondi pour le style moderne */
     overflow: hidden;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     display: flex;
     flex-direction: column;
+    
+    /* Ombre portée pour décoller la carte du fond */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(190, 16, 77, 0.8);
-    box-shadow: 0 10px 30px rgba(190, 16, 77, 0.3);
+    transform: translateY(-12px);
+    background: rgba(255, 255, 255, 0.07); /* Devient un peu plus opaque au survol */
+    border-color: rgba(190, 16, 77, 0.5); /* Rappel de ta couleur rose/rouge */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
 }
 
 .project-image {
     width: 100%;
     height: 250px;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
+    /* On baisse un peu l'opacité de l'image pour mieux voir l'effet de verre sur le reste */
+    opacity: 0.9; 
 }
 
 .project-card:hover .project-image {
-    transform: scale(1.05);
+    transform: scale(1.08);
+    opacity: 1;
 }
 
 .project-content {
-    padding: 20px;
+    padding: 25px; /* Un peu plus d'espace pour un look aéré */
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -288,17 +324,18 @@ p {
 
 .project-title {
     font-size: 24px;
-    margin: 0 0 10px 0;
+    margin: 0 0 12px 0;
     color: white;
     font-weight: bold;
     font-family: 'Mooli', sans-serif;
+    letter-spacing: 0.5px;
 }
 
 .project-description {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     flex-grow: 1;
 }
 
@@ -423,7 +460,7 @@ p {
     }
     
     #slogan_p {
-        font-size: 32px;
+        font-size: 1.5rem;
     }
     
     #slogan_boost {
@@ -487,7 +524,7 @@ p {
     width: 100%;
 }
 
-/* --- SYSTEME DE LANGUE (CORRIGÉ) --- */
+/* --- SYSTEME DE LANGUE (GLASS ET CENTRAGE) --- */
 
 .dropdown {
     position: relative;
@@ -496,13 +533,15 @@ p {
 
 /* Bouton principal */
 .dropbtn {
-    background-color: transparent;
+    background-color: rgba(10, 10, 10, 0.747); /* Même fond que ta topbar */
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
     color: white;
     font-family: 'PTSansNarrow-Regular', sans-serif;
     font-size: 16px;
     cursor: pointer;
     padding: 8px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -512,58 +551,75 @@ p {
 
 .dropbtn:hover {
     border-color: rgba(190, 16, 77, 1);
-    color: rgba(190, 16, 77, 1);
+    background-color: rgba(190, 16, 77, 0.2);
 }
 
 /* Contenu du menu */
 .dropdown-content {
     display: none; 
     position: absolute;
-    right: 0;
-    top: 100%; /* Colle exactement au bas du bouton */
-    padding-top: 5px; /* Petit espace interne pour laisser respirer sans casser le hover */
-    background-color: transparent; /* Fond transparent pour ne pas voir le padding */
+    
+    /* --- CENTRAGE PARFAIT --- */
+    left: 50%;
+    transform: translateX(-50%); 
+    
+    top: 100%;
+    padding-top: 10px; /* Écart visuel */
     min-width: 150px;
     z-index: 1000;
     flex-direction: column;
 }
 
-/* On applique le style visuel aux boutons eux-mêmes */
+/* On ajoute un pont invisible pour que le menu ne se ferme pas quand la souris descend */
+.dropdown-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+}
+
+/* On applique le Glassmorphism sur les boutons */
 .dropdown-content button {
     width: 100%;
-    background-color: rgba(20, 20, 20, 0.98); /* Fond bien opaque */
-    border: none;
-    border-left: 1px solid rgba(190, 16, 77, 0.3);
-    border-right: 1px solid rgba(190, 16, 77, 0.3);
+    
+    /* EFFET GLASS (Comme ta topbar) */
+    background-color: rgba(10, 10, 10, 0.8); 
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: none; /* Évite les doubles bordures entre boutons */
+    
     color: white;
     padding: 12px 16px;
-    text-align: left;
+    text-align: center; /* Centré à l'intérieur aussi */
     font-family: 'PTSansNarrow-Regular', sans-serif;
     font-size: 14px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s;
     display: block;
 }
 
-/* Arrondis pour le premier et le dernier bouton du menu */
+/* Arrondis et bordures pour le premier et dernier bouton */
 .dropdown-content button:first-child {
-    border-top: 1px solid rgba(190, 16, 77, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px 12px 0 0;
 }
 
 .dropdown-content button:last-child {
-    border-bottom: 1px solid rgba(190, 16, 77, 0.3);
     border-radius: 0 0 12px 12px;
 }
 
 .dropdown-content button:hover {
-    background-color: rgba(190, 16, 77, 0.3);
-    color: rgba(190, 16, 77, 1);
+    background-color: rgba(190, 16, 77, 0.5);
+    color: white;
 }
 
 /* Affichage au survol */
 .dropdown:hover .dropdown-content {
-    display: flex; /* Utilise flex pour afficher les boutons les uns sous les autres */
+    display: flex;
 }
 
 .arrow {
