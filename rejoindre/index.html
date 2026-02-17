@@ -4,12 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dragonheart Studios — Rejoindre</title>
-    <meta name="description" content="Rejoignez l'équipe Dragonheart Studios et participez à la création de jeux innovants.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/images/favicon.png">
 </head>
 <body>
@@ -17,131 +13,113 @@
         <img src="../assets/images/background.png" alt="Background Image">
     </div>
     
+    <div id="header-container"></div>
+
     <div id="gradient">
-        <div id="header-container"></div>
-
-<script src="../assets/data/translations.js"></script>
-<script src="../script.js"></script>
-
-<script>
-    // 1. Charger le header dynamiquement
-    function loadHeader() {
-        fetch('../assets/components/header.html') // Chemin vers votre fichier header
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('header-container').innerHTML = html;
-                
-                // 2. Une fois chargé, on initialise la langue
-                const savedLang = localStorage.getItem('dragonheart_lang') || 'fr';
-                if (typeof TranslationEngine !== 'undefined') {
-                    TranslationEngine.updateContent(savedLang);
-                    
-                    // Mise à jour visuelle du bouton de langue dans le header chargé
-                    const currentLangDisplay = document.getElementById('current-lang');
-                    if (currentLangDisplay) {
-                        const emoji = savedLang === 'fr' ? '🇫🇷' : '🇬🇧';
-                        currentLangDisplay.innerHTML = `${emoji} ${savedLang.toUpperCase()} <span class="arrow">▼</span>`;
-                    }
-                }
-            })
-            .catch(err => console.error('Erreur chargement header :', err));
-    }
-
-    // Lancer au chargement
-    document.addEventListener('DOMContentLoaded', () => {
-        loadHeader();
-        document.getElementById('year').textContent = new Date().getFullYear();
-    });
-</script>
         <main>
-            <h1 data-lang-fr="Rejoindre l'équipe" data-lang-en="Join the Team">Rejoindre l'équipe</h1>
-            <p class="intro-text" data-lang-fr="Vous êtes passionné par le développement de jeux vidéo ? Rejoignez notre équipe et participez à la création d'expériences inoubliables !" data-lang-en="Passionate about game development? Join our team and help create unforgettable experiences!">
-                Vous êtes passionné par le développement de jeux vidéo ? Rejoignez notre équipe et participez à la création d'expériences inoubliables !
+            <h1 data-i18n="recruitment.title">Rejoindre l'équipe</h1>
+            <p class="intro-text" data-i18n="recruitment.intro">
+                Vous êtes passionné par le développement de jeux vidéo ? Rejoignez notre équipe !
             </p>
 
             <form id="form">
-                <h2 data-lang-fr="Informations générales" data-lang-en="General Information">Informations générales</h2>
+                <h2 data-i18n="recruitment.sections.general">Informations générales</h2>
                 <div class="form-group">
-                    <input name="pseudo" placeholder="Pseudo *" type="text" required data-placeholder-fr="Pseudo *" data-placeholder-en="Username *" />
-                    <input name="age" placeholder="Âge" type="number" min="13" max="99" data-placeholder-fr="Âge" data-placeholder-en="Age" />
-                    <input name="email" placeholder="Email *" type="email" required data-placeholder-fr="Email *" data-placeholder-en="Email *" />
+                    <input name="pseudo" type="text" required data-i18n="recruitment.form.pseudo" placeholder="Pseudo *">
+                    <input name="age" type="number" data-i18n="recruitment.form.age" placeholder="Âge">
+                    <input name="email" type="email" required data-i18n="recruitment.form.email" placeholder="Email *">
                 </div>
 
-                <h2 data-lang-fr="Poste(s) souhaité(s)" data-lang-en="Desired Position(s)">Poste(s) souhaité(s)</h2>
+                <h2 data-i18n="recruitment.sections.positions">Poste(s) souhaité(s)</h2>
                 <fieldset>
-                    <legend data-lang-fr="Sélectionnez un ou plusieurs postes" data-lang-en="Select one or more positions">Sélectionnez un ou plusieurs postes</legend>
+                    <legend data-i18n="recruitment.form.select_pos">Sélectionnez un ou plusieurs postes</legend>
                     <div class="checkbox-grid">
-                        <label>
-                            <input type="checkbox" name="poste" value="developpeur">
-                            <span data-lang-fr="Développeur" data-lang-en="Developer">Développeur</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="poste" value="graphiste">
-                            <span data-lang-fr="Graphiste" data-lang-en="Graphic Designer">Graphiste</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="poste" value="compositeur">
-                            <span data-lang-fr="Compositeur" data-lang-en="Composer">Compositeur</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="poste" value="game_designer">
-                            <span data-lang-fr="Game Designer" data-lang-en="Game Designer">Game Designer</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="poste" value="modelisateur_3d">
-                            <span data-lang-fr="Modélisateur 3D" data-lang-en="3D Modeler">Modélisateur 3D</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="poste" value="vfx_designer">
-                            <span data-lang-fr="VFX Designer" data-lang-en="VFX Designer">VFX Designer</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="poste" value="doubleur">
-                            <span data-lang-fr="Doubleur" data-lang-en="Voice Actor">Doubleur</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="poste" value="community_manager">
-                            <span data-lang-fr="Community Manager" data-lang-en="Community Manager">Community Manager</span>
-                        </label>
+                        <label><input type="checkbox" name="poste" value="developpeur"> <span data-i18n="recruitment.roles.dev">Développeur</span></label>
+                        <label><input type="checkbox" name="poste" value="graphiste"> <span data-i18n="recruitment.roles.artist">Graphiste</span></label>
+                        <label><input type="checkbox" name="poste" value="compositeur"> <span data-i18n="recruitment.roles.composer">Compositeur</span></label>
+                        <label><input type="checkbox" name="poste" value="game_designer"> <span data-i18n="recruitment.roles.gamedesign">Game Designer</span></label>
+                        <label><input type="checkbox" name="poste" value="modelisateur_3d"> <span data-i18n="recruitment.roles.3d">Modélisateur 3D</span></label>
+                        <label><input type="checkbox" name="poste" value="vfx_designer"> <span data-i18n="recruitment.roles.vfx">VFX Designer</span></label>
+                        <label><input type="checkbox" name="poste" value="doubleur"> <span data-i18n="recruitment.roles.voice">Doubleur</span></label>
+                        <label><input type="checkbox" name="poste" value="community_manager"> <span data-i18n="recruitment.roles.cm">Community Manager</span></label>
                         <label class="checkbox-other">
                             <input type="checkbox" name="poste" value="autre" id="poste_autre_check">
-                            <span data-lang-fr="Autre" data-lang-en="Other">Autre</span>
+                            <span data-i18n="recruitment.roles.other">Autre</span>
                         </label>
                     </div>
-                    <input type="text" name="poste_autre" id="poste_autre_text" placeholder="Précisez le poste..." disabled data-placeholder-fr="Précisez le poste..." data-placeholder-en="Specify position...">
+                    <input type="text" name="poste_autre" id="poste_autre_text" placeholder="Précisez le poste..." disabled data-i18n="recruitment.form.specify">
                 </fieldset>
 
-                <h2 data-lang-fr="Compétences & Expérience" data-lang-en="Skills & Experience">Compétences & Expérience</h2>
+                <h2 data-i18n="recruitment.sections.skills">Compétences & Expérience</h2>
                 <div class="form-group">
-                    <textarea name="competences" placeholder="Décrivez vos compétences et expériences. Si vous avez déjà travaillé avec d'autres studios, n'hésitez pas à donner des détails." rows="6" data-placeholder-fr="Décrivez vos compétences et expériences. Si vous avez déjà travaillé avec d'autres studios, n'hésitez pas à donner des détails." data-placeholder-en="Describe your skills and experience. If you've worked with other studios, feel free to provide details."></textarea>
-                    <input name="outils" placeholder="Quels outils maîtrisez-vous ? (ex: Unity, Blender, Photoshop...)" type="text" data-placeholder-fr="Quels outils maîtrisez-vous ? (ex: Unity, Blender, Photoshop...)" data-placeholder-en="What tools do you master? (e.g., Unity, Blender, Photoshop...)"/>
+                    <textarea name="competences" placeholder="Décrivez vos compétences..." rows="6" data-i18n="recruitment.form.desc_skills"></textarea>
+                    <input name="outils" placeholder="Quels outils maîtrisez-vous ?" type="text" data-i18n="recruitment.form.tools"/>
                 </div>
 
-                <h2 data-lang-fr="Vos Projets" data-lang-en="Your Projects">Vos Projets</h2>
+                <h2 data-i18n="recruitment.sections.projects">Vos Projets</h2>
                 <div class="form-group">
-                    <textarea name="projets" placeholder="Décrivez vos projets personnels ou professionnels (vous pouvez inclure des liens)." rows="6" data-placeholder-fr="Décrivez vos projets personnels ou professionnels (vous pouvez inclure des liens)." data-placeholder-en="Describe your personal or professional projects (you can include links)."></textarea>
-                    <input name="portfolio" placeholder="Lien vers votre portfolio, GitHub, ArtStation, etc." type="url" data-placeholder-fr="Lien vers votre portfolio, GitHub, ArtStation, etc." data-placeholder-en="Link to your portfolio, GitHub, ArtStation, etc."/>
+                    <textarea name="projets" placeholder="Décrivez vos projets..." rows="6" data-i18n="recruitment.form.desc_projects"></textarea>
+                    <input name="portfolio" placeholder="Lien vers votre portfolio..." type="url" data-i18n="recruitment.form.portfolio"/>
                 </div>
 
-                <h2 data-lang-fr="Motivation" data-lang-en="Motivation">Motivation</h2>
+                <h2 data-i18n="recruitment.sections.motivation">Motivation</h2>
                 <div class="form-group">
-                    <textarea name="motivation" placeholder="Pourquoi souhaitez-vous rejoindre Dragonheart Studios ?" rows="4" data-placeholder-fr="Pourquoi souhaitez-vous rejoindre Dragonheart Studios ?" data-placeholder-en="Why do you want to join Dragonheart Studios?"></textarea>
+                    <textarea name="motivation" placeholder="Pourquoi Dragonheart Studios ?" rows="4" data-i18n="recruitment.form.why_us"></textarea>
                 </div>
-                
+
                 <button type="submit" id="submit-btn">
-                    <span data-lang-fr="Envoyer ma candidature" data-lang-en="Submit Application">Envoyer ma candidature</span>
+                    <span data-i18n="recruitment.submit_btn">Envoyer ma candidature</span>
                 </button>
             </form>
         </main>
 
         <div id="footer">
-            <p>&copy; <span id="year"></span> Dragonheart Studios. <span data-lang-fr="Tous droits réservés." data-lang-en="All rights reserved.">Tous droits réservés.</span></p>
+            <p>&copy; <span id="year"></span> Dragonheart Studios. <span data-i18n="footer.rights">Tous droits réservés.</span></p>
         </div>
     </div>
 
+    <script src="../assets/data/translations.js"></script>
+    <script src="../assets/js/app.js"></script>
+
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+        async function loadRecruitmentPage() {
+            try {
+                // 1. Chargement du header
+                const response = await fetch('../assets/components/header.html');
+                const html = await response.text();
+                document.getElementById('header-container').innerHTML = html;
+
+                // 2. Initialisation globale via app.js
+                if (window.DragonheartApp) {
+                    // On charge la langue depuis le localStorage et on traduit
+                    DragonheartApp.init(); 
+                    
+                    // 3. FORCE la mise à jour visuelle du bouton immédiatement
+                    // On attend un tout petit peu que le DOM du header soit stable
+                    setTimeout(() => {
+                        if (typeof DragonheartApp.updateLanguageButtonUI === 'function') {
+                            DragonheartApp.updateLanguageButtonUI();
+                        }
+                    }, 50); 
+                }
+            } catch (err) {
+                console.error("Erreur chargement header recrutement:", err);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRecruitmentPage();
+
+            // Logique pour le champ "Autre"
+            const checkAutre = document.getElementById('poste_autre_check');
+            const textAutre = document.getElementById('poste_autre_text');
+            if (checkAutre && textAutre) {
+                checkAutre.addEventListener('change', () => {
+                    textAutre.disabled = !checkAutre.checked;
+                    if (checkAutre.checked) textAutre.focus();
+                });
+            }
+        });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>

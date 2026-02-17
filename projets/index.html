@@ -11,16 +11,8 @@
     <title>Projets - Dragonheart Studios</title>
     <link rel="icon" type="image/png" href="../assets/images/favicon.png">
     <style>
-        #projects {
-            margin-top: 50px;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 0 20px;
-        }
-
+        #projects { margin-top: 50px; }
+        .page-header { text-align: center; margin-bottom: 40px; padding: 0 20px; }
         .page-title {
             font-size: 48px;
             font-weight: bold;
@@ -31,7 +23,6 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
         }
-
         .page-description {
             color: rgba(255, 255, 255, 0.8);
             font-size: 18px;
@@ -49,15 +40,13 @@
     <div id="header-container"></div>
 
     <div id="gradient">
-
         <div class="page-header">
             <h1 class="page-title" data-i18n="projectsPage.title">Tous nos projets</h1>
-            <p class="page-description" data-i18n="projectsPage.description">Découvrez l'ensemble de nos créations, des projets terminés aux jeux en développement.</p>
+            <p class="page-description" data-i18n="projectsPage.description">Découvrez l'ensemble de nos créations...</p>
         </div>
 
         <div id="projects">
-            <div class="projects-container" id="projects-list">
-                </div>
+            <div class="projects-container" id="projects-list"></div>
         </div>
 
         <div id="footer">
@@ -67,66 +56,7 @@
 
     <script src="../assets/data/translations.js"></script>
     <script src="../assets/data/games.js"></script>
-    <script src="../assets/data/team.js"></script>
-    
-    <script src="../script.js"></script>
+    <script src="../assets/js/app.js"></script>
 
-    <script>
-        // 2. CHARGEMENT DYNAMIQUE DU HEADER
-        function loadHeader() {
-            fetch('../assets/components/header.html')
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('header-container').innerHTML = html;
-
-                    // Initialiser la langue après le chargement du header
-                    const savedLang = localStorage.getItem('dragonheart_lang') || 'fr';
-                    if (typeof TranslationEngine !== 'undefined') {
-                        TranslationEngine.updateContent(savedLang);
-                        
-                        // Mise à jour visuelle du bouton de langue
-                        const currentLangDisplay = document.getElementById('current-lang');
-                        if (currentLangDisplay) {
-                            const emoji = savedLang === 'fr' ? '🇫🇷' : '🇬🇧';
-                            currentLangDisplay.innerHTML = `${emoji} ${savedLang.toUpperCase()} <span class="arrow">▼</span>`;
-                        }
-                    }
-                })
-                .catch(err => console.error('Erreur chargement header :', err));
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadHeader();
-            document.getElementById('year').textContent = new Date().getFullYear();
-
-            // Chargement des projets
-            if (typeof GAMES_DATA !== 'undefined') {
-                const container = document.getElementById('projects-list');
-                GAMES_DATA.forEach(game => {
-                    const card = document.createElement('div');
-                    card.className = 'project-card';
-                    card.dataset.gameId = game.id;
-                    card.innerHTML = `
-                        <img src="${game.image}" alt="${game.title.fr}" class="project-image">
-                        <div class="project-content">
-                            <h3 class="project-title">${game.title.fr}</h3>
-                            <p class="project-description">${game.shortDescription.fr}</p>
-                            <span class="project-tag ${game.status}">${getStatusText(game.status)}</span>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            }
-        });
-
-        function getStatusText(status) {
-            const map = {
-                'in-development': 'En développement',
-                'completed': 'Terminé',
-                'upcoming': 'À venir'
-            };
-            return map[status] || status;
-        }
-    </script>
 </body>
 </html>

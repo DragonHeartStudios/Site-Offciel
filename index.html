@@ -14,32 +14,17 @@
     <div id="background">
         <img src="assets/images/background.png" alt="Background Image">
     </div>
-    <div id="header-container"></div>
+
+    <div id="header-container"></div> <script src="/assets/data/translations.js"></script>
+    <script src="/assets/js/app.js"></script>
     <script>
-    function loadHeader() {
-        fetch('assets/components/header.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('header-container').innerHTML = html;
-
-                // CETTE LIGNE EST LA CLÉ :
-                // Elle relance la détection du menu de langue et des textes
-                if (window.DragonheartApp) {
-                    DragonheartApp.init(); 
-                }
-            });
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadHeader);
-    } else {
-        loadHeader();
-    }
+        // On lance le chargement du header proprement
+        document.addEventListener('DOMContentLoaded', () => {
+            DragonheartApp.loadHeader();
+        });
     </script>
+
     <div id="gradient">
-
-        
-
         <div id="slogan">
             <p id="slogan_p" data-i18n="home.slogan">Votre studio de jeux indé</p>
             <p id="slogan_boost"><span data-i18n="home.poweredBy">Propulsé par</span> <span class="godot-engine">Godot Engine</span></p>
@@ -62,42 +47,13 @@
 
         <div id="projects">
             <p id="projects_p" data-i18n="home.featuredProjects">Projets en vedette</p>
-            <div class="projects-container">
-                <!-- Card 1 - Nightmare or Dream -->
-                <div class="project-card" data-game-id="nightmare-or-dream">
-                    <img src="assets/images/nightmare_or_dream.png" alt="Nightmare or Dream" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Nightmare or Dream</h3>
-                        <p class="project-description">Un jeu d'horreur psychologique où la frontière entre cauchemar et réalité s'estompe.</p>
-                        <span class="project-tag in-development">En développement</span>
-                    </div>
+            <div class="projects-container" id="featured-games-container">
                 </div>
-                
-                <!-- Card 2 - Water Corporate -->
-                <div class="project-card" data-game-id="water-corporate">
-                    <img src="assets/images/water_corporate.png" alt="Water Corporate" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Water Corporate</h3>
-                        <p class="project-description">Un jeu simple de pompage d'eau, idle/incrémental, que l'on pourrait considérer comme un mauvais boulot bien payé.</p>
-                        <span class="project-tag in-development">En développement</span>
-                    </div>
-                </div>
-                
-                <!-- Card 3 - The Last of Us -->
-                <div class="project-card" data-game-id="KBoom">
-                    <img src="assets/images/flutter.png" alt="KBoom" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">KBoom</h3>
-                        <p class="project-description">Un jeu dans un univers post-apocalyptique suite à une pandémie. Joel et Ellie traversent les États-Unis en ruines.</p>
-                        <span class="project-tag completed">En développement</span>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div id="about_us">
             <p id="about_us_p" data-i18n="home.aboutTitle">À propos de nous</p>
-            <p id="about_us_text" data-i18n="home.aboutText">Dragonheart Studios est un studio de développement de jeux vidéo indépendant fondé en 2023. Notre mission est de créer des jeux touchants avec des expériences immersives et innovantes qui captivent les joueurs du monde entier. Nous croyons en la puissance des histoires bien racontées et des mécaniques de jeu engageantes pour offrir des aventures inoubliables.</p>
+            <p id="about_us_text" data-i18n="home.aboutText">Dragonheart Studios est un studio de développement de jeux vidéo indépendant fondé en 2023. Notre mission est de créer des jeux touchants avec des expériences immersives et innovantes.</p>
             <ul>
                 <li data-i18n="home.aboutPoints.openSource">Solutions open-source</li>
                 <li data-i18n="home.aboutPoints.innovative">Création de jeux innovants</li>
@@ -110,18 +66,15 @@
         <div id="footer">
             <p>© <span id="year"></span> Dragonheart Studios. <span data-i18n="footer.rights">Tous droits réservés.</span></p>
         </div>
-
     </div>
 
-    <!-- Scripts -->
-    <script src="assets/data/translations.js"></script>
-    <script src="assets/data/games.js"></script>
-    <script src="assets/data/team.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="script.js"></script>
-    <script>
-        // Afficher l'année courante
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+    <script src="/assets/data/translations.js"></script>
+    <script src="/assets/data/games.js"></script>
+    <script src="/assets/data/team.js"></script>
+    <script src="/assets/js/app.js"></script>
+    
+    <script src="/script.js"></script>
+
+    
 </body>
 </html>

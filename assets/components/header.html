@@ -1,24 +1,20 @@
 <div id="topbar">
-    <img src="assets/images/logo_large.png" alt="Logo Dragonheart Studios" id="logo">
-    <div class="nav-links">
-        <p id="accueil" data-i18n="nav.home">Accueil</p>
-        <p id="nous_rejoindre" data-i18n="nav.join">Nous rejoindre</p>
-        <p id="projets_link" data-i18n="nav.projects">Projets</p>
-        <p id="a_propos_de_nous" data-i18n="nav.about">À propos</p>
-    </div>
+    <img src="../assets/images/logo_large.png" alt="Logo Dragonheart Studios" id="logo">
+<div class="nav-links">
+    <a href="../index.html" id="accueil" data-i18n="nav.home">Accueil</a>
+    <a href="../rejoindre/index.html" id="nous_rejoindre" data-i18n="nav.join">Nous rejoindre</a>
+    <a href="../projets/index.html" id="projets_link" data-i18n="nav.projects">Projets</a>
+    <p id="a_propos_de_nous" data-i18n="nav.about">À propos</p>
+</div>
     <div class="dropdown" id="lang-dropdown">
     <button class="dropbtn" id="current-lang">
         🇫🇷 FR <span class="arrow">▼</span>
     </button>
     <div class="dropdown-content">
-        <button data-lang="fr">🇫🇷 Français</button>
-        <button data-lang="en">🇬🇧 English</button>
-        <button data-lang="es">🇪🇸 Español</button>
-        <button data-lang="de">🇩🇪 Deutsch</button>
-        <button data-lang="it">🇮🇹 Italiano</button>
+        <button onclick="DragonheartApp.changeLanguage('fr')">🇫🇷 Français</button>
+        <button onclick="DragonheartApp.changeLanguage('en')">🇬🇧 English</button>
+        <button onclick="DragonheartApp.changeLanguage('es')">🇪🇸 Español</button>
+        <button onclick="DragonheartApp.changeLanguage('de')">🇩🇪 Deutsch</button>
+        <button onclick="DragonheartApp.changeLanguage('it')">🇮🇹 Italiano</button>
     </div>
 </div>
-    </div>
-</div>
-</div>
-

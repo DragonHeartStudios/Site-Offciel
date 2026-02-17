@@ -451,20 +451,23 @@ p {
 }
 
 /* ===========================
-   SOULIGNEMENT TOPBAR
+   SOULIGNEMENT TOPBAR (CORRIGÉ)
    =========================== */
-/* Le conteneur de tes liens (pour l'espacement) */
-.nav-links p {
-    color: #ffffff; /* Ta couleur de texte */
+
+/* On cible les p ET les a dans nav-links */
+.nav-links p, .nav-links a {
+    color: #ffffff;
     font-size: 16px;
     cursor: pointer;
-    position: relative; /* Indispensable pour positionner la barre */
+    position: relative; 
     transition: color 0.3s ease;
-    padding-bottom: 5px; /* Espace pour la barre */
+    padding-bottom: 5px;
+    margin: 0; /* Évite les décalages */
+    text-decoration: none; /* Sécurité supplémentaire */
 }
 
-/* La barre de soulignement invisible par défaut (width: 0) */
-.nav-links p::after {
+/* La barre de soulignement invisible par défaut */
+.nav-links p::after, .nav-links a::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -472,18 +475,17 @@ p {
     width: 0;
     height: 2px;
     background: linear-gradient(to right, rgb(190, 16, 170), rgb(190, 16, 53));
-    transition: width 0.3s ease; /* C'est ici que l'animation se passe */
+    transition: width 0.3s ease;
 }
 
-/* L'effet au survol : la barre passe à 100% de largeur */
-.nav-links p:hover {
-    color: rgba(190, 16, 77, 1); /* Optionnel : change aussi la couleur du texte */
+/* L'effet au survol */
+.nav-links p:hover, .nav-links a:hover {
+    color: rgba(190, 16, 77, 1);
 }
 
-.nav-links p:hover::after {
+.nav-links p:hover::after, .nav-links a:hover::after {
     width: 100%;
 }
-
 
 /* --- SYSTEME DE LANGUE (CORRIGÉ) --- */
 

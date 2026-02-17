@@ -1,14 +1,10 @@
 'use strict';
 
-const App = (() => {
+const RecruitmentApp = (() => {
     // Configuration
     const config = {
         webhookURL: 'https://discord.com/api/webhooks/1467187031703552152/FZ8-VjGKD7jW0ACctMk3zPsRwKoBhB8ciVcckhy6k8BioRv35K5XVWabh-q1ELJQX82m',
-        defaultLang: 'fr',
-        supportedLangs: ['fr', 'en']
     };
-
-    let currentLang = config.defaultLang;
 
     // Cache DOM
     const el = {
@@ -18,52 +14,32 @@ const App = (() => {
         posteAutreText: document.getElementById('poste_autre_text')
     };
 
-    const translations = {
+    // Traductions pour les messages d'alerte (le reste passera par translations.js)
+    const messages = {
         fr: {
             formSubmitted: 'Votre candidature a été envoyée avec succès !',
             formError: 'Une erreur s\'est produite lors de l\'envoi. Veuillez réessayer.',
             selectPosition: 'Veuillez sélectionner au moins un poste.',
-            sending: 'Envoi en cours...',
-            submit: 'Envoyer ma candidature'
+            sending: 'Envoi en cours...'
         },
         en: {
             formSubmitted: 'Your application has been successfully submitted!',
             formError: 'An error occurred while sending. Please try again.',
             selectPosition: 'Please select at least one position.',
-            sending: 'Sending...',
-            submit: 'Submit Application'
+            sending: 'Sending...'
         }
     };
 
+    // === FONCTION INIT (Indispensable) ===
     function init() {
-        setupLanguage();
-        bind();
-        initPosteAutreToggle();
+        if (!el.form) return;
+        bindEvents();
+        console.log('✅ RecruitmentApp prête');
     }
 
-    function setupLanguage() {
-        const savedLang = localStorage.getItem('dragonheart_lang');
-        if (savedLang && config.supportedLangs.includes(savedLang)) {
-            currentLang = savedLang;
-        }
-        updateLanguage();
-    }
-
-    function bind() {
-        if (el.form) {
-            el.form.addEventListener('submit', handleFormSubmit);
-        }
+    function bindEvents() {
+        el.form.addEventListener('submit', handleFormSubmit);
         
-        // Synchronisation si le header change la langue
-        window.addEventListener('storage', (e) => {
-            if (e.key === 'dragonheart_lang') {
-                currentLang = e.newValue;
-                updateLanguage();
-            }
-        });
-    }
-
-    function initPosteAutreToggle() {
         if (el.posteAutreCheck && el.posteAutreText) {
             el.posteAutreCheck.addEventListener('change', (e) => {
                 el.posteAutreText.disabled = !e.target.checked;
@@ -72,34 +48,26 @@ const App = (() => {
         }
     }
 
-    function updateLanguage() {
-        const elements = document.querySelectorAll('[data-lang-fr], [data-lang-en]');
-        elements.forEach(element => {
-            const text = element.getAttribute(`data-lang-${currentLang}`);
-            if (text) {
-                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                    element.placeholder = element.getAttribute(`data-placeholder-${currentLang}`) || text;
-                } else {
-                    element.textContent = text;
-                }
-            }
-        });
-        document.documentElement.lang = currentLang;
+    // Récupère la langue actuelle depuis le système global
+    function getCurrentLang() {
+        return document.documentElement.lang || 'fr';
     }
 
     async function handleFormSubmit(e) {
         e.preventDefault();
+        const lang = getCurrentLang();
         
         const postesChecked = Array.from(document.querySelectorAll('input[name="poste"]:checked'));
         if (postesChecked.length === 0) {
-            alert(translations[currentLang].selectPosition);
+            alert(messages[lang].selectPosition);
             return;
         }
 
+        // UI Feedback
         el.submitBtn.disabled = true;
-        const btnSpan = el.submitBtn.querySelector('span');
+        const btnSpan = el.submitBtn.querySelector('span') || el.submitBtn;
         const originalText = btnSpan.textContent;
-        btnSpan.textContent = translations[currentLang].sending;
+        btnSpan.textContent = messages[lang].sending;
 
         try {
             const formData = new FormData(e.target);
@@ -113,7 +81,6 @@ const App = (() => {
                 return cb.value;
             });
 
-            // Préparation des données pour l'embed
             const data = {
                 pseudo: formData.get('pseudo') || 'Non renseigné',
                 age: formData.get('age') || 'Non renseigné',
@@ -124,21 +91,21 @@ const App = (() => {
                 projets: formData.get('projets') || 'Aucun projet renseigné',
                 portfolio: formData.get('portfolio'),
                 motivation: formData.get('motivation'),
-                langue: currentLang.toUpperCase()
+                langue: lang.toUpperCase()
             };
 
             const response = await sendToDiscord(data);
             
             if (response.ok) {
-                alert(translations[currentLang].formSubmitted);
+                alert(messages[lang].formSubmitted);
                 el.form.reset();
-                el.posteAutreText.disabled = true;
+                if(el.posteAutreText) el.posteAutreText.disabled = true;
             } else {
                 throw new Error('Discord response error');
             }
         } catch (error) {
             console.error(error);
-            alert(translations[currentLang].formError);
+            alert(messages[lang].formError);
         } finally {
             el.submitBtn.disabled = false;
             btnSpan.textContent = originalText;
@@ -162,33 +129,23 @@ const App = (() => {
                 },
                 {
                     name: '🛠️ Compétences & Outils',
-                    value: `**Compétences:**\n${data.competences}\n\n**Outils maîtrisés:**\n${data.outils}`,
-                    inline: false
-                },
-                {
-                    name: '📂 Projets',
-                    value: data.projets,
+                    value: `**Compétences:**\n${data.competences}\n\n**Outils:**\n${data.outils}`,
                     inline: false
                 }
             ],
             footer: {
-                text: `Langue: ${data.langue} • ${new Date().toLocaleString('fr-FR')}`
+                text: `Postulé via le site • Langue: ${data.langue} • ${new Date().toLocaleString('fr-FR')}`
             }
         };
 
-        if (data.portfolio) {
-            embed.fields.push({ name: '🔗 Portfolio', value: data.portfolio, inline: false });
-        }
-
-        if (data.motivation) {
-            embed.fields.push({ name: '💭 Motivation', value: data.motivation, inline: false });
-        }
+        if (data.portfolio) embed.fields.push({ name: '🔗 Portfolio', value: data.portfolio });
+        if (data.motivation) embed.fields.push({ name: '💭 Motivation', value: data.motivation });
 
         return await fetch(config.webhookURL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
-                content: '@everyone', 
+                content: '🔔 **Nouvelle candidature reçue !** @everyone', 
                 embeds: [embed] 
             })
         });
@@ -197,4 +154,5 @@ const App = (() => {
     return { init };
 })();
 
-document.addEventListener('DOMContentLoaded', App.init);
+// On lance RecruitmentApp.init()
+document.addEventListener('DOMContentLoaded', RecruitmentApp.init);
