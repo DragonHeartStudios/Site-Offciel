@@ -22,7 +22,7 @@
     --primary-hover: rgba(190, 16, 77, 0.8);
     
     /* Couleurs de fond */
-    --bg-main: #000000;
+    --bg-main: #000000b4;
     --bg-card: rgba(20, 20, 20, 0.9);
     --bg-card-light: rgba(30, 30, 30, 0.8);
     --bg-input: rgba(40, 40, 40, 0.6);
@@ -99,118 +99,44 @@ body {
    BACKGROUND FIXE
    ================ */
 #background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70vh;
-    overflow: hidden;
-    z-index: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh; /* On occupe toute la hauteur pour éviter le carré */
+	overflow: hidden;
+	z-index: 0;
+}
+
+/* Le dégradé qui efface le bas de l'image */
+#background::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	/* Dégradé de transparent vers le noir total */
+	background: linear-gradient(to bottom, 
+		rgba(0, 0, 0, 0) 0%, 
+		rgba(0, 0, 0, 0) 40%, 
+		rgba(0, 0, 0, 1) 90%
+	);
+	z-index: 1;
 }
 
 #background img {
-    position: absolute;
-    object-fit: cover;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    min-width: 100%;
-    min-height: 100%;
-    opacity: 0.5;
-    will-change: transform;
+	position: absolute;
+	object-fit: cover;
+	object-position: 50% 20%; /* Ajusté pour que l'image soit bien visible en haut */
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.6; /* Un peu moins d'opacité rend le glassmorphism plus beau */
 }
 
-#gradient {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 30%);
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
-    z-index: 0;
-}
 
-/* ================
-   TOPBAR
-   ================ */
-#topbar {
-    position: relative;
-    z-index: 2;
-    width: calc(100% - 40px);
-    min-height: 60px;
-    background-color: var(--bg-card);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px var(--spacing-md);
-    margin: 20px;
-    border-radius: var(--radius-md);
-    box-sizing: border-box;
-}
-
-#logo {
-    width: 150px;
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-#logo:hover {
-    transform: scale(1.05);
-}
-
-.nav-links {
-    display: flex;
-    gap: var(--spacing-lg);
-    flex-grow: 1;
-    justify-content: center;
-    align-items: center;
-}
-
-.nav-links p {
-    color: var(--text-primary);
-    font-family: var(--font-primary);
-    font-size: 16px;
-    margin: 0;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    position: relative;
-}
-
-.nav-links p::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(to right, var(--primary-gradient-start), var(--primary-gradient-end));
-    transition: width 0.3s ease;
-}
-
-.nav-links p:hover {
-    color: var(--primary-color);
-}
-
-.nav-links p:hover::after {
-    width: 100%;
-}
-
-#langue {
-    color: var(--text-primary);
-    font-family: var(--font-primary);
-    font-size: 16px;
-    margin: 0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 8px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: var(--radius-sm);
-}
-
-#langue:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-}
 
 /* ================
    MAIN CONTENT
@@ -260,6 +186,20 @@ h1 {
     gap: 35px;
     transition: all 0.3s ease;
     animation: fadeIn 0.8s ease-out 0.2s both;
+    /* --- L'EFFET LIQUIDE / GLASSMORPHISM --- */
+    
+    /* 1. Fond sombre mais très transparent */
+    background: rgba(10, 10, 10, 0.562); 
+
+    /* 2. Le flou d'arrière-plan (l'effet magique) */
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+
+    /* 3. Une bordure subtile pour accrocher la lumière */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    /* 4. Ombre douce pour décoller la barre du fond */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 #form:hover {
