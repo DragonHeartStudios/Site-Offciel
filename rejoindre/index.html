@@ -36,36 +36,12 @@
                     <div class="checkbox-grid">
                         <label><input type="checkbox" name="poste" value="developpeur"> <span data-i18n="recruitment.roles.dev">Développeur</span></label>
                         <label><input type="checkbox" name="poste" value="graphiste"> <span data-i18n="recruitment.roles.artist">Graphiste</span></label>
-                        <label><input type="checkbox" name="poste" value="compositeur"> <span data-i18n="recruitment.roles.composer">Compositeur</span></label>
-                        <label><input type="checkbox" name="poste" value="game_designer"> <span data-i18n="recruitment.roles.gamedesign">Game Designer</span></label>
-                        <label><input type="checkbox" name="poste" value="modelisateur_3d"> <span data-i18n="recruitment.roles.3d">Modélisateur 3D</span></label>
-                        <label><input type="checkbox" name="poste" value="vfx_designer"> <span data-i18n="recruitment.roles.vfx">VFX Designer</span></label>
-                        <label><input type="checkbox" name="poste" value="doubleur"> <span data-i18n="recruitment.roles.voice">Doubleur</span></label>
-                        <label><input type="checkbox" name="poste" value="community_manager"> <span data-i18n="recruitment.roles.cm">Community Manager</span></label>
                         <label class="checkbox-other">
                             <input type="checkbox" name="poste" value="autre" id="poste_autre_check">
                             <span data-i18n="recruitment.roles.other">Autre</span>
                         </label>
                     </div>
-                    <input type="text" name="poste_autre" id="poste_autre_text" placeholder="Précisez le poste..." disabled data-i18n="recruitment.form.specify">
                 </fieldset>
-
-                <h2 data-i18n="recruitment.sections.skills">Compétences & Expérience</h2>
-                <div class="form-group">
-                    <textarea name="competences" placeholder="Décrivez vos compétences..." rows="6" data-i18n="recruitment.form.desc_skills"></textarea>
-                    <input name="outils" placeholder="Quels outils maîtrisez-vous ?" type="text" data-i18n="recruitment.form.tools"/>
-                </div>
-
-                <h2 data-i18n="recruitment.sections.projects">Vos Projets</h2>
-                <div class="form-group">
-                    <textarea name="projets" placeholder="Décrivez vos projets..." rows="6" data-i18n="recruitment.form.desc_projects"></textarea>
-                    <input name="portfolio" placeholder="Lien vers votre portfolio..." type="url" data-i18n="recruitment.form.portfolio"/>
-                </div>
-
-                <h2 data-i18n="recruitment.sections.motivation">Motivation</h2>
-                <div class="form-group">
-                    <textarea name="motivation" placeholder="Pourquoi Dragonheart Studios ?" rows="4" data-i18n="recruitment.form.why_us"></textarea>
-                </div>
 
                 <button type="submit" id="submit-btn">
                     <span data-i18n="recruitment.submit_btn">Envoyer ma candidature</span>
@@ -80,42 +56,25 @@
 
     <script src="../assets/data/translations.js"></script>
     <script src="../assets/js/app.js"></script>
-    <script src="recruitment.js"></script> <script>
-        // ON UTILISE UNE SEULE FONCTION D'INITIALISATION
-        async function initPage() {
-            try {
-                // 1. On charge le header manuellement pour être sûr du chemin
-                const response = await fetch('../assets/components/header.html');
-                const html = await response.text();
-                document.getElementById('header-container').innerHTML = html;
+    <script src="../script.js"></script>
 
-                // 2. On initialise la traduction (app.js)
-                if (window.DragonheartApp) {
-                    DragonheartApp.init(); 
+    <script>
+        // FONCTION UNIQUE POUR CHARGER LE HEADER
+        function initPage() {
+            fetch('../assets/components/header.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('header-container').innerHTML = html;
                     
-                    // On force la mise à jour visuelle du bouton avec un mini délai
-                    setTimeout(() => {
-                        const savedLang = localStorage.getItem('dragonheart_lang') || 'fr';
-                        // Met à jour la balise HTML pour que RecruitmentApp lise la bonne langue
-                        document.documentElement.lang = savedLang; 
-                        
-                        // Appelle la fonction de mise à jour du drapeau de app.js
-                        if(typeof DragonheartApp.updateLanguageButtonUI === 'function') {
-                            DragonheartApp.updateLanguageButtonUI();
-                        }
-                    }, 50);
-                }
-
-                // 3. On initialise le formulaire (RecruitmentApp)
-                if (window.RecruitmentApp) {
-                    RecruitmentApp.init();
-                }
-
-            } catch (err) {
-                console.error("Erreur d'initialisation :", err);
-            }
+                    // Une fois le header chargé, on initialise l'application
+                    if (window.DragonheartApp) {
+                        DragonheartApp.init(); 
+                    }
+                })
+                .catch(err => console.error("Erreur header :", err));
         }
 
-        // On lance tout d'un coup proprement
         document.addEventListener('DOMContentLoaded', initPage);
     </script>
+</body>
+</html>
