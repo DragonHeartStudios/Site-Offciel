@@ -5,6 +5,9 @@ Bienvenue sur le dépôt officiel du site web de **Dragon Heart Studios**. Nous 
 ## 🚀 À propos du projet
 Ce site vitrine a pour but de présenter nos dernières créations, notre équipe et notre univers aux joueurs du monde entier. et a recruter.
 
+pour le lancé en local fait un serveur avec python avec la command : **python -m http.server**
+et allez sur : http://localhost:8000
+
 * **Lien du site :** https://dragonheartstudios.github.io/Site-Offciel/
 * **Technologies utilisées :** HTML5, CSS, JavaScript
 
