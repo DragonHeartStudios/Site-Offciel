@@ -15,7 +15,7 @@ const TRANSLATIONS = {
 
     // Page d'accueil
     home: {
-        slogan: { fr: 'Votre studio de jeux indé', en: 'Your indie game studio', es: 'Tu estudio de juegos indie', de: 'Dein Indie-Spielstudio', it: 'Il tuo studio di giochi indie' },
+        slogan: { fr: 'Changed Votre studio de jeux indé', en: 'Your indie game studio', es: 'Tu estudio de juegos indie', de: 'Dein Indie-Spielstudio', it: 'Il tuo studio di giochi indie' },
         poweredBy: { fr: 'Propulsé par', en: 'Powered by', es: 'Impulsado por', de: 'Angetrieben von', it: 'Alimentato da' },
         socialMedia: { fr: 'Nos réseaux', en: 'Our Socials', es: 'Nuestras Redes', de: 'Unsere Netzwerke', it: 'I Nostri Social' },
         featuredProjects: { fr: 'Projets en vedette', en: 'Featured Projects', es: 'Proyectos Destacados', de: 'Vorgestellte Projekte', it: 'Progetti in Evidenza' },
