@@ -33,7 +33,6 @@ const DragonheartApp = (() => {
         const container = document.getElementById('header-container');
         if (!container) return;
 
-        // On utilise le chemin absolu calculé
         const path = `${getBaseUrl()}assets/components/header.html`;
 
         fetch(path)
@@ -44,23 +43,18 @@ const DragonheartApp = (() => {
             .then(html => {
                 container.innerHTML = html;
                 
-                // On met à jour le contenu APRES l'injection
                 updateAllContent();
                 updateLanguageButtonUI();
                 renderFeaturedGames();
                 
-                // Correction manuelle du logo pour GitHub Pages
                 const logo = document.getElementById('logo');
                 if (logo) {
-                    const isGitHub = window.location.hostname.includes('github.io');
-                    // Force le chemin du logo
                     logo.parentElement.href = getBaseUrl() + "index.html";
                     logo.src = getBaseUrl() + "assets/images/logo_large.png";
                 }
             })
             .catch(err => {
                 console.error("Erreur chargement header:", err);
-                // Si le header échoue, on tente quand même de charger les jeux
                 renderFeaturedGames();
             });
     }
@@ -86,7 +80,6 @@ const DragonheartApp = (() => {
         console.log(`🌍 Langue changée en : ${lang}`);
     }
 
-    // ===== MISE À JOUR VISUELLE DU BOUTON =====
     function updateLanguageButtonUI() {
         const currentLangDisplay = document.getElementById('current-lang');
         if (currentLangDisplay) {
@@ -124,8 +117,7 @@ const DragonheartApp = (() => {
         } catch (e) { return null; }
     }
 
-
-// ===== RENDU DES JEUX (VERSION BLINDÉE) =====
+    // ===== RENDU DES JEUX =====
     function renderFeaturedGames() {
         const container = document.getElementById('featured-games-container') || document.getElementById('projects-list');
         if (!container || typeof GAMES_DATA === 'undefined') return;
@@ -140,16 +132,11 @@ const DragonheartApp = (() => {
             const title = game.title[currentLang] || game.title.fr;
             const desc = game.shortDescription[currentLang] || game.shortDescription.fr;
             
-            // --- NETTOYAGE AGRESSIF DU CHEMIN ---
-            let cleanPath = game.image.trim();
-            // On enlève le "./" ou "/" au tout début pour ne pas doubler les slashs
-            cleanPath = cleanPath.replace(/^(\.\/|\/)/, ''); 
-            
-            // On construit l'URL finale
-            const base = getBaseUrl(); // ex: /Site-Offciel/
-            const imgPath = game.image.startsWith('http') ? game.image : base + cleanPath;
+            // Indispensable pour le petit titre blanc en CSS (::after)
+            card.setAttribute('data-title', title);
 
-            console.log(`🖼️ Tentative de chargement d'image : ${imgPath}`); // Pour debug
+            let cleanPath = game.image.trim().replace(/^(\.\/|\/)/, ''); 
+            const imgPath = game.image.startsWith('http') ? game.image : getBaseUrl() + cleanPath;
 
             card.innerHTML = `
                 <img src="${imgPath}" alt="${title}" class="project-image" onerror="this.src='https://placehold.co/600x400?text=Image+Introuvable'">
@@ -164,22 +151,18 @@ const DragonheartApp = (() => {
     }
 
     function bindEvents() {
-        const yearEl = document.getElementById('year');
-        if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-        document.addEventListener('click', (e) => {
-            if (e.target.id === 'a_propos_de_nous') {
-                const aboutSection = document.getElementById('about_us');
-                if (aboutSection) {
-                    aboutSection.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    window.location.href = getBaseUrl() + 'index.html#about_us';
-                }
-            }
-        });
+        // Ajoute ici tes événements au clic si besoin
     }
 
-    return { init, changeLanguage };
+    // On expose les fonctions nécessaires et on initialise
+    return {
+        init: init,
+        changeLanguage: changeLanguage,
+        loadHeader: loadHeader
+    };
 })();
 
-document.addEventListener('DOMContentLoaded', DragonheartApp.init);
+// Lancement automatique au chargement
+document.addEventListener('DOMContentLoaded', () => {
+    DragonheartApp.init();
+});

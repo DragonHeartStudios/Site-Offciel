@@ -238,133 +238,128 @@ p {
     transform: scale(1.1);
 }
 
-/* PROJETS */
+/* ===========================
+   SECTION PROJETS (STYLE IMAGE)
+   =========================== */
+
 #projects {
     position: relative;
     z-index: 2;
-    color: rgb(255, 255, 255);
-    margin-top: 200px;
+    margin-top: 150px;
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
     padding: 0 20px;
-    font-family: 'Mooli', sans-serif;
-    text-transform: uppercase;
 }
 
 #projects_p {
-    font-size: 35px;
+    font-size: 40px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     text-align: left;
     font-family: 'Mooli', sans-serif;
+    text-transform: uppercase;
     background: linear-gradient(to top right, #be104d, rgb(190, 16, 53));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* Container des cards */
+/* Le conteneur qui aligne les cartes horizontalement */
 .projects-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    max-width: 1400px;
-    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes par ligne */
+    gap: 50px 30px; /* 50px d'espace vertical pour laisser de la place au titre */
 }
 
-/* Styles des cards - EFFET GLASSMORPHISM */
+/* Container de la carte */
 .project-card {
-    /* Fond très légèrement blanc et transparent */
-    background: rgba(255, 255, 255, 0.03); 
-    
-    /* Le flou qui crée l'effet de verre dépoli */
-    backdrop-filter: blur(12px) saturate(160%);
-    -webkit-backdrop-filter: blur(12px) saturate(160%);
-    
-    /* Bordure fine pour simuler l'épaisseur du verre */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    
-    border-radius: 20px; /* Un peu plus arrondi pour le style moderne */
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    display: flex;
-    flex-direction: column;
-    
-    /* Ombre portée pour décoller la carte du fond */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    height: 250px;
+    border-radius: 12px;
+    overflow: visible; /* Laisser visible pour le titre blanc en bas */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #000;
 }
 
 .project-card:hover {
-    transform: translateY(-12px);
-    background: rgba(255, 255, 255, 0.07); /* Devient un peu plus opaque au survol */
-    border-color: rgba(190, 16, 77, 0.5); /* Rappel de ta couleur rose/rouge */
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    transform: scale(1.03);
 }
 
+/* L'image de fond */
 .project-image {
     width: 100%;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-    /* On baisse un peu l'opacité de l'image pour mieux voir l'effet de verre sur le reste */
-    opacity: 0.9; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-radius: 12px;
+    filter: brightness(0.6); /* Assombrit pour lire le texte jaune */
+    transition: filter 0.3s ease;
 }
 
 .project-card:hover .project-image {
-    transform: scale(1.08);
-    opacity: 1;
+    filter: brightness(0.8);
 }
 
+/* Contenu textuel interne */
 .project-content {
-    padding: 25px; /* Un peu plus d'espace pour un look aéré */
+    position: relative;
+    z-index: 2;
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
 }
 
+/* Gros titre JAUNE au milieu */
 .project-title {
-    font-size: 24px;
-    margin: 0 0 12px 0;
-    color: white;
-    font-weight: bold;
-    font-family: 'Mooli', sans-serif;
-    letter-spacing: 0.5px;
+    font-size: 28px;
+    color: #ffff00;
+    font-family: 'Poetsen One', sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
 }
 
-.project-description {
+/* Masquer les détails inutiles pour ce style */
+.project-description, .project-tag {
+    display: none;
+}
+
+/* Petit titre BLANC sous l'image (Légende) */
+.project-card::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: -30px;
+    left: 5px;
+    color: white;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
-    margin-bottom: 20px;
-    flex-grow: 1;
-}
-
-/* Tags */
-.project-tag {
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
     font-weight: bold;
-    color: white;
-    align-self: flex-start;
-    margin-top: auto;
+    text-transform: none;
 }
 
-.project-tag.in-development,
-.project-tag.in-developpement {
-    background-color: rgba(190, 16, 77, 0.8);
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
+    }
 }
 
-.project-tag.completed {
-    background-color: rgba(16, 190, 77, 0.8);
-}
-
-.project-tag.upcoming {
-    background-color: rgba(255, 165, 0, 0.8);
+@media (max-width: 650px) {
+    .projects-container {
+        grid-template-columns: 1fr; /* 1 colonne sur mobile */
+    }
+    .project-card {
+        margin-bottom: 20px;
+    }
 }
 
 /* À PROPOS */
