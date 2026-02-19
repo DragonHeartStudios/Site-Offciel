@@ -185,7 +185,7 @@ p {
     margin-bottom: 15px;
     text-align: left;
     font-weight: bold;
-    font-family: 'Mooli', sans-serif;
+    font-family: 'ADLaM Display', sans-serif !important;
     background: linear-gradient(to top right, #be104d, rgb(190, 16, 53));
     background-clip: text;
     -webkit-background-clip: text;
@@ -257,7 +257,7 @@ p {
     font-weight: bold;
     margin-bottom: 40px;
     text-align: left;
-    font-family: 'Mooli', sans-serif;
+    font-family: 'ADLaM Display', sans-serif !important;
     text-transform: uppercase;
     background: linear-gradient(to top right, #be104d, rgb(190, 16, 53));
     background-clip: text;
