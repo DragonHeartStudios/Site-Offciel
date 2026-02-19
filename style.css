@@ -52,9 +52,9 @@ p {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 30px;
+    padding: 0px 30px;
     box-sizing: border-box;
-    margin: 20px auto; /* Centrage automatique */
+    margin: 10px auto; /* Centrage automatique */
     border-radius: 16px;
 
     /* --- L'EFFET LIQUIDE / GLASSMORPHISM --- */
@@ -74,10 +74,11 @@ p {
 }
 
 #logo {
-    width: 150px;
+    width: 180px;
     height: auto;
     cursor: pointer;
     transition: transform 0.3s ease;
+    margin-top: 5px; /* Ajustez la valeur en pixels selon vos besoins */
 }
 
 #logo:hover {
@@ -176,15 +177,16 @@ p {
     max-width: 1400px;
     margin: 80px auto 0;
     padding: 0 20px;
+    text-transform: uppercase;
 }
 
 .medias_p {
     font-size: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     text-align: left;
     font-weight: bold;
     font-family: 'Mooli', sans-serif;
-    background: linear-gradient(to top right, rgb(190, 16, 170), rgb(190, 16, 53));
+    background: linear-gradient(to top right, #be104d, rgb(190, 16, 53));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -194,14 +196,14 @@ p {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 25px;
+    gap: 18px;
 }
 
 #discord, #youtube, #github {
     cursor: pointer;
     padding: 12px;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -241,21 +243,22 @@ p {
     position: relative;
     z-index: 2;
     color: rgb(255, 255, 255);
-    margin-top: 100px;
+    margin-top: 200px;
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
     padding: 0 20px;
     font-family: 'Mooli', sans-serif;
+    text-transform: uppercase;
 }
 
 #projects_p {
     font-size: 40px;
     font-weight: bold;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     text-align: left;
     font-family: 'Mooli', sans-serif;
-    background: linear-gradient(to top right, rgb(190, 16, 170), rgb(190, 16, 53));
+    background: linear-gradient(to top right, #be104d, rgb(190, 16, 53));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
