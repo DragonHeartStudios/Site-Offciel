@@ -19,4 +19,4 @@ Vous avez des questions ou vous souhaitez collaborer avec nous ?
 ---
 © 2024 Dragon Heart Studios - *Forgeons ensemble des mondes légendaires.*
 
-![Logo Dragon Heart Studios](images/studio_logo.png)
+![Logo Dragon Heart Studios](assets/images/logo_large.png)
