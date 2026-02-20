@@ -72,7 +72,7 @@ const TRANSLATIONS = {
             it: 'Unisciti al Team'
         },
         intro: {
-            fr: 'Vous êtes passionné par le développement de jeux vidéo ? Rejoignez notre équipe et participez à la création d\'expériences inoubliables !',
+            fr: 'Vous êtes passionné par le développement de jeux vidéo ? Rejoignez notre équipe et participez à la création d\'expériences inoubliables ! \n Comment ce passe le recrutement ? \n eriuezriehrrre rze  ezr ze"r ezr zer zer klez rlpezkrkezlmlezlrezp^relzmlr',
             en: 'Passionate about game development? Join our team and help create unforgettable experiences!',
             es: '¿Apasionado por el desarrollo de juegos? ¡Únete a nuestro equipo y ayuda a créer experiencias inolvidables!',
             de: 'Leidenschaftlich an Spieleentwicklung interessiert? Treten Sie unserem Team bei!',

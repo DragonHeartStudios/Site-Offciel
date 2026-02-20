@@ -5,8 +5,8 @@ Bienvenue sur le dépôt officiel du site web de **Dragon Heart Studios**. Nous 
 ## 🚀 À propos du projet
 Ce site vitrine a pour but de présenter nos dernières créations, notre équipe et notre univers aux joueurs du monde entier. et a recruter.
 
-pour le lancé en local fait un serveur avec python avec la command : **python -m http.server**
-et allez sur : http://localhost:8000
+pour le lancer en local, fait un serveur avec python en utilisant la la command : **python -m http.server** dans le dossier racine du serveur
+et allez sur votre navigateur : http://localhost:8000
 
 * **Lien du site :** https://dragonheartstudios.github.io/Site-Offciel/
 * **Technologies utilisées :** HTML5, CSS, JavaScript
@@ -17,6 +17,6 @@ Vous avez des questions ou vous souhaitez collaborer avec nous ?
 
 
 ---
-© 2024 Dragon Heart Studios - *Forgeons ensemble des mondes légendaires.*
+© 2023 Dragon Heart Studios - *Forgeons ensemble des mondes légendaires.*
 
-![Logo Dragon Heart Studios](images/studio_logo.png)
+![Logo Dragon Heart Studios](assets/images/logo_large.png)

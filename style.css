@@ -126,7 +126,7 @@ p {
 #slogan {
     position: relative;
     z-index: 2;
-    margin-top: 100px;
+    margin-top: 150px;
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
@@ -245,7 +245,7 @@ p {
 #projects {
     position: relative;
     z-index: 2;
-    margin-top: 150px;
+    margin-top: 100px;
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
@@ -323,8 +323,8 @@ p {
     font-size: 28px;
     color: #ffff00;
     font-family: 'Poetsen One', sans-serif;
-    text-transform: uppercase;
     margin: 0;
+    
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
 }
 
@@ -337,10 +337,10 @@ p {
 .project-card::after {
     content: attr(data-title);
     position: absolute;
-    bottom: -30px;
+    bottom: -20px;
     left: 5px;
     color: white;
-    font-size: 14px;
+    font-size: 12px;
     font-family: 'PTSansNarrow-Regular', sans-serif;
     font-weight: bold;
     text-transform: none;
