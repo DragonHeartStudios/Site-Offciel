@@ -47,7 +47,8 @@ const GAMES_DATA = [
         image: '/assets/images/nightmare_or_dream.png', 
         status: 'in-development',
         technologies: ['Godot Engine', 'GDScript', 'Pixel Art'],
-        featured: true
+        featured: true,
+        link: "https://www.youtube.com/watch?v=L-Zzn5X-17Q&t=50s"
     },
     {
         id: 'destroyed',
@@ -62,7 +63,8 @@ const GAMES_DATA = [
         image: '/assets/images/destroyed.png',
         status: 'finished',
         technologies: ['Godot Engine', 'GDScript'],
-        featured: true
+        featured: true,
+        link: "https://wolfy400.itch.io/destroyed"
     },
     {
         id: 'KBoom',
@@ -77,7 +79,8 @@ const GAMES_DATA = [
         image: '/assets/images/flutter.png',
         status: 'in-development',
         technologies: ['Flutter', 'Firebase'],
-        featured: true
+        featured: true,
+        link: "https://www.youtube.com/watch?v=Aq5WXmQQooo"
     }
 ];
 

@@ -126,13 +126,20 @@ const DragonheartApp = (() => {
         GAMES_DATA.forEach(game => {
             if (document.getElementById('featured-games-container') && !game.featured) return;
 
+            // Création du lien qui englobe la carte
+            const anchor = document.createElement('a');
+            anchor.href = game.link || "#"; // Utilise le lien du JS
+            anchor.target = "_blank";       // Ouvre dans un nouvel onglet
+            anchor.className = 'project-card-link'; // Classe pour le CSS
+            anchor.style.textDecoration = 'none';   // Évite le soulignement du texte
+            anchor.style.color = 'inherit';         // Garde la couleur du texte originale
+
             const card = document.createElement('div');
             card.className = 'project-card';
             
             const title = game.title[currentLang] || game.title.fr;
             const desc = game.shortDescription[currentLang] || game.shortDescription.fr;
             
-            // Indispensable pour le petit titre blanc en CSS (::after)
             card.setAttribute('data-title', title);
 
             let cleanPath = game.image.trim().replace(/^(\.\/|\/)/, ''); 
@@ -146,7 +153,10 @@ const DragonheartApp = (() => {
                     <span class="project-tag ${game.status}">${game.status}</span>
                 </div>
             `;
-            container.appendChild(card);
+            
+            // On ajoute la carte dans le lien, puis le lien dans le container
+            anchor.appendChild(card);
+            container.appendChild(anchor);
         });
     }
 

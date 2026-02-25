@@ -273,6 +273,21 @@ p {
 }
 
 /* Container de la carte */
+
+/* Permet à la carte de prendre toute la place dans le lien */
+.project-card-link {
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Optionnel : un petit effet au survol pour montrer que c'est cliquable */
+.project-card-link:hover {
+    transform: scale(1.02);
+}
+
+.project-card-link:hover .project-card {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
 .project-card {
     position: relative;
     height: 250px;
