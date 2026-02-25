@@ -50,17 +50,17 @@ const GAMES_DATA = [
         featured: true
     },
     {
-        id: 'water-corporate',
-        title: { fr: 'Water Corporate', en: 'Water Corporate', es: 'Water Corporate', de: 'Water Corporate', it: 'Water Corporate' },
+        id: 'destroyed',
+        title: { fr: 'destroyed', en: 'destroyed', es: 'destroyed', de: 'destroyed', it: 'destroyed' },
         shortDescription: {
-            fr: 'Un jeu simple de pompage d\'eau, idle/incrémental.',
-            en: 'A simple water pumping game, idle/incremental.',
-            es: 'Un simple juego de bombeo de agua, idle/incremental.',
-            de: 'Ein einfaches Wasserpumpspiel, idle/incremental.',
-            it: 'Un semplice gioco di pompaggio dell\'acqua, idle/incrementale.'
+                    fr: "Ce jeu aborde des sujets tels que le harcèlement scolaire, les comportements passifs qui y sont liés, les troubles de la santé mentale, le déni et la dépression.",
+                    en: "This game addresses subjects such as school bullying and related passive behavior, mental health issues, denial, and depression.",
+                    es: "Este juego trata temas como el acoso escolar y los comportamientos pasivos relacionados, problemas de salud mental, la negación y la depresión.",
+                    de: "Dieses Spiel behandelt Themen wie Mobbing in der Schule und damit verbundenes passives Verhalten, psychische Probleme, Verleugnung und Depressionen.",
+                    it: "Questo gioco affronta temi come il bullismo scolastico e i relativi comportamenti passivi, problemi di salute mentale, negazione e depressione."
         },
-        image: '/assets/images/water_corporate.png',
-        status: 'in-development',
+        image: '/assets/images/destroyed.png',
+        status: 'finished',
         technologies: ['Godot Engine', 'GDScript'],
         featured: true
     },
