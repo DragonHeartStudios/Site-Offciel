@@ -662,6 +662,22 @@ p {
 	filter: brightness(1.1); /* Rend le logo un peu plus lumineux au survol */
 }
 
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.burger-menu span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
 @media (max-width: 768px) {
     /* On cache les liens par défaut sur mobile */
     .nav-links {

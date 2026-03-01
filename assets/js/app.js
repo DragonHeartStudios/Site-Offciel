@@ -176,3 +176,33 @@ const DragonheartApp = (() => {
 document.addEventListener('DOMContentLoaded', () => {
     DragonheartApp.init();
 });
+
+// Cette fonction permet d'activer le menu burger
+const initMobileMenu = () => {
+    const burgerBtn = document.getElementById('burger-btn');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (burgerBtn && navMenu) {
+        burgerBtn.addEventListener('click', () => {
+            // Ajoute ou enlève la classe qui affiche le menu
+            navMenu.classList.toggle('mobile-open');
+            
+            // Animation optionnelle du bouton burger (si tu veux qu'il se transforme)
+            burgerBtn.classList.toggle('active');
+        });
+
+        // Ferme le menu si on clique sur un lien (pour la navigation interne)
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('mobile-open');
+            });
+        });
+    }
+};
+
+// Comme ton header est chargé dynamiquement via DragonheartApp.loadHeader(),
+// il faut attendre un peu que le HTML soit injecté avant de chercher les boutons.
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(initMobileMenu, 500); 
+});
