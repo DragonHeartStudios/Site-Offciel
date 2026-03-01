@@ -122,6 +122,7 @@ p {
     color: rgba(190, 16, 77, 1);
 }
 
+
 /* SLOGAN */
 #slogan {
     position: relative;
@@ -659,4 +660,27 @@ p {
 #logo:hover {
 	transform: scale(1.02); /* Effet de zoom très léger */
 	filter: brightness(1.1); /* Rend le logo un peu plus lumineux au survol */
+}
+
+@media (max-width: 768px) {
+    /* On cache les liens par défaut sur mobile */
+    .nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(15px);
+        padding: 20px;
+        border-radius: 16px;
+        gap: 20px;
+        text-align: center;
+    }
+
+    /* Classe qui sera ajoutée en JS pour afficher le menu */
+    .nav-links.active {
+        display: flex;
+    }
 }
