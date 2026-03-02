@@ -6,7 +6,7 @@ const RecruitmentApp = (() => {
         webhookURL: 'https://discord.com/api/webhooks/1467187031703552152/FZ8-VjGKD7jW0ACctMk3zPsRwKoBhB8ciVcckhy6k8BioRv35K5XVWabh-q1ELJQX82m',
     };
 
-    // Cache DOM
+    // Cache DOM - Vérifier que les éléments existent
     const el = {
         form: document.getElementById('form'),
         submitBtn: document.getElementById('submit-btn'),
@@ -14,7 +14,7 @@ const RecruitmentApp = (() => {
         posteAutreText: document.getElementById('poste_autre_text')
     };
 
-    // Traductions pour les messages d'alerte (le reste passera par translations.js)
+    // Traductions pour les messages d'alerte
     const messages = {
         fr: {
             formSubmitted: 'Votre candidature a été envoyée avec succès !',
@@ -32,14 +32,21 @@ const RecruitmentApp = (() => {
 
     // === FONCTION INIT (Indispensable) ===
     function init() {
-        if (!el.form) return;
+        // ✅ VÉRIFIER QUE LE FORMULAIRE EXISTE AVANT DE L'UTILISER
+        if (!el.form) {
+            console.log('⚠️ Formulaire de recrutement non trouvé (c\'est normal si ce n\'est pas la page de recrutement)');
+            return;
+        }
         bindEvents();
         console.log('✅ RecruitmentApp prête');
     }
 
     function bindEvents() {
-        el.form.addEventListener('submit', handleFormSubmit);
+        if (el.form) {
+            el.form.addEventListener('submit', handleFormSubmit);
+        }
         
+        // ✅ VÉRIFIER QUE LES ÉLÉMENTS EXISTENT AVANT DE LES UTILISER
         if (el.posteAutreCheck && el.posteAutreText) {
             el.posteAutreCheck.addEventListener('change', (e) => {
                 el.posteAutreText.disabled = !e.target.checked;
