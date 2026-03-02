@@ -6,7 +6,7 @@ const RecruitmentApp = (() => {
         webhookURL: 'https://discord.com/api/webhooks/1467187031703552152/FZ8-VjGKD7jW0ACctMk3zPsRwKoBhB8ciVcckhy6k8BioRv35K5XVWabh-q1ELJQX82m',
     };
 
-    // Cache DOM - Vérifier que les éléments existent
+    // Cache DOM
     const el = {
         form: document.getElementById('form'),
         submitBtn: document.getElementById('submit-btn'),
@@ -30,11 +30,10 @@ const RecruitmentApp = (() => {
         }
     };
 
-    // === FONCTION INIT (Indispensable) ===
+    // === FONCTION INIT ===
     function init() {
-        // ✅ VÉRIFIER QUE LE FORMULAIRE EXISTE AVANT DE L'UTILISER
         if (!el.form) {
-            console.log('⚠️ Formulaire de recrutement non trouvé (c\'est normal si ce n\'est pas la page de recrutement)');
+            console.log('⚠️ Formulaire de recrutement non trouvé');
             return;
         }
         bindEvents();
@@ -46,7 +45,6 @@ const RecruitmentApp = (() => {
             el.form.addEventListener('submit', handleFormSubmit);
         }
         
-        // ✅ VÉRIFIER QUE LES ÉLÉMENTS EXISTENT AVANT DE LES UTILISER
         if (el.posteAutreCheck && el.posteAutreText) {
             el.posteAutreCheck.addEventListener('change', (e) => {
                 el.posteAutreText.disabled = !e.target.checked;
@@ -55,7 +53,7 @@ const RecruitmentApp = (() => {
         }
     }
 
-    // Récupère la langue actuelle depuis le système global
+    // Récupère la langue actuelle
     function getCurrentLang() {
         return document.documentElement.lang || 'fr';
     }
@@ -161,5 +159,8 @@ const RecruitmentApp = (() => {
     return { init };
 })();
 
-// On lance RecruitmentApp.init()
-document.addEventListener('DOMContentLoaded', RecruitmentApp.init);
+// Lancement APRÈS que DragonheartApp soit initialisé
+// Attendre 100ms pour que le header soit chargé
+setTimeout(() => {
+    RecruitmentApp.init();
+}, 100);

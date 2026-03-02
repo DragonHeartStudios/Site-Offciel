@@ -21,7 +21,7 @@ const DragonheartApp = (() => {
     // ===== INITIALISATION =====
     function init() {
         loadLanguage();
-        loadHeader(); // Cette fonction appellera la suite une fois le header reçu
+        loadHeader();
         console.log('✅ Dragonheart Studios - App prête');
     }
 
@@ -44,7 +44,7 @@ const DragonheartApp = (() => {
                 updateAllContent();
                 updateLanguageButtonUI();
                 renderFeaturedGames();
-                initMobileMenu(); // PLUS BESOIN DE SETTIMEOUT !
+                initMobileMenu();
                 
                 // Fix Logo
                 const logo = document.getElementById('logo');
@@ -62,22 +62,38 @@ const DragonheartApp = (() => {
     // ===== MENU BURGER =====
     function initMobileMenu() {
         const burgerBtn = document.getElementById('burger-btn');
-        const navMenu = document.querySelector('.nav-links'); // Utilise la classe CSS
+        const navWrapper = document.getElementById('nav-wrapper');
+        const navLinks = document.querySelector('.nav-links');
 
-        if (burgerBtn && navMenu) {
-            burgerBtn.addEventListener('click', () => {
-                navMenu.classList.toggle('mobile-open');
-                burgerBtn.classList.toggle('active');
-            });
+        if (!burgerBtn || !navWrapper) {
+            console.warn('⚠️ Éléments du menu burger non trouvés');
+            return;
+        }
 
-            // Fermeture automatique au clic sur un lien
-            navMenu.querySelectorAll('a, p').forEach(link => {
+        // Toggle du menu au clic sur le burger
+        burgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navWrapper.classList.toggle('mobile-open');
+            burgerBtn.classList.toggle('active');
+        });
+
+        // Fermeture automatique au clic sur un lien
+        if (navLinks) {
+            navLinks.querySelectorAll('a, p').forEach(link => {
                 link.addEventListener('click', () => {
-                    navMenu.classList.remove('mobile-open');
+                    navWrapper.classList.remove('mobile-open');
                     burgerBtn.classList.remove('active');
                 });
             });
         }
+
+        // Fermeture au clic en dehors du menu
+        document.addEventListener('click', (e) => {
+            if (!burgerBtn.contains(e.target) && !navWrapper.contains(e.target)) {
+                navWrapper.classList.remove('mobile-open');
+                burgerBtn.classList.remove('active');
+            }
+        });
     }
 
     // ===== GESTION DE LA LANGUE & TRADUCTION =====
@@ -167,7 +183,8 @@ const DragonheartApp = (() => {
 
     return {
         init: init,
-        changeLanguage: changeLanguage
+        changeLanguage: changeLanguage,
+        loadHeader: loadHeader
     };
 })();
 
