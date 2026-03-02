@@ -59,26 +59,30 @@ const DragonheartApp = (() => {
             });
     }
 
-    // ===== MENU BURGER =====
-    function initMobileMenu() {
-        const burgerBtn = document.getElementById('burger-btn');
-        const navMenu = document.querySelector('.nav-links'); // Utilise la classe CSS
+// ===== MENU BURGER =====
+function initMobileMenu() {
+    // Récupère les éléments
+    const burgerBtn = document.getElementById('burger-btn');
+    const navWrapper = document.getElementById('nav-wrapper');
+    const navMenu = document.getElementById('nav-menu');
 
-        if (burgerBtn && navMenu) {
-            burgerBtn.addEventListener('click', () => {
-                navMenu.classList.toggle('mobile-open');
-                burgerBtn.classList.toggle('active');
-            });
+    // Toggle du menu
+    burgerBtn.addEventListener('click', () => {
+        navWrapper.classList.toggle('mobile-open');
+        burgerBtn.classList.toggle('active');
+    });
 
-            // Fermeture automatique au clic sur un lien
-            navMenu.querySelectorAll('a, p').forEach(link => {
-                link.addEventListener('click', () => {
-                    navMenu.classList.remove('mobile-open');
-                    burgerBtn.classList.remove('active');
-                });
-            });
-        }
-    }
+    // Ferme le menu quand on clique sur un lien
+    navMenu.querySelectorAll('a, p').forEach(link => {
+        link.addEventListener('click', () => {
+            navWrapper.classList.remove('mobile-open');
+            burgerBtn.classList.remove('active');
+        });
+    });
+}
+
+// Initialise le menu quand le DOM est prêt
+document.addEventListener('DOMContentLoaded', initMobileMenu);
 
     // ===== GESTION DE LA LANGUE & TRADUCTION =====
     function loadLanguage() {
