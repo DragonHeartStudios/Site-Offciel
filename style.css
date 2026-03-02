@@ -97,6 +97,7 @@ p {
     margin: 0;
     color: #ffffff;
     text-decoration: none;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
 }
 
 /* Animation soulignement */
@@ -404,7 +405,7 @@ p {
     margin-bottom: 20px;
     text-align: center;
     font-weight: bold;
-    font-family: 'Mooli', sans-serif;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
 }
 
 #about_us_text {
@@ -413,6 +414,7 @@ p {
     line-height: 1.8;
     text-align: justify;
     margin-bottom: 20px;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
 }
 
 #about_us ul {
@@ -427,6 +429,7 @@ p {
     line-height: 2;
     padding-left: 25px;
     position: relative;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
 }
 
 #about_us ul li:before {
@@ -550,66 +553,105 @@ p {
 }
 
 /* ==========================================================================
+   RESPONSIVE - TABLETTE (1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==========================================================================
    RESPONSIVE - MOBILE (900px)
    ========================================================================== */
 @media (max-width: 900px) {
+    #topbar {
+        position: relative; /* Change en relative pour créer un contexte de stacking */
+    }
+
     #burger-btn {
         display: flex;
     }
 
-    /* WRAPPER DU MENU */
-    .nav-links-wrapper {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        right: 0;
-        width: 100%;
-        z-index: 999;
+    .nav-links {
         display: none;
-    }
-
-    /* FOND GLASSMORPHISME */
-    .nav-links-backdrop {
+        flex-direction: column;
         position: absolute;
-        top: 0;
+        top: 100%;
         left: 0;
-        right: 0;
         width: 100%;
-        min-height: 100%;
+        
+        /* --- GLASSMORPHISME (COMME LA TOPBAR) --- */
         background: rgba(10, 10, 10, 0.747);
         backdrop-filter: blur(15px) saturate(180%);
         -webkit-backdrop-filter: blur(15px) saturate(180%);
         border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         border-radius: 0 0 16px 16px;
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    /* CONTENU DU MENU */
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        padding: 30px 20px;
+        /* --- FIN GLASSMORPHISME --- */
+        
+        padding: 30px 0;
         text-align: center;
         gap: 25px;
-        position: relative;
-        z-index: 1;
-        min-height: auto;
+        margin-top: 10px;
+        z-index: 999;
     }
 
-    /* MENU OUVERT */
-    .nav-links-wrapper.mobile-open {
-        display: block;
-    }
-
-    .nav-links-wrapper.mobile-open .nav-links {
+    .nav-links.mobile-open {
         display: flex;
-        animation: slideDown 0.3s ease;
+        animation: fadeIn 0.3s ease;
     }
 }
 
-@keyframes slideDown {
+/* ==========================================================================
+   RESPONSIVE - TRÈS MOBILE (650px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    #slogan_p {
+        font-size: 48px;
+    }
+
+    #slogan_boost {
+        font-size: 18px;
+    }
+
+    #projects_p,
+    .medias_p {
+        font-size: 28px;
+    }
+
+    #about_us_p {
+        font-size: 24px;
+    }
+
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        margin-bottom: 20px;
+    }
+
+    #social_buttons {
+        gap: 20px;
+    }
+
+    #discord,
+    #youtube,
+    #github {
+        width: 60px;
+        height: 60px;
+    }
+
+    #discord_img,
+    #youtube_img,
+    #github_img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(-10px);
