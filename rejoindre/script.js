@@ -27,6 +27,24 @@ const RecruitmentApp = (() => {
             formError: 'An error occurred while sending. Please try again.',
             selectPosition: 'Please select at least one position.',
             sending: 'Sending...'
+        },
+        es: {
+            formSubmitted: '¡Tu candidatura ha sido enviada con éxito!',
+            formError: 'Se ha producido un error al enviar. Por favor, inténtalo de nuevo.',
+            selectPosition: 'Por favor, selecciona al menos un puesto.',
+            sending: 'Enviando...'
+        },
+        de: {
+            formSubmitted: 'Deine Bewerbung wurde erfolgreich versendet!',
+            formError: 'Beim Senden ist ein Fehler aufgetreten. Bitte versuche es erneut.',
+            selectPosition: 'Bitte wähle mindestens eine Position aus.',
+            sending: 'Sende...'
+        },
+        it: {
+            formSubmitted: 'La tua candidatura è stata inviata con successo!',
+            formError: 'Si è verificato un errore durante l\'invio. Riprova.',
+            selectPosition: 'Seleziona almeno una posizione.',
+            sending: 'Invio in corso...'
         }
     };
 
@@ -61,10 +79,11 @@ const RecruitmentApp = (() => {
     async function handleFormSubmit(e) {
         e.preventDefault();
         const lang = getCurrentLang();
+        const msg = messages[lang] || messages.fr;
         
         const postesChecked = Array.from(document.querySelectorAll('input[name="poste"]:checked'));
         if (postesChecked.length === 0) {
-            alert(messages[lang].selectPosition);
+            alert(msg.selectPosition);
             return;
         }
 
@@ -72,7 +91,7 @@ const RecruitmentApp = (() => {
         el.submitBtn.disabled = true;
         const btnSpan = el.submitBtn.querySelector('span') || el.submitBtn;
         const originalText = btnSpan.textContent;
-        btnSpan.textContent = messages[lang].sending;
+        btnSpan.textContent = msg.sending;
 
         try {
             const formData = new FormData(e.target);
@@ -102,7 +121,7 @@ const RecruitmentApp = (() => {
             const response = await sendToDiscord(data);
             
             if (response.ok) {
-                alert(messages[lang].formSubmitted);
+                alert(msg.formSubmitted);
                 el.form.reset();
                 if(el.posteAutreText) el.posteAutreText.disabled = true;
             } else {
@@ -110,7 +129,7 @@ const RecruitmentApp = (() => {
             }
         } catch (error) {
             console.error(error);
-            alert(messages[lang].formError);
+            alert(msg.formError);
         } finally {
             el.submitBtn.disabled = false;
             btnSpan.textContent = originalText;
@@ -159,8 +178,7 @@ const RecruitmentApp = (() => {
     return { init };
 })();
 
-// Lancement APRÈS que DragonheartApp soit initialisé
-// Attendre 100ms pour que le header soit chargé
-setTimeout(() => {
+// Lancement de l'application
+document.addEventListener('DOMContentLoaded', () => {
     RecruitmentApp.init();
-}, 100);
+});

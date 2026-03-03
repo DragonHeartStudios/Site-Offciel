@@ -9,8 +9,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="style.css">
 	<link rel="icon" type="image/png" href="../assets/images/favicon.png">
 </head>
 <body>
@@ -110,24 +110,5 @@
 	<script src="../assets/data/translations.js"></script>
 	<script src="../assets/js/app.js"></script>
 	<script src="script.js"></script>
-
-	<script>
-		// Gestion propre du header et de l'initialisation
-		function loadHeader() {
-			fetch('../assets/components/header.html')
-				.then(response => response.text())
-				.then(html => {
-					document.getElementById('header-container').innerHTML = html;
-					
-					// Une fois chargé, on initialise DragonheartApp (qui gère la langue et l'année)
-					if (window.DragonheartApp) {
-						DragonheartApp.init(); 
-					}
-				})
-				.catch(err => console.error('Erreur chargement header :', err));
-		}
-
-		document.addEventListener('DOMContentLoaded', loadHeader);
-	</script>
 </body>
 </html>
