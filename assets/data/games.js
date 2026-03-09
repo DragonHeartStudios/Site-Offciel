@@ -49,6 +49,7 @@ const GAMES_DATA = [
 		technologies: ['Godot Engine', 'GDScript', 'Pixel Art'],
 		featured: true,
 		link: "https://www.youtube.com/watch?v=L-Zzn5X-17Q&t=50s"
+		featured: true,
 	},
 	{
 		id: 'destroyed',
@@ -65,6 +66,7 @@ const GAMES_DATA = [
 		technologies: ['Godot Engine', 'GDScript'],
 		featured: true,
 		link: "https://wolfy400.itch.io/destroyed"
+		featured: true,
 	},
 	{
 		id: 'Wild Battle',
@@ -81,6 +83,7 @@ const GAMES_DATA = [
 		technologies: ['Gdevelopdzqd', 'GDScript'],
 		featured: true,
 		link: "https://wildbattle.page.gd/?i=2"
+		featured: true,
 	},
 	
 	{
@@ -98,6 +101,7 @@ const GAMES_DATA = [
 		technologies: ['Flutter', 'Firebase'],
 		featured: true,
 		link: "https://www.youtube.com/watch?v=Aq5WXmQQooo"
+		featured: false,
 	}
 ];
 
