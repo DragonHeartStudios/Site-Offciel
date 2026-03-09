@@ -67,6 +67,23 @@ const GAMES_DATA = [
 		link: "https://wolfy400.itch.io/destroyed"
 	},
 	{
+		id: 'Wild Battle',
+		title: { fr: 'Wild Battle', en: 'Wild Battle', es: 'Wild Battle', de: 'Wild Battle', it: 'Wild Battle' },
+		shortDescription: {
+					fr: "Ce jeu aborde des sujets tels que le harcèlement scolaire, les comportements passifs qui y sont liés, les troubles de la santé mentale, le déni et la dépression.",
+					en: "This game addresses subjects such as school bullying and related passive behavior, mental health issues, denial, and depression.",
+					es: "Este juego trata temas como el acoso escolar y los comportamientos pasivos relacionados, problemas de salud mental, la negación y la depresión.",
+					de: "Dieses Spiel behandelt Themen wie Mobbing in der Schule und damit verbundenes passives Verhalten, psychische Probleme, Verleugnung und Depressionen.",
+					it: "Questo gioco affronta temi come il bullismo scolastico e i relativi comportamenti passivi, problemi di salute mentale, negazione e depressione."
+		},
+		image: '/assets/images/wildbattle.png',
+		status: 'finished',
+		technologies: ['Gdevelopdzqd', 'GDScript'],
+		featured: true,
+		link: "https://wildbattle.page.gd/?i=2"
+	},
+	
+	{
 		id: 'KBoom',
 		title: { fr: 'KBoom', en: 'KBoom', es: 'KBoom', de: 'KBoom', it: 'KBoom' },
 		shortDescription: {
