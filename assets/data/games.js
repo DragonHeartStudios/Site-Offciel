@@ -84,7 +84,7 @@ const GAMES_DATA = [
 	},
 	
 	{
-		id: 'KBoom',
+		id: 'Test',
 		title: { fr: 'KBoom', en: 'KBoom', es: 'KBoom', de: 'KBoom', it: 'KBoom' },
 		shortDescription: {
 			fr: 'Jeu multijoueur de rapidité : trouvez des mots avant l\'explosion !',
