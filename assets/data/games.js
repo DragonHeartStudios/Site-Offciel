@@ -93,7 +93,7 @@ const GAMES_DATA = [
 			de: 'Mehrspieler-Geschwindigkeitsspiel: Wörter finden vor der Explosion!',
 			it: 'Gioco di velocità multiplayer: trova le parole prima dell\'esplosione!'
 		},
-		image: '/assets/images/flutter.png',
+		image: '/assets/images/Capture d\'écran 2026-03-10 154501.png',
 		status: 'finished',
 		technologies: ['Flutter', 'Firebase'],
 		featured: true,
