@@ -47,8 +47,8 @@ const GAMES_DATA = [
 		image: '/assets/images/nightmare_or_dream.png', 
 		status: 'in-development',
 		technologies: ['Godot Engine', 'GDScript', 'Pixel Art'],
-		featured: true,
-		link: "https://www.youtube.com/watch?v=L-Zzn5X-17Q&t=50s"
+		featured: false,
+		link: "https://www.youtube.com/watch?v=Aq5WXmQQooo"
 	},
 	{
 		id: 'destroyed',
@@ -84,7 +84,7 @@ const GAMES_DATA = [
 	},
 	
 	{
-		id: 'Test',
+		id: 'KBoom',
 		title: { fr: 'KBoom', en: 'KBoom', es: 'KBoom', de: 'KBoom', it: 'KBoom' },
 		shortDescription: {
 			fr: 'Jeu multijoueur de rapidité : trouvez des mots avant l\'explosion !',
@@ -94,10 +94,10 @@ const GAMES_DATA = [
 			it: 'Gioco di velocità multiplayer: trova le parole prima dell\'esplosione!'
 		},
 		image: '/assets/images/flutter.png',
-		status: 'in-development',
+		status: 'finished',
 		technologies: ['Flutter', 'Firebase'],
-		featured: false,
-		link: "https://www.youtube.com/watch?v=Aq5WXmQQooo"
+		featured: true,
+		link: "https://kboom-theta.vercel.app"
 	}
 ];
 
