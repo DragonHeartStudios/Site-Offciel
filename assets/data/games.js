@@ -47,8 +47,8 @@ const GAMES_DATA = [
 		image: '/assets/images/nightmare_or_dream.png', 
 		status: 'in-development',
 		technologies: ['Godot Engine', 'GDScript', 'Pixel Art'],
-		featured: false,
-		link: "https://www.youtube.com/watch?v=Aq5WXmQQooo"
+		featured: true,
+		link: "https://www.youtube.com/watch?v=L-Zzn5X-17Q&t=50s"
 	},
 	{
 		id: 'destroyed',
@@ -93,11 +93,11 @@ const GAMES_DATA = [
 			de: 'Mehrspieler-Geschwindigkeitsspiel: Wörter finden vor der Explosion!',
 			it: 'Gioco di velocità multiplayer: trova le parole prima dell\'esplosione!'
 		},
-		image: '/assets/images/Capture d\'écran 2026-03-10 154501.png',
-		status: 'finished',
+		image: '/assets/images/flutter.png',
+		status: 'in-development',
 		technologies: ['Flutter', 'Firebase'],
-		featured: true,
-		link: "https://kboom-theta.vercel.app"
+		featured: false,
+		link: "https://www.youtube.com/watch?v=Aq5WXmQQooo"
 	}
 ];
 
