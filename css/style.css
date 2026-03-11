@@ -3,13 +3,13 @@
    ========================================================================== */
 
 /* Layouts */
-@import url("layout/_header.css");
-@import url("layout/_footer.css");
-@import url(layout/_project.css);
-@import url("layout/_about_us.css");
+@import url("/layout/_header.css");
+@import url("/layout/_footer.css");
+@import url("/layout/_project.css");
+@import url("/layout/_about_us.css");
 
 /* CSS Specific Pages */
-@import url(pages/_home.css);
+@import url("/pages/_home.css");
 
 /* ==========================================================================
    GLOBAL CSS POINTERS
