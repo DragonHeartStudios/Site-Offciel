@@ -1,0 +1,59 @@
+/* ==========================================================================
+   IMPORTS
+   ========================================================================== */
+
+/* Layouts */
+@import url("layout/_header.css");
+@import url("layout/_footer.css");
+@import url(layout/_project.css);
+@import url("layout/_about_us.css");
+
+/* CSS Specific Pages */
+@import url(pages/_home.css);
+
+/* ==========================================================================
+   GLOBAL CSS POINTERS
+   ========================================================================== */
+body {
+    background-color: #000000;
+    min-height: 200vh;
+    margin: 0;
+    position: relative;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+p {
+    color: white;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+}
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    z-index: 0;
+}
+
+#background img {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    will-change: transform;
+}
+
+#gradient {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 5%, #0a0a0a 34%);
+    width: 100%;
+    min-height: 100vh;
+    flex-grow: 1;
+    position: relative;
+    z-index: 0;
+}

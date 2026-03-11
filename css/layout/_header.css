@@ -1,0 +1,270 @@
+/* ==========================================================================
+   TOPBAR & NAVIGATION
+   ========================================================================== */
+.logo-link {
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+
+#topbar {
+    position: sticky;
+    top: 20px;
+    z-index: 1000;
+    width: calc(100% - 40px);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 30px;
+    box-sizing: border-box;
+    margin: 10px auto;
+    border-radius: 16px;
+    background: rgba(10, 10, 10, 0.747);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    flex-wrap: nowrap;
+}
+
+#logo {
+    width: 180px;
+    height: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+#logo:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+}
+
+/* Conteneur des liens */
+.nav-links {
+    display: flex;
+    gap: 40px;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.nav-links a,
+.nav-links p {
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+    padding-bottom: 5px;
+    margin: 0;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+}
+
+/* Animation soulignement */
+.nav-links a::after,
+.nav-links p::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, rgb(190, 16, 170), rgb(190, 16, 53));
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links p:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links p:hover {
+    color: rgba(190, 16, 77, 1);
+}
+
+/* BOUTON BURGER */
+#burger-btn {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1100;
+}
+
+#burger-btn span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+#burger-btn.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+#burger-btn.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+#burger-btn.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* DROPDOWN (LANGUE) */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: rgba(10, 10, 10, 0.747);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    color: white;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.dropbtn:hover {
+    border-color: rgba(190, 16, 77, 1);
+    background-color: rgba(190, 16, 77, 0.2);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%;
+    padding-top: 10px;
+    min-width: 150px;
+    z-index: 1000;
+    flex-direction: column;
+}
+
+.dropdown-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+}
+
+.dropdown-content button {
+    width: 100%;
+    background-color: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: none;
+    color: white;
+    padding: 12px 16px;
+    text-align: center;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: block;
+}
+
+.dropdown-content button:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px 12px 0 0;
+}
+
+.dropdown-content button:last-child {
+    border-radius: 0 0 12px 12px;
+}
+
+.dropdown-content button:hover {
+    background-color: rgba(190, 16, 77, 0.5);
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+.arrow {
+    font-size: 10px;
+    transition: transform 0.3s;
+}
+
+.dropdown:hover .arrow {
+    transform: rotate(180deg);
+}
+
+
+
+/* ==========================================================================
+   RESPONSIVE - MOBILE (900px)
+   ========================================================================== */
+@media (max-width: 900px) {
+    #topbar {
+        position: relative;
+    }
+
+    #burger-btn {
+        display: flex;
+    }
+
+    /* CACHE LE MENU PAR DÉFAUT */
+    .nav-links-wrapper {
+        position: static;
+        display: none;
+    }
+
+    .nav-links {
+        display: none !important;
+        flex-direction: column;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        
+        /* --- GLASSMORPHISME (COMME LA TOPBAR) --- */
+        background: rgba(10, 10, 10, 0.747);
+        backdrop-filter: blur(15px) saturate(180%);
+        -webkit-backdrop-filter: blur(15px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        border-radius: 0 0 16px 16px;
+        /* --- FIN GLASSMORPHISME --- */
+        
+        padding: 30px 0;
+        text-align: center;
+        gap: 25px;
+        z-index: 999;
+    }
+
+    /* AFFICHE LE WRAPPER QUAND C'EST OUVERT */
+    .nav-links-wrapper.mobile-open {
+        display: contents;
+    }
+
+    /* AFFICHE LE MENU QUAND LE WRAPPER EST OUVERT */
+    .nav-links-wrapper.mobile-open .nav-links {
+        display: flex !important;
+        animation: slideDown 0.3s ease;
+    }
+}
