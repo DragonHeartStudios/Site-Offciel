@@ -1,6 +1,6 @@
 body {
     background-color: #000000;
-    min-height: 200vh;
+    height: 100%;
     margin: 0;
     position: relative;
     scroll-behavior: smooth;
