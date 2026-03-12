@@ -126,7 +126,7 @@ const TRANSLATIONS = {
             de: 'Alle Rechte vorbehalten.',
             it: 'Tutti i diritti riservati.'
         }
-    }
+    },
     // Ajoute ceci dans le fichier TRANSLATIONS:
 
     about: {
