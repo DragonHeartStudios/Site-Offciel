@@ -128,9 +128,13 @@ main {
 .member-image {
 	margin-bottom: 20px;
 	overflow: hidden;
-	border-radius: 50%; /* Change de 12px à 50% pour un cercle parfait */
-	width: 200px; /* Ajoute une largeur fixe */
-	height: 200px; /* Ajoute une hauteur fixe */
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+	flex-shrink: 0; /* Empêche le rétrécissement */
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .member-image img {
@@ -139,6 +143,9 @@ main {
 	object-fit: cover;
 	transition: transform 0.3s ease;
 	display: block;
+	border-radius: 50%; /* Double sécurité */
+	min-width: 100%;
+	min-height: 100%;
 }
 
 .member-card:hover .member-image img {
@@ -267,5 +274,22 @@ main {
 
 	.member-card {
 		padding: 20px;
+	}
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+	.member-image {
+		width: 150px;
+		height: 150px;
+		margin: 0 auto 20px auto; /* Centre la photo */
+	}
+}
+
+@media (max-width: 480px) {
+	.member-image {
+		width: 120px;
+		height: 120px;
+		margin: 0 auto 20px auto;
 	}
 }
