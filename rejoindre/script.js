@@ -55,6 +55,7 @@ const RecruitmentApp = (() => {
             return;
         }
         bindEvents();
+        createModal();
         console.log('✅ RecruitmentApp prête');
     }
 
@@ -69,6 +70,38 @@ const RecruitmentApp = (() => {
                 if (!e.target.checked) el.posteAutreText.value = '';
             });
         }
+    }
+
+    // Crée la modal
+    function createModal() {
+        const modalHTML = `
+            <div id="success-modal" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>✅ <span data-i18n="recruitment.successTitle">Candidature envoyée !</span></h2>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <p class="modal-success-message" data-i18n="recruitment.successMessage">
+                            Votre candidature a été envoyée avec succès !
+                        </p>
+                        
+                        <div class="modal-info-box">
+                            <h3 data-i18n="recruitment.trialTitle">Période d'essai</h3>
+                            <p data-i18n="recruitment.trialDescription">
+                                Si votre candidature est acceptée, vous serez en période d'essai pendant un mois. Si tout se passe bien, vous serez accepté définitivement. Sinon, la période d'essai sera prolongée d'encore un mois.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button class="modal-btn" onclick="closeSuccessModal()">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
     }
 
     // Récupère la langue actuelle
@@ -121,9 +154,11 @@ const RecruitmentApp = (() => {
             const response = await sendToDiscord(data);
             
             if (response.ok) {
-                alert(msg.formSubmitted);
                 el.form.reset();
                 if(el.posteAutreText) el.posteAutreText.disabled = true;
+                
+                // Affiche la modal de succès
+                showSuccessModal();
             } else {
                 throw new Error('Discord response error');
             }
@@ -177,6 +212,59 @@ const RecruitmentApp = (() => {
 
     return { init };
 })();
+
+// Affiche la modal
+function showSuccessModal() {
+    const modal = document.getElementById('success-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        // Met à jour les traductions de la modal
+        if (window.DragonheartApp) {
+            updateModalTranslations();
+        }
+    }
+}
+
+// Ferme la modal
+function closeSuccessModal() {
+    const modal = document.getElementById('success-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+    }
+}
+
+// Met à jour les traductions de la modal
+function updateModalTranslations() {
+    const modal = document.getElementById('success-modal');
+    if (modal) {
+        modal.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            const lang = document.documentElement.lang || 'fr';
+            
+            if (typeof TRANSLATIONS !== 'undefined') {
+                try {
+                    const keys = key.split('.');
+                    let value = TRANSLATIONS;
+                    for (const k of keys) value = value[k];
+                    const translation = value[lang] || value.fr;
+                    if (translation) {
+                        el.innerHTML = translation;
+                    }
+                } catch (e) {
+                    console.warn(`Traduction manquante: ${key}`);
+                }
+            }
+        });
+    }
+}
+
+// Ferme la modal au clic en dehors
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('success-modal');
+    if (modal && e.target === modal) {
+        modal.classList.add('hidden');
+    }
+});
 
 // Lancement de l'application
 document.addEventListener('DOMContentLoaded', () => {

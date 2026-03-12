@@ -482,3 +482,178 @@ button[type="submit"]:disabled {
         gap: 20px;
     }
 }
+
+/* ================
+   MODAL DE SUCCÈS
+   ================ */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(190, 16, 77, 0.3);
+    animation: slideUp 0.4s ease;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.modal-header h2 {
+    font-size: 28px;
+    color: #ffffff;
+    margin: 0;
+    font-family: 'Mooli', 'Poetsen One', sans-serif;
+    background: linear-gradient(to top right, rgb(190, 16, 170), rgb(190, 16, 53));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.modal-body {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.modal-success-message {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+}
+
+.modal-info-box {
+    background: rgba(190, 16, 77, 0.1);
+    border-left: 4px solid rgba(190, 16, 77, 1);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.modal-info-box h3 {
+    color: rgba(190, 16, 77, 1);
+    font-size: 16px;
+    margin: 0 0 10px 0;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.modal-info-box p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-btn {
+    padding: 12px 40px;
+    background: linear-gradient(135deg, rgb(190, 16, 170), rgb(190, 16, 53));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.modal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(190, 16, 77, 0.4);
+}
+
+.modal-btn:active {
+    transform: translateY(0);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 30px 20px;
+        border-radius: 16px;
+    }
+
+    .modal-header h2 {
+        font-size: 24px;
+    }
+
+    .modal-success-message {
+        font-size: 16px;
+    }
+
+    .modal-info-box {
+        padding: 15px;
+    }
+
+    .modal-btn {
+        padding: 10px 30px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 20px;
+    }
+
+    .modal-info-box h3 {
+        font-size: 14px;
+    }
+
+    .modal-info-box p {
+        font-size: 12px;
+    }
+}
