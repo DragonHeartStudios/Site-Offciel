@@ -127,6 +127,43 @@ const TRANSLATIONS = {
             it: 'Tutti i diritti riservati.'
         }
     }
+    // Ajoute ceci dans le fichier TRANSLATIONS:
+
+    about: {
+        title: { 
+            fr: 'À propos de nous', 
+            en: 'About Us', 
+            es: 'Sobre Nosotros', 
+            de: 'Über Uns', 
+            it: 'Chi Siamo' 
+        },
+        description: {
+            fr: 'Nous sommes un studio indépendant de création de jeux vidéo fondé en 2023. Nous proposons la mise en relation entre plusieurs personnes passionnées afin qu\'elles puissent trouver des personnes complémentaires à leurs compétences et créer ensemble des jeux innovants.',
+            en: 'We are an independent video game development studio founded in 2023. We connect passionate people so they can find complementary talents and create innovative games together.',
+            es: 'Somos un estudio independiente de desarrollo de videojuegos fundado en 2023.',
+            de: 'Wir sind ein unabhängiges Videospielentwicklungsstudio, das 2023 gegründet wurde.',
+            it: 'Siamo uno studio indipendente di sviluppo di videogiochi fondato nel 2023.'
+        },
+        contact: {
+            fr: 'Contact :',
+            en: 'Contact:',
+            es: 'Contacto:',
+            de: 'Kontakt:',
+            it: 'Contatto:'
+        },
+        team: {
+            fr: 'Notre Équipe',
+            en: 'Our Team',
+            es: 'Nuestro Equipo',
+            de: 'Unser Team',
+            it: 'Il Nostro Team'
+        },
+        zalyto: { fr: 'zalyto', en: 'zalyto', es: 'zalyto', de: 'zalyto', it: 'zalyto' },
+        wolfy: { fr: 'wolfy', en: 'wolfy', es: 'wolfy', de: 'wolfy', it: 'wolfy' },
+        redcreazy: { fr: 'redcreazy', en: 'redcreazy', es: 'redcreazy', de: 'redcreazy', it: 'redcreazy' },
+        founder: { fr: 'Fondateur', en: 'Founder', es: 'Fundador', de: 'Gründer', it: 'Fondatore' },
+        dev: { fr: 'Développeur', en: 'Developer', es: 'Desarrollador', de: 'Entwickler', it: 'Sviluppatore' }
+    }
 };
 
 // Exporter pour utilisation dans d'autres scripts

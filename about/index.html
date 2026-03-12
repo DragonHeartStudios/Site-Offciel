@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>À propos - Dragonheart Studios</title>
+	<meta name="description" content="Découvrez Dragonheart Studios et rencontrez notre équipe passionnée.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/png" href="../assets/images/favicon.png">
+</head>
+<body>
+	<div id="background">
+		<img src="../assets/images/background.png" alt="Background Image">
+	</div>
+	
+	<div id="header-container"></div>
+
+	<div id="gradient">
+		<main>
+			<!-- SECTION À PROPOS -->
+			<section class="about-section">
+				<h1 class="page-title" data-i18n="about.title">À propos de nous</h1>
+				
+				<div class="about-container">
+					<p class="about-text" data-i18n="about.description">
+						Nous sommes un studio indépendant de création de jeux vidéo fondé en 2023. Nous proposons la mise en relation entre plusieurs personnes passionnées afin qu'elles puissent trouver des personnes complémentaires à leurs compétences et créer ensemble des jeux innovants.
+					</p>
+					
+					<div class="contact-box">
+						<p class="contact-label" data-i18n="about.contact">Contact :</p>
+						<a href="mailto:Dragon-heart-studios@proton.me" class="contact-email">Dragon-heart-studios@proton.me</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- SECTION MEMBRES -->
+			<section class="team-section">
+				<h2 class="section-title" data-i18n="about.team">Notre Équipe</h2>
+				
+				<div class="members-grid">
+					<!-- ZALYTO -->
+					<div class="member-card">
+						<div class="member-image">
+							<img src="../assets/images/membres/zalyto.png" alt="zalyto" onerror="this.src='https://placehold.co/200x200?text=zalyto'">
+						</div>
+						<div class="member-info">
+							<h3 class="member-name" data-i18n="about.zalyto">zalyto</h3>
+							<p class="member-role" data-i18n="about.founder">Fondateur</p>
+						</div>
+					</div>
+
+					<!-- WOLFY -->
+					<div class="member-card">
+						<div class="member-image">
+							<img src="../assets/images/membres/wolfy.png" alt="wolfy" onerror="this.src='https://placehold.co/200x200?text=wolfy'">
+						</div>
+						<div class="member-info">
+							<h3 class="member-name" data-i18n="about.wolfy">wolfy</h3>
+							<p class="member-role" data-i18n="about.dev">Développeur</p>
+						</div>
+					</div>
+
+					<!-- REDCREAZY -->
+					<div class="member-card">
+						<div class="member-image">
+							<img src="../assets/images/membres/redcreazy.png" alt="redcreazy" onerror="this.src='https://placehold.co/200x200?text=redcreazy'">
+						</div>
+						<div class="member-info">
+							<h3 class="member-name" data-i18n="about.redcreazy">redcreazy</h3>
+							<p class="member-role" data-i18n="about.dev">Développeur</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<div id="footer">
+			<p>&copy; <span id="year"></span> Dragonheart Studios. <span data-i18n="footer.rights">Tous droits réservés.</span></p>
+		</div>
+	</div>
+
+	<script src="../assets/data/translations.js"></script>
+	<script src="../assets/js/app.js"></script>
+	<script src="script.js"></script>
+
+	<script>
+		// Gère le chargement du header et l'année
+		document.addEventListener('DOMContentLoaded', () => {
+			if (window.DragonheartApp) {
+				DragonheartApp.init();
+			}
+			// Affiche l'année actuelle
+			document.getElementById('year').textContent = new Date().getFullYear();
+		});
+	</script>
+</body>
+</html>
