@@ -3,7 +3,7 @@
 const RecruitmentApp = (() => {
     // Configuration
     const config = {
-        webhookURL: 'https://discord.com/api/webhooks/1467187031703552152/FZ8-VjGKD7jW0ACctMk3zPsRwKoBhB8ciVcckhy6k8BioRv35K5XVWabh-q1ELJQX82m',
+        webhookURL: 'https://discord.com/api/webhooks/1483434811417694229/LhUyPDQ9oDMR0w7aL1RiCAoK-kFExPKpBMbORaLECtzpJ0K9EL5uEvcY3Pio2f7kzoZf',
     };
 
     // Cache DOM
@@ -73,6 +73,20 @@ const RecruitmentApp = (() => {
         createModal();
         console.log('✅ RecruitmentApp prête');
     }
+
+
+    // Export the update function
+    RecruitmentApp.updateGameDropdown = function() {
+        const select = document.getElementById('purpose-select');
+        if (!select) return;
+        
+        // Remove old optgroups (keep the first empty option)
+        const oldOptgroups = select.querySelectorAll('optgroup');
+        oldOptgroups.forEach(og => og.remove());
+        
+        // Repopulate with new translations
+        populateGames();
+    };
 
     // Remplit le select avec les jeux en utilisant les traductions
     function populateGames() {

@@ -109,6 +109,10 @@ const DragonheartApp = (() => {
         currentLang = lang;
         localStorage.setItem(config.storageKey, lang);
         updateAllContent();
+        // In the changeLanguage function, after updateAllContent(), add:
+        if (window.RecruitmentApp && typeof window.RecruitmentApp.updateGameDropdown === 'function') {
+            window.RecruitmentApp.updateGameDropdown();
+        }
         updateLanguageButtonUI();
         renderFeaturedGames();
         console.log(`🌍 Langue : ${lang}`);
