@@ -74,20 +74,6 @@ const RecruitmentApp = (() => {
         console.log('✅ RecruitmentApp prête');
     }
 
-
-    // Export the update function
-    RecruitmentApp.updateGameDropdown = function() {
-        const select = document.getElementById('purpose-select');
-        if (!select) return;
-        
-        // Remove old optgroups (keep the first empty option)
-        const oldOptgroups = select.querySelectorAll('optgroup');
-        oldOptgroups.forEach(og => og.remove());
-        
-        // Repopulate with new translations
-        populateGames();
-    };
-
     // Remplit le select avec les jeux en utilisant les traductions
     function populateGames() {
         if (!el.purposeSelect) {
