@@ -92,7 +92,10 @@ const RecruitmentApp = (() => {
         optgroup.label = lang === 'fr' ? '-- Participer à la création --' : '-- Participate in Creation --';
         optgroup.disabled = false;
 
-        GAMES_DATA.forEach(game => {
+        // === MODIFICATION ICI : On filtre pour ne garder que "in-development" ===
+        const activeGames = GAMES_DATA.filter(game => game.status === 'in-development');
+
+        activeGames.forEach(game => {
             const option = document.createElement('option');
             const gameTitle = game.title[lang] || game.title.fr;
             option.value = `game_${game.id}`;
@@ -100,8 +103,13 @@ const RecruitmentApp = (() => {
             optgroup.appendChild(option);
         });
 
-        el.purposeSelect.appendChild(optgroup);
-        console.log('✅ Jeux chargés:', GAMES_DATA.length);
+        // On n'ajoute l'optgroup que s'il y a des jeux en développement
+        if (activeGames.length > 0) {
+            el.purposeSelect.appendChild(optgroup);
+            console.log('✅ Jeux en développement chargés:', activeGames.length);
+        } else {
+            console.log('ℹ️ Aucun jeu en développement à afficher');
+        }
     }
 
     function bindEvents() {

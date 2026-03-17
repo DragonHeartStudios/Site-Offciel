@@ -662,7 +662,10 @@ button[type="submit"]:disabled {
 /* ================
    SELECT / DROPDOWN
    ================ */
+
 select {
+    
+    color-scheme: dark; /* Force le rendu natif en mode sombre */
     width: 100%;
     padding: 14px 18px;
     border: 1px solid var(--border-light);
@@ -697,6 +700,10 @@ select option {
     background: #1a1a1a;
     color: #ffffff;
     padding: 10px;
+    optgroup {
+    background-color: #1a1a1a !important;
+    color: #ffffff;
+}
 }
 
 select option:checked {
@@ -713,4 +720,6 @@ select:disabled {
 optgroup {
     color: rgba(190, 16, 77, 1);
     font-weight: bold;
+    background-color: #1a1a1a !important;
+    color: #ffffff;
 }
