@@ -36,6 +36,7 @@
 				</div>
 
 				<h2 data-i18n="recruitment.sections.positions">Poste(s) souhaité(s)</h2>
+				
 				<fieldset>
 					<legend data-i18n="recruitment.form.select_pos">Sélectionnez un ou plusieurs postes</legend>
 					<div class="checkbox-grid">
@@ -78,7 +79,15 @@
 					</div>
 					<input type="text" name="poste_autre" id="poste_autre_text" placeholder="Précisez le poste..." disabled data-i18n="recruitment.form.specify">
 				</fieldset>
-
+				<h2 data-i18n="recruitment.sections.purpose">Objectif</h2>
+				<div class="form-group">
+					<select id="purpose-select" name="purpose" required>
+						<option value="">-- <span data-i18n="recruitment.form.selectPurpose">Sélectionnez un objectif</span> --</option>
+						<option value="promote" data-i18n="recruitment.purposes.promote">Promouvoir mon jeux</option>
+						<option value="new-project" data-i18n="recruitment.purposes.newProject">Créer un nouveau projet avec d'autres membres</option>
+						<option value="join-game" disabled>-- <span data-i18n="recruitment.purposes.participate">Participer à la création</span> --</option>
+					</select>
+				</div>
 				<h2 data-i18n="recruitment.sections.skills">Compétences & Expérience</h2>
 				<div class="form-group">
 					<textarea name="competences" placeholder="Décrivez vos compétences..." rows="6" data-i18n="recruitment.form.desc_skills"></textarea>

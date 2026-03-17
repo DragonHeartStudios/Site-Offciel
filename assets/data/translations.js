@@ -81,6 +81,7 @@ const TRANSLATIONS = {
         sections: {
             general: { fr: "Informations générales", en: "General Information", es: "Información General", de: "Allgemeine Informationen", it: "Informazioni Generali" },
             positions: { fr: "Poste(s) souhaité(s)", en: "Desired Position(s)", es: "Puesto(s) Deseado(s)", de: "Gewünschte Positionen", it: "Posizioni Desiderate" },
+            purpose: { fr: "Objectif", en: "Objective", es: "Objetivo", de: "Ziel", it: "Obiettivo" },
             skills: { fr: "Compétences & Expérience", en: "Skills & Experience", es: "Habilidades y Experiencia", de: "Fähigkeiten & Erfahrung", it: "Competenze ed Esperienza" },
             projects: { fr: "Vos Projets", en: "Your Projects", es: "Tus Proyectos", de: "Deine Projekte", it: "I Tuoi Progetti" },
             motivation: { fr: "Motivation", en: "Motivation", es: "Motivación", de: "Motivation", it: "Motivazione" }
@@ -100,6 +101,7 @@ const TRANSLATIONS = {
             pseudo: { fr: "Pseudo *", en: "Username *", es: "Apodo *", de: "Benutzername *", it: "Nickname *" },
             age: { fr: "Âge", en: "Age", es: "Edad", de: "Alter", it: "Età" },
             email: { fr: "Email *", en: "Email *", es: "Correo electrónico *", de: "E-Mail *", it: "Email *" },
+            selectPurpose: { fr: "Sélectionnez un objectif", en: "Select an objective", es: "Selecciona un objetivo", de: "Wähle ein Ziel", it: "Seleziona un obiettivo" },
             select_pos: { fr: "Sélectionnez un ou plusieurs postes", en: "Select one or more positions", es: "Selecciona puestos", de: "Positionen wählen", it: "Seleziona posizioni" },
             specify: { fr: "Précisez le poste...", en: "Specify position...", es: "Especifique...", de: "Angeben...", it: "Specifica..." },
             desc_skills: { fr: "Décrivez vos compétences...", en: "Describe your skills...", es: "Describe tus habilidades...", de: "Fähigkeiten...", it: "Competenze..." },
@@ -108,15 +110,47 @@ const TRANSLATIONS = {
             portfolio: { fr: "Lien portfolio, GitHub, etc.", en: "Link portfolio, GitHub, etc.", es: "Link portafolio", de: "Link Portfolio", it: "Link portfolio" },
             why_us: { fr: "Pourquoi Dragonheart Studios ?", en: "Why Dragonheart Studios?", es: "¿Por qué nosotros?", de: "Warum wir?", it: "Perché noi?" }
         },
+        purposes: {
+            promote: { fr: "Promouvoir mon jeux", en: "Promote my game", es: "Promocionar mi juego", de: "Mein Spiel fördern", it: "Promuovere il mio gioco" },
+            newProject: { fr: "Créer un nouveau projet avec d'autres membres", en: "Create a new project with other members", es: "Crear un nuevo proyecto con otros miembros", de: "Ein neues Projekt mit anderen Mitgliedern erstellen", it: "Creare un nuovo progetto con altri membri" },
+            participate: { fr: "Participer à la création", en: "Participate in Creation", es: "Participar en la Creación", de: "An der Erstellung teilnehmen", it: "Partecipare alla Creazione" }
+        },
         submit_btn: {
             fr: "Envoyer ma candidature",
             en: "Submit Application",
             es: "Enviar solicitud",
             de: "Bewerbung absenden",
             it: "Invia candidatura"
+        },
+        successTitle: {
+            fr: 'Candidature envoyée !',
+            en: 'Application Sent!',
+            es: '¡Candidatura Enviada!',
+            de: 'Bewerbung Versendet!',
+            it: 'Candidatura Inviata!'
+        },
+        successMessage: {
+            fr: 'Votre candidature a été envoyée avec succès !',
+            en: 'Your application has been successfully submitted!',
+            es: '¡Tu candidatura ha sido enviada con éxito!',
+            de: 'Deine Bewerbung wurde erfolgreich versendet!',
+            it: 'La tua candidatura è stata inviata con successo!'
+        },
+        trialTitle: {
+            fr: 'Période d\'essai',
+            en: 'Trial Period',
+            es: 'Período de Prueba',
+            de: 'Probezeit',
+            it: 'Periodo di Prova'
+        },
+        trialDescription: {
+            fr: 'Si votre candidature est acceptée, vous serez en période d\'essai pendant un mois. Si tout se passe bien, vous serez accepté définitivement. Sinon, la période d\'essai sera prolongée d\'encore un mois.',
+            en: 'If your application is accepted, you will be on a one-month trial period. If everything goes well, you will be accepted permanently. Otherwise, the trial period will be extended for another month.',
+            es: 'Si tu solicitud es aceptada, estarás en un período de prueba de un mes. Si todo va bien, serás aceptado permanentemente. Si no, el período de prueba se extenderá un mes más.',
+            de: 'Wenn Ihre Bewerbung angenommen wird, haben Sie eine einjährige Probezeit. Wenn alles gut läuft, werden Sie dauerhaft angenommen. Andernfalls wird die Probezeit um einen weiteren Monat verlängert.',
+            it: 'Se la tua candidatura viene accettata, sarai in un periodo di prova di un mese. Se tutto va bene, verrai accettato permanentemente. Altrimenti, il periodo di prova sarà esteso per un altro mese.'
         }
     },
-
     // Footer
     footer: {
         rights: {

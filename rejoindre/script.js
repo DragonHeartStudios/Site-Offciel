@@ -11,7 +11,8 @@ const RecruitmentApp = (() => {
         form: document.getElementById('form'),
         submitBtn: document.getElementById('submit-btn'),
         posteAutreCheck: document.getElementById('poste_autre_check'),
-        posteAutreText: document.getElementById('poste_autre_text')
+        posteAutreText: document.getElementById('poste_autre_text'),
+        purposeSelect: document.getElementById('purpose-select')
     };
 
     // Traductions pour les messages d'alerte
@@ -54,9 +55,53 @@ const RecruitmentApp = (() => {
             console.log('⚠️ Formulaire de recrutement non trouvé');
             return;
         }
+        
+        // Attend que GAMES_DATA soit disponible
+        if (typeof GAMES_DATA !== 'undefined') {
+            populateGames();
+        } else {
+            console.warn('⚠️ GAMES_DATA non chargé, tentative dans 500ms');
+            setTimeout(() => {
+                if (typeof GAMES_DATA !== 'undefined') {
+                    populateGames();
+                }
+            }, 500);
+        }
+        
         bindEvents();
         createModal();
         console.log('✅ RecruitmentApp prête');
+    }
+
+    // Remplit le select avec les jeux
+    function populateGames() {
+        if (!el.purposeSelect) {
+            console.warn('⚠️ Select purpose non trouvé');
+            return;
+        }
+        
+        if (typeof GAMES_DATA === 'undefined') {
+            console.warn('⚠️ GAMES_DATA non disponible');
+            return;
+        }
+
+        const lang = document.documentElement.lang || 'fr';
+        
+        // Crée un optgroup pour les jeux
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = lang === 'fr' ? '-- Participer à la création --' : '-- Participate in Creation --';
+        optgroup.disabled = false;
+
+        GAMES_DATA.forEach(game => {
+            const option = document.createElement('option');
+            const gameTitle = game.title[lang] || game.title.fr;
+            option.value = `game_${game.id}`;
+            option.textContent = `Participer à: ${gameTitle}`;
+            optgroup.appendChild(option);
+        });
+
+        el.purposeSelect.appendChild(optgroup);
+        console.log('✅ Jeux chargés:', GAMES_DATA.length);
     }
 
     function bindEvents() {
@@ -68,6 +113,13 @@ const RecruitmentApp = (() => {
             el.posteAutreCheck.addEventListener('change', (e) => {
                 el.posteAutreText.disabled = !e.target.checked;
                 if (!e.target.checked) el.posteAutreText.value = '';
+            });
+        }
+
+        // Gestion du select purpose
+        if (el.purposeSelect) {
+            el.purposeSelect.addEventListener('change', (e) => {
+                console.log('Objectif sélectionné:', e.target.value);
             });
         }
     }
@@ -138,11 +190,29 @@ const RecruitmentApp = (() => {
                 return cb.value;
             });
 
+            // Récupère l'objectif sélectionné
+            const purpose = formData.get('purpose') || 'Non renseigné';
+            let purposeLabel = purpose;
+            
+            if (purpose.startsWith('game_')) {
+                const gameId = purpose.replace('game_', '');
+                const game = GAMES_DATA.find(g => g.id === gameId);
+                if (game) {
+                    const gameTitle = game.title[lang] || game.title.fr;
+                    purposeLabel = `Participer à: ${gameTitle}`;
+                }
+            } else if (purpose === 'promote') {
+                purposeLabel = lang === 'fr' ? 'Promouvoir mon jeux' : 'Promote my game';
+            } else if (purpose === 'new-project') {
+                purposeLabel = lang === 'fr' ? 'Créer un nouveau projet' : 'Create a new project';
+            }
+
             const data = {
                 pseudo: formData.get('pseudo') || 'Non renseigné',
                 age: formData.get('age') || 'Non renseigné',
                 email: formData.get('email') || 'Non renseigné',
                 postes: postes,
+                purpose: purposeLabel,
                 competences: formData.get('competences') || 'Aucune description',
                 outils: formData.get('outils') || 'Aucun outil renseigné',
                 projets: formData.get('projets') || 'Aucun projet renseigné',
@@ -187,6 +257,11 @@ const RecruitmentApp = (() => {
                     inline: false
                 },
                 {
+                    name: '🎯 Objectif',
+                    value: data.purpose,
+                    inline: false
+                },
+                {
                     name: '🛠️ Compétences & Outils',
                     value: `**Compétences:**\n${data.competences}\n\n**Outils:**\n${data.outils}`,
                     inline: false
@@ -218,7 +293,6 @@ function showSuccessModal() {
     const modal = document.getElementById('success-modal');
     if (modal) {
         modal.classList.remove('hidden');
-        // Met à jour les traductions de la modal
         if (window.DragonheartApp) {
             updateModalTranslations();
         }
