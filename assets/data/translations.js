@@ -115,6 +115,21 @@ const TRANSLATIONS = {
             newProject: { fr: "Créer un nouveau projet avec d'autres membres", en: "Create a new project with other members", es: "Crear un nuevo proyecto con otros miembros", de: "Ein neues Projekt mit anderen Mitgliedern erstellen", it: "Creare un nuovo progetto con altri membri" },
             participate: { fr: "Participer à la création", en: "Participate in Creation", es: "Participar en la Creación", de: "An der Erstellung teilnehmen", it: "Partecipare alla Creazione" }
         },
+        // À ajouter dans recruitment : { ... }
+        gamePrefix: { 
+            fr: "Participer à : ", 
+            en: "Participate in: ", 
+            es: "Participar en: ", 
+            de: "Teilnehmen an: ", 
+            it: "Partecipa a: " 
+        },
+        optgroupGames: { 
+            fr: "-- Participer à la création --", 
+            en: "-- Participate in Creation --", 
+            es: "-- Participar en la Creación --", 
+            de: "-- An der Erstellung teilnehmen --", 
+            it: "-- Partecipare alla Creazione --" 
+        },
         submit_btn: {
             fr: "Envoyer ma candidature",
             en: "Submit Application",

@@ -56,59 +56,64 @@ const RecruitmentApp = (() => {
             return;
         }
         
-        // Attend que GAMES_DATA soit disponible
-        if (typeof GAMES_DATA !== 'undefined') {
-            populateGames();
-        } else {
-            console.warn('⚠️ GAMES_DATA non chargé, tentative dans 500ms');
-            setTimeout(() => {
-                if (typeof GAMES_DATA !== 'undefined') {
-                    populateGames();
-                }
-            }, 500);
-        }
+        // On crée une fonction de vérification réutilisable
+        const checkDataAndStart = () => {
+            if (typeof GAMES_DATA !== 'undefined' && typeof TRANSLATIONS !== 'undefined') {
+                populateGames();
+                console.log('✅ Données et Traductions chargées');
+            } else {
+                console.warn('⚠️ GAMES_DATA ou TRANSLATIONS non chargé, tentative dans 500ms');
+                setTimeout(checkDataAndStart, 500); // Réessaye tant que c'est pas prêt
+            }
+        };
+
+        checkDataAndStart();
         
         bindEvents();
         createModal();
         console.log('✅ RecruitmentApp prête');
     }
 
-    // Remplit le select avec les jeux
+    // Remplit le select avec les jeux en utilisant les traductions
     function populateGames() {
         if (!el.purposeSelect) {
             console.warn('⚠️ Select purpose non trouvé');
             return;
         }
         
-        if (typeof GAMES_DATA === 'undefined') {
-            console.warn('⚠️ GAMES_DATA non disponible');
+        // Vérification de la présence des données et des traductions
+        if (typeof GAMES_DATA === 'undefined' || typeof TRANSLATIONS === 'undefined') {
+            console.warn('⚠️ GAMES_DATA ou TRANSLATIONS non disponible');
             return;
         }
 
         const lang = document.documentElement.lang || 'fr';
         
-        // Crée un optgroup pour les jeux
-        const optgroup = document.createElement('optgroup');
-        optgroup.label = lang === 'fr' ? '-- Participer à la création --' : '-- Participate in Creation --';
-        optgroup.disabled = false;
+        // Récupération des labels traduits (avec fallback sur le français si besoin)
+        const optLabel = TRANSLATIONS.recruitment.optgroupGames?.[lang] || TRANSLATIONS.recruitment.optgroupGames?.fr || '-- Participer --';
+        const prefix = TRANSLATIONS.recruitment.gamePrefix?.[lang] || TRANSLATIONS.recruitment.gamePrefix?.fr || 'Participer à : ';
 
-        // === MODIFICATION ICI : On filtre pour ne garder que "in-development" ===
+        // Crée l'optgroup avec le label traduit
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = optLabel;
+
+        // Filtre pour ne garder que les jeux "in-development"
         const activeGames = GAMES_DATA.filter(game => game.status === 'in-development');
 
         activeGames.forEach(game => {
             const option = document.createElement('option');
             const gameTitle = game.title[lang] || game.title.fr;
+            
             option.value = `game_${game.id}`;
-            option.textContent = `Participer à: ${gameTitle}`;
+            // On combine le préfixe traduit et le titre du jeu
+            option.textContent = `${prefix}${gameTitle}`;
             optgroup.appendChild(option);
         });
 
-        // On n'ajoute l'optgroup que s'il y a des jeux en développement
+        // On n'ajoute l'optgroup que s'il y a des jeux actifs
         if (activeGames.length > 0) {
             el.purposeSelect.appendChild(optgroup);
             console.log('✅ Jeux en développement chargés:', activeGames.length);
-        } else {
-            console.log('ℹ️ Aucun jeu en développement à afficher');
         }
     }
 
