@@ -19,7 +19,7 @@ document.addEventListener('click', function(e) {
     // Liens réseaux sociaux
     if (e.target.closest('#discord')) window.open("https://discord.gg/uf9tKDdwPj", "_blank");
     if (e.target.closest('#github')) window.open("https://github.com/DragonHeartStudios", "_blank");
-    if (e.target.closest('#youtube')) window.open("https://www.youtube.com/@zalyto.", "_blank");
+    if (e.target.closest('#youtube')) window.open("https://www.youtube.com/@Dragon-Heart-Studios-tv", "_blank");
 
     // Gestion du scroll "À propos" (si l'ID est cliqué)
     const id = e.target.id;
