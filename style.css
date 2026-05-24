@@ -227,7 +227,7 @@ p {
     justify-content: flex-start;
     gap: 18px;
 }
-
+#itch,
 #discord,
 #youtube,
 #github {
@@ -246,7 +246,7 @@ p {
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
-
+#itch:hover,
 #discord:hover,
 #youtube:hover,
 #github:hover {
@@ -256,6 +256,7 @@ p {
     box-shadow: 0 15px 30px rgba(190, 16, 77, 0.4);
 }
 
+#itch_img,
 #discord_img,
 #youtube_img,
 #github_img {
@@ -266,6 +267,7 @@ p {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
+#itch,
 #discord:hover img,
 #youtube:hover img,
 #github:hover img {
@@ -659,6 +661,7 @@ p {
         gap: 20px;
     }
 
+    #itch,
     #discord,
     #youtube,
     #github {
@@ -666,6 +669,7 @@ p {
         height: 60px;
     }
 
+    #itch_img,
     #discord_img,
     #youtube_img,
     #github_img {
