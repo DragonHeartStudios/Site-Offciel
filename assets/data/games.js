@@ -22,6 +22,22 @@
 
 const GAMES_DATA = [
 	{
+		id: 'Rot Within',
+		title: { fr: 'Rot Within', en: 'Rot Within', es: 'Rot Within', de: 'Rot Within', it: 'Rot Within' },
+		shortDescription: {
+			fr: 'Vous incarnez Decker, un cuisinier criblé de dettes. Vos choix moraux modifieront votre apparence physique…',
+			en: 'You play as Decker, a cook in debt. Your moral choices will change your physical appearance...',
+			es: 'Juegas en el papel de Decker, un cocinero endeudado. Tus decisiones morales cambiarán tu aspecto físico...',
+			de: 'Du spielst Decker, einen verschuldeten Koch. Deine moralischen Entscheidungen beeinflussen dein Aussehen...',
+			it: 'Vesti i panni di Decker, un cuoco indebitato. Le tue scelte morali cambieranno il tuo aspetto fisico...'
+		},
+		image: '/assets/images/rot_within.png',
+		status: 'in-development',
+		technologies: ['Godot4', 'itch.io'],
+		featured: true,
+		link: "https://dragon-heart-studio.itch.io/rot-within"
+	},
+	{
 		id: 'nightmare-or-dream',
 		title: {
 			fr: 'Nightmare or Dream',
@@ -98,23 +114,6 @@ const GAMES_DATA = [
 		technologies: ['Flutter', 'Firebase'],
 		featured: false,
 		link: "https://www.youtube.com/watch?v=Aq5WXmQQooo"
-	},
-
-	{
-		id: 'Rot Within',
-		title: { fr: 'Rot Within', en: 'Rot Within', es: 'Rot Within', de: 'Rot Within', it: 'Rot Within' },
-		shortDescription: {
-			fr: 'Vous incarnez Decker, un cuisinier criblé de dettes. Vos choix moraux modifieront votre apparence physique…',
-			en: 'You play as Decker, a cook in debt. Your moral choices will change your physical appearance...',
-			es: 'Juegas en el papel de Decker, un cocinero endeudado. Tus decisiones morales cambiarán tu aspecto físico...',
-			de: 'Du spielst Decker, einen verschuldeten Koch. Deine moralischen Entscheidungen beeinflussen dein Aussehen...',
-			it: 'Vesti i panni di Decker, un cuoco indebitato. Le tue scelte morali cambieranno il tuo aspetto fisico...'
-		},
-		image: '/assets/images/rot_within.png',
-		status: 'in-development',
-		technologies: ['Godot4', 'itch.io'],
-		featured: true,
-		link: "https://dragon-heart-studio.itch.io/rot-within"
 	}
 ];
 
