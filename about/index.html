@@ -5,17 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>À propos - Dragonheart Studios</title>
 	<meta name="description" content="Découvrez Dragonheart Studios et rencontrez notre équipe passionnée.">
-	<script>
-      (function(){
-        try {
-          const repo = 'Site-Offciel';
-          const isGitHub = location.hostname.includes('github.io');
-          const base = isGitHub ? `/${repo}/` : '/';
-          const href = base + 'src/css/main.css';
-          const l = document.createElement('link'); l.rel='stylesheet'; l.href=href; document.head.appendChild(l);
-        } catch(e){console.error(e)}
-      })();
-    </script>
+	<link rel="stylesheet" href="../assets/css/main.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
@@ -77,46 +67,4 @@
 					<!-- REDCREAZY -->
 					<div class="member-card">
 						<div class="member-image">
-							<img src="../assets/images/membres/redcreazy.png" alt="redcreazy" onerror="this.src='https://placehold.co/200x200?text=redcreazy'">
-						</div>
-						<div class="member-info">
-							<h3 class="member-name" data-i18n="about.redcreazy">redcreazy</h3>
-							<p class="member-role" data-i18n="about.dev">Développeur</p>
-						</div>
-					</div>
-				    
-					<!-- FARLOS -->
-					<div class="member-card">
-						<div class="member-image">
-							<img src="../assets/images/membres/farlos.png" alt="farlos" onerror="this.src='https://placehold.co/200x200?text=farlos'">
-						</div>
-						<div class="member-info">
-							<h3 class="member-name" data-i18n="about.farlos">farlos</h3>
-							<p class="member-role" data-i18n="about.dev">Développeur</p>
-						</div>
-					</div>
-				</div>
-			</section>
-		</main>
-
-		<div id="footer">
-			<p>&copy; <span id="year"></span> Dragonheart Studios. <span data-i18n="footer.rights">Tous droits réservés.</span></p>
-		</div>
-	</div>
-
-	<script src="../assets/data/translations.js"></script>
-	<script src="../assets/js/app.js"></script>
-	<script src="script.js"></script>
-
-	<script>
-		// Gère le chargement du header et l'année
-		document.addEventListener('DOMContentLoaded', () => {
-			if (window.DragonheartApp) {
-				DragonheartApp.init();
-			}
-			// Affiche l'année actuelle
-			document.getElementById('year').textContent = new Date().getFullYear();
-		});
-	</script>
-</body>
-</html>
+{

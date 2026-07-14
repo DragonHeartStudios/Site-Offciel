@@ -1,0 +1,26 @@
+/* variables.css */
+:root {
+  /* Palette */
+  --primary: #be104d; /* rouge principal */
+  --primary-rosy: #e33a6b; /* rouge rosé pour accents */
+  --bg: #0a0a0a;
+  --surface: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.08);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  --font-display: 'Poetsen One', 'Segoe UI', sans-serif;
+
+  /* Elevation */
+  --shadow-soft: 0 10px 30px rgba(2,6,23,0.55);
+}
+
+/* Useful helpers */
+.h-center { display:flex; align-items:center; justify-content:center; }
+.container { max-width:1140px; margin:0 auto; padding:0 var(--space-md); }

@@ -1,0 +1,10 @@
+/* main.css — single entry to include in pages until HTML is updated */
+@import url('variables.css');
+@import url('base.css');
+@import url('layout.css');
+@import url('components/modal.css');
+
+/* small overrides */
+main{min-height:60vh}
+button#submit-btn{background:transparent;border:1px solid var(--primary-rosy);padding:12px 18px;border-radius:10px;color:var(--primary-rosy);cursor:pointer}
+button#submit-btn:hover{background:linear-gradient(90deg,var(--primary),var(--primary-rosy));color:white}

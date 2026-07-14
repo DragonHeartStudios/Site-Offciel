@@ -1,0 +1,11 @@
+/* components/modal.css — glassmorphism modal */
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:var(--space-lg);z-index:999}
+.modal.hidden{display:none}
+.modal .modal-content{
+  width:100%;max-width:720px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid var(--glass-border);backdrop-filter:blur(8px);border-radius:14px;padding:var(--space-lg);
+}
+.modal .modal-header h2{color:var(--primary-rosy);margin-bottom:var(--space-sm)}
+.modal .modal-body{color:#e9e9ea}
+.modal .modal-footer{margin-top:var(--space-md);text-align:right}
+.modal .modal-btn{background:linear-gradient(90deg,var(--primary),var(--primary-rosy));color:white;border:none;padding:10px 16px;border-radius:8px;cursor:pointer}

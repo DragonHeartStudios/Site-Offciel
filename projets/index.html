@@ -3,17 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-      (function(){
-        try {
-          const repo = 'Site-Offciel';
-          const isGitHub = location.hostname.includes('github.io');
-          const base = isGitHub ? `/${repo}/` : '/';
-          const href = base + 'src/css/main.css';
-          const l = document.createElement('link'); l.rel='stylesheet'; l.href=href; document.head.appendChild(l);
-        } catch(e){console.error(e)}
-      })();
-    </script>
+    <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
