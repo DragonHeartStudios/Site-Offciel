@@ -53,6 +53,27 @@
         </div>
     </div>
 
+    <!-- ============================================== -->
+    <!-- MODAL POUR LES DETAILS DES JEUX (shared)       -->
+    <!-- ============================================== -->
+    <div id="game-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img id="modal-img" src="" alt="Image du jeu">
+            <h2 id="modal-title">Titre du jeu</h2>
+            
+            <div class="modal-info">
+                <p><strong>Contributeurs :</strong> <span id="modal-devs"></span></p>
+                <p><strong>Moteur :</strong> <span id="modal-engine"></span></p>
+                <p><strong>Prix :</strong> <span id="modal-price"></span></p>
+            </div>
+            
+            <p id="modal-desc" class="modal-desc"></p>
+            <a id="modal-link" href="#" target="_blank" class="modal-btn" data-i18n="modal.playBtn">Jouer / Voir plus</a>
+        </div>
+    </div>
+    <!-- ============================================== -->
+
     <script src="../assets/data/translations.js"></script>
     <script src="../assets/data/games.js"></script>
     <script src="../assets/js/app.js"></script>
