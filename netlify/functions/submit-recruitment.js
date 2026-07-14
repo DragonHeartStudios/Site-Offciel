@@ -2,7 +2,7 @@ const fetch = globalThis.fetch || require('node-fetch');
 
 exports.handler = async (event) => {
   const CORS_HEADERS = {
-    'Access-Control-Allow-Origin': 'https://dragonheartstudios.github.io', // only allow your GH Pages domain
+    'Access-Control-Allow-Origin': 'https://dragonheartstudios.github.io', // only allow GitHub Pages domain
     'Access-Control-Allow-Headers': 'Content-Type, Accept',
     'Access-Control-Allow-Methods': 'POST, OPTIONS'
   };
@@ -89,7 +89,8 @@ exports.handler = async (event) => {
     if (!discordResp.ok) {
       const text = await discordResp.text();
       console.error('Discord responded with error', discordResp.status, text);
-      return { statusCode: 502, headers: CORS_HEADERS, body: 'Error relaying to Discord' };
+      // Return the discord error text for easier debugging (non-sensitive)
+      return { statusCode: 502, headers: CORS_HEADERS, body: `Error relaying to Discord: ${text}` };
     }
 
     return { statusCode: 200, headers: CORS_HEADERS, body: JSON.stringify({ ok: true }) };
