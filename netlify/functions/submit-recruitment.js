@@ -1,8 +1,23 @@
 const fetch = globalThis.fetch || require('node-fetch');
 
 exports.handler = async (event) => {
+  const CORS_HEADERS = {
+    'Access-Control-Allow-Origin': 'https://dragonheartstudios.github.io', // only allow your GH Pages domain
+    'Access-Control-Allow-Headers': 'Content-Type, Accept',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+  };
+
+  // Handle preflight
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 204,
+      headers: CORS_HEADERS,
+      body: ''
+    };
+  }
+
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+    return { statusCode: 405, headers: CORS_HEADERS, body: 'Method Not Allowed' };
   }
 
   try {
@@ -17,8 +32,8 @@ exports.handler = async (event) => {
           body: `secret=${encodeURIComponent(process.env.RECAPTCHA_SECRET)}&response=${encodeURIComponent(payload.recaptchaToken)}`
         });
         const recJson = await recRes.json();
-        if (!recJson.success || recJson.score < 0.3) {
-          return { statusCode: 400, body: 'reCAPTCHA verification failed' };
+        if (!recJson.success || (recJson.score && recJson.score < 0.3)) {
+          return { statusCode: 400, headers: CORS_HEADERS, body: 'reCAPTCHA verification failed' };
         }
       } catch (e) {
         console.warn('reCAPTCHA check failed', e);
@@ -62,7 +77,7 @@ exports.handler = async (event) => {
     const discordWebhook = process.env.DISCORD_WEBHOOK_URL;
     if (!discordWebhook) {
       console.error('Discord webhook not configured in env');
-      return { statusCode: 500, body: 'Webhook not configured' };
+      return { statusCode: 500, headers: CORS_HEADERS, body: 'Webhook not configured' };
     }
 
     const discordResp = await fetch(discordWebhook, {
@@ -74,12 +89,12 @@ exports.handler = async (event) => {
     if (!discordResp.ok) {
       const text = await discordResp.text();
       console.error('Discord responded with error', discordResp.status, text);
-      return { statusCode: 502, body: 'Error relaying to Discord' };
+      return { statusCode: 502, headers: CORS_HEADERS, body: 'Error relaying to Discord' };
     }
 
-    return { statusCode: 200, body: JSON.stringify({ ok: true }) };
+    return { statusCode: 200, headers: CORS_HEADERS, body: JSON.stringify({ ok: true }) };
   } catch (err) {
     console.error('Function error', err);
-    return { statusCode: 500, body: 'Internal server error' };
+    return { statusCode: 500, headers: CORS_HEADERS, body: 'Internal server error' };
   }
 };
