@@ -237,11 +237,14 @@ const RecruitmentApp = (() => {
     // Envoi vers la fonction serverless (Netlify / Vercel)
     async function sendToServerless(data) {
         try {
-            const res = await fetch('/.netlify/functions/submit-recruitment', {
+            const endpoint = (window.SITE_CONFIG && window.SITE_CONFIG.SERVERLESS_ENDPOINT) || '/.netlify/functions/submit-recruitment';
+            console.log('Sending recruitment to endpoint:', endpoint);
+            const res = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
+            console.log('Server response:', res.status, res.statusText);
             return res;
         } catch (e) {
             console.error('Network error when sending to serverless', e);
