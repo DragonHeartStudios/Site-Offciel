@@ -1,13 +1,14 @@
 const fetch = globalThis.fetch || require('node-fetch');
 
+const ALLOWED_ORIGIN = 'https://dragonheartstudios.github.io';
+
 exports.handler = async (event) => {
   const CORS_HEADERS = {
-    'Access-Control-Allow-Origin': 'https://dragonheartstudios.github.io', // only allow GitHub Pages domain
+    'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
     'Access-Control-Allow-Headers': 'Content-Type, Accept',
     'Access-Control-Allow-Methods': 'POST, OPTIONS'
   };
 
-  // Handle preflight
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 204,
@@ -23,7 +24,7 @@ exports.handler = async (event) => {
   try {
     const payload = JSON.parse(event.body || '{}');
 
-    // OPTIONAL: reCAPTCHA verification (if you set RECAPTCHA_SECRET env var and send recaptchaToken in payload)
+    // Optional: reCAPTCHA verification if configured
     if (payload.recaptchaToken && process.env.RECAPTCHA_SECRET) {
       try {
         const recRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
@@ -36,39 +37,29 @@ exports.handler = async (event) => {
           return { statusCode: 400, headers: CORS_HEADERS, body: 'reCAPTCHA verification failed' };
         }
       } catch (e) {
-        console.warn('reCAPTCHA check failed', e);
+        // If reCAPTCHA service fails, proceed but log server-side
+        console.warn('reCAPTCHA check error', e);
       }
     }
 
-    // Build Discord embed
     const embed = {
       title: '🎮 Nouvelle candidature - DragonHeart Studios',
       color: 0xBE104D,
       fields: [
         {
-          name: '👤 Informations Personnelles',
+          name: '👤 Informations',
           value: `**Pseudo:** ${payload.pseudo || 'Non renseigné'}\n**Âge:** ${payload.age || '—'}\n**Email:** ${payload.email || '—'}`,
           inline: false
         },
         {
-          name: '💼 Poste(s) Souhaité(s)',
+          name: '💼 Postes',
           value: (payload.postes && payload.postes.length) ? payload.postes.map(p => `• ${p}`).join('\n') : '—',
           inline: false
         },
-        {
-          name: '🎯 Objectif',
-          value: payload.purpose || '—',
-          inline: false
-        },
-        {
-          name: '🛠️ Compétences & Outils',
-          value: `**Compétences:**\n${payload.competences || '—'}\n\n**Outils:**\n${payload.outils || '—'}`,
-          inline: false
-        }
+        { name: '🎯 Objectif', value: payload.purpose || '—', inline: false },
+        { name: '🛠 Compétences', value: payload.competences || '—', inline: false }
       ],
-      footer: {
-        text: `Postulé via le site • Langue: ${payload.lang || 'FR'} • ${new Date().toLocaleString('fr-FR')}`
-      }
+      footer: { text: `Langue: ${payload.lang || 'FR'}` }
     };
 
     if (payload.portfolio) embed.fields.push({ name: '🔗 Portfolio', value: payload.portfolio });
@@ -76,21 +67,19 @@ exports.handler = async (event) => {
 
     const discordWebhook = process.env.DISCORD_WEBHOOK_URL;
     if (!discordWebhook) {
-      console.error('Discord webhook not configured in env');
-      return { statusCode: 500, headers: CORS_HEADERS, body: 'Webhook not configured' };
+      console.error('Discord webhook not configured');
+      return { statusCode: 500, headers: CORS_HEADERS, body: 'Server configuration error' };
     }
 
     const discordResp = await fetch(discordWebhook, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ content: '🔔 **Nouvelle candidature reçue !**', embeds: [embed] })
+      body: JSON.stringify({ content: '🔔 Nouvelle candidature reçue !', embeds: [embed] })
     });
 
     if (!discordResp.ok) {
-      const text = await discordResp.text();
-      console.error('Discord responded with error', discordResp.status, text);
-      // Return the discord error text for easier debugging (non-sensitive)
-      return { statusCode: 502, headers: CORS_HEADERS, body: `Error relaying to Discord: ${text}` };
+      console.error('Discord relay error', await discordResp.text());
+      return { statusCode: 502, headers: CORS_HEADERS, body: 'Error relaying to Discord' };
     }
 
     return { statusCode: 200, headers: CORS_HEADERS, body: JSON.stringify({ ok: true }) };
