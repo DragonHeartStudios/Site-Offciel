@@ -1,10 +1,7 @@
 'use strict';
 
 const RecruitmentApp = (() => {
-    // Configuration
-    const config = {
-        webhookURL: 'https://discord.com/api/webhooks/1483434811417694229/LhUyPDQ9oDMR0w7aL1RiCAoK-kFExPKpBMbORaLECtzpJ0K9EL5uEvcY3Pio2f7kzoZf',
-    };
+    // NOTE: webhook removed from client for security — submissions are relayed via a serverless endpoint
 
     // Cache DOM
     const el = {
@@ -28,25 +25,8 @@ const RecruitmentApp = (() => {
             formError: 'An error occurred while sending. Please try again.',
             selectPosition: 'Please select at least one position.',
             sending: 'Sending...'
-        },
-        es: {
-            formSubmitted: '¡Tu candidatura ha sido enviada con éxito!',
-            formError: 'Se ha producido un error al enviar. Por favor, inténtalo de nuevo.',
-            selectPosition: 'Por favor, selecciona al menos un puesto.',
-            sending: 'Enviando...'
-        },
-        de: {
-            formSubmitted: 'Deine Bewerbung wurde erfolgreich versendet!',
-            formError: 'Beim Senden ist ein Fehler aufgetreten. Bitte versuche es erneut.',
-            selectPosition: 'Bitte wähle mindestens eine Position aus.',
-            sending: 'Sende...'
-        },
-        it: {
-            formSubmitted: 'La tua candidatura è stata inviata con successo!',
-            formError: 'Si è verificato un errore durante l\'invio. Riprova.',
-            selectPosition: 'Seleziona almeno una posizione.',
-            sending: 'Invio in corso...'
         }
+        // autres langues si besoin
     };
 
     // === FONCTION INIT ===
@@ -90,8 +70,8 @@ const RecruitmentApp = (() => {
         const lang = document.documentElement.lang || 'fr';
         
         // Récupération des labels traduits (avec fallback sur le français si besoin)
-        const optLabel = TRANSLATIONS.recruitment.optgroupGames?.[lang] || TRANSLATIONS.recruitment.optgroupGames?.fr || '-- Participer --';
-        const prefix = TRANSLATIONS.recruitment.gamePrefix?.[lang] || TRANSLATIONS.recruitment.gamePrefix?.fr || 'Participer à : ';
+        const optLabel = TRANSLATIONS.recruitment?.optgroupGames?.[lang] || TRANSLATIONS.recruitment?.optgroupGames?.fr || '-- Participer --';
+        const prefix = TRANSLATIONS.recruitment?.gamePrefix?.[lang] || TRANSLATIONS.recruitment?.gamePrefix?.fr || 'Participer à : ';
 
         // Crée l'optgroup avec le label traduit
         const optgroup = document.createElement('optgroup');
@@ -102,7 +82,7 @@ const RecruitmentApp = (() => {
 
         activeGames.forEach(game => {
             const option = document.createElement('option');
-            const gameTitle = game.title[lang] || game.title.fr;
+            const gameTitle = (game.title && (game.title[lang] || game.title.fr)) || game.id || 'Jeu';
             
             option.value = `game_${game.id}`;
             // On combine le préfixe traduit et le titre du jeu
@@ -154,7 +134,7 @@ const RecruitmentApp = (() => {
                         <div class="modal-info-box">
                             <h3 data-i18n="recruitment.trialTitle">Période d'essai</h3>
                             <p data-i18n="recruitment.trialDescription">
-                                Si votre candidature est acceptée, vous serez en période d'essai pendant un mois. Si tout se passe bien, vous serez accepté définitivement. Sinon, la période d'essai sera prolongée d'encore un mois.
+                                Si votre candidature est acceptée, vous serez en période d'essai pendant un mois. Si tout se passe bien, vous serez accepté définitivement. Sinon, la période [...]
                             </p>
                         </div>
                     </div>
@@ -186,14 +166,14 @@ const RecruitmentApp = (() => {
         }
 
         // UI Feedback
-        el.submitBtn.disabled = true;
-        const btnSpan = el.submitBtn.querySelector('span') || el.submitBtn;
+        if (el.submitBtn) el.submitBtn.disabled = true;
+        const btnSpan = (el.submitBtn && (el.submitBtn.querySelector('span') || el.submitBtn)) || { textContent: '' };
         const originalText = btnSpan.textContent;
         btnSpan.textContent = msg.sending;
 
         try {
             const formData = new FormData(e.target);
-            
+
             // Formatage des postes
             const postes = postesChecked.map(cb => {
                 if (cb.value === 'autre') {
@@ -209,9 +189,9 @@ const RecruitmentApp = (() => {
             
             if (purpose.startsWith('game_')) {
                 const gameId = purpose.replace('game_', '');
-                const game = GAMES_DATA.find(g => g.id === gameId);
+                const game = (typeof GAMES_DATA !== 'undefined') ? GAMES_DATA.find(g => g.id === gameId) : null;
                 if (game) {
-                    const gameTitle = game.title[lang] || game.title.fr;
+                    const gameTitle = (game.title && (game.title[lang] || game.title.fr)) || game.id;
                     purposeLabel = `Participer à: ${gameTitle}`;
                 }
             } else if (purpose === 'promote') {
@@ -231,71 +211,42 @@ const RecruitmentApp = (() => {
                 projets: formData.get('projets') || 'Aucun projet renseigné',
                 portfolio: formData.get('portfolio'),
                 motivation: formData.get('motivation'),
-                langue: lang.toUpperCase()
+                langue: (lang || 'fr').toUpperCase()
             };
 
-            const response = await sendToDiscord(data);
+            const response = await sendToServerless(data);
             
-            if (response.ok) {
+            if (response && response.ok) {
                 el.form.reset();
                 if(el.posteAutreText) el.posteAutreText.disabled = true;
                 
                 // Affiche la modal de succès
                 showSuccessModal();
             } else {
-                throw new Error('Discord response error');
+                throw new Error('Server response error');
             }
         } catch (error) {
             console.error(error);
             alert(msg.formError);
         } finally {
-            el.submitBtn.disabled = false;
+            if (el.submitBtn) el.submitBtn.disabled = false;
             btnSpan.textContent = originalText;
         }
     }
 
-    async function sendToDiscord(data) {
-        const embed = {
-            title: '🎮 Nouvelle Candidature - Dragonheart Studios',
-            color: 0xBE104D,
-            fields: [
-                {
-                    name: '👤 Informations Personnelles',
-                    value: `**Pseudo:** ${data.pseudo}\n**Âge:** ${data.age}\n**Email:** ${data.email}`,
-                    inline: false
-                },
-                {
-                    name: '💼 Poste(s) Souhaité(s)',
-                    value: data.postes.map(p => `• ${p}`).join('\n'),
-                    inline: false
-                },
-                {
-                    name: '🎯 Objectif',
-                    value: data.purpose,
-                    inline: false
-                },
-                {
-                    name: '🛠️ Compétences & Outils',
-                    value: `**Compétences:**\n${data.competences}\n\n**Outils:**\n${data.outils}`,
-                    inline: false
-                }
-            ],
-            footer: {
-                text: `Postulé via le site • Langue: ${data.langue} • ${new Date().toLocaleString('fr-FR')}`
-            }
-        };
-
-        if (data.portfolio) embed.fields.push({ name: '🔗 Portfolio', value: data.portfolio });
-        if (data.motivation) embed.fields.push({ name: '💭 Motivation', value: data.motivation });
-
-        return await fetch(config.webhookURL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                content: '🔔 **Nouvelle candidature reçue !** @everyone', 
-                embeds: [embed] 
-            })
-        });
+    // Envoi vers la fonction serverless (Netlify / Vercel)
+    async function sendToServerless(data) {
+        try {
+            const res = await fetch('/.netlify/functions/submit-recruitment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            return res;
+        } catch (e) {
+            console.error('Network error when sending to serverless', e);
+            return { ok: false };
+        }
     }
 
     return { init };
@@ -327,7 +278,7 @@ function updateModalTranslations() {
         modal.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.dataset.i18n;
             const lang = document.documentElement.lang || 'fr';
-            
+
             if (typeof TRANSLATIONS !== 'undefined') {
                 try {
                     const keys = key.split('.');
