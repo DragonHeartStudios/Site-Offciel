@@ -32,7 +32,7 @@ const GAMES_DATA = [
 			it: 'Vesti i panni di Decker, un cuoco indebitato. Le tue scelte morali cambieranno il tuo aspetto fisico...'
 		},
 		image: '/assets/images/rot_within.png',
-		status: 'in-development',
+		status: 'finished',
 		technologies: ['Godot4', 'itch.io'],
 		featured: true,
 		link: "https://dragon-heart-studio.itch.io/rot-within"
@@ -62,7 +62,7 @@ const GAMES_DATA = [
 		},      
 		image: '/assets/images/nightmare_or_dream.png', 
 		status: 'in-development',
-		technologies: ['Godot Engine', 'GDScript', 'Pixel Art'],
+		technologies: ['Godot Engine', 'GDScript'],
 		featured: true,
 		link: "https://www.youtube.com/watch?v=L-Zzn5X-17Q&t=50s"
 	},
