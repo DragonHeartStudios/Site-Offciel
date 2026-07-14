@@ -32,4 +32,60 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// Note : Toute la partie TranslationEngine a été supprimée car elle est gérée par app.js
+// ==========================================
+// 3. GESTION DE LA MODAL JEUX
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('game-modal');
+    const closeBtn = document.querySelector('.close-button');
+    const container = document.getElementById('featured-games-container') || document.getElementById('projects-list');
+
+    if (container) {
+        container.addEventListener('click', (event) => {
+            const cardLink = event.target.closest('.project-card-link');
+            
+            if (cardLink) {
+                // Bloque l'ouverture directe du lien pour afficher la modal
+                event.preventDefault();
+                
+                const card = cardLink.querySelector('.project-card');
+                if (card) {
+                    const data = card.dataset;
+                    
+                    // Remplissage dynamique des données de la modal
+                    document.getElementById('modal-title').textContent = data.name || "Titre inconnu";
+                    document.getElementById('modal-img').src = data.image || "";
+                    document.getElementById('modal-devs').textContent = data.devs || "Dragonheart Studios";
+                    document.getElementById('modal-engine').textContent = data.engine || "Godot Engine";
+                    document.getElementById('modal-desc').textContent = data.desc || "";
+                    document.getElementById('modal-link').href = data.link || "#";
+
+                    // Formatage du prix
+                    const priceElem = document.getElementById('modal-price');
+                    if (!data.price || data.price === "0" || data.price.toLowerCase() === "gratuit" || data.price.toLowerCase() === "free") {
+                        priceElem.textContent = "Gratuit";
+                    } else {
+                        priceElem.textContent = data.price + (data.price.includes('€') ? '' : ' €');
+                    }
+
+                    // Ouvre l'overlay
+                    modal.style.display = 'block';
+                }
+            }
+        });
+    }
+
+    // Fermeture avec la croix
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    }
+
+    // Fermeture en cliquant à l'extérieur du cadre blanc
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});

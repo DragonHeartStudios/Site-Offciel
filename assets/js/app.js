@@ -147,45 +147,56 @@ const DragonheartApp = (() => {
         } catch (e) { return null; }
     }
 
-// ===== RENDU DES JEUX =====
-function renderFeaturedGames() {
-    const container = document.getElementById('featured-games-container') || document.getElementById('projects-list');
-    if (!container || typeof GAMES_DATA === 'undefined') return;
+    // ===== RENDU DES JEUX =====
+    function renderFeaturedGames() {
+        const container = document.getElementById('featured-games-container') || document.getElementById('projects-list');
+        if (!container || typeof GAMES_DATA === 'undefined') return;
 
-    container.innerHTML = ''; 
-    GAMES_DATA.forEach(game => {
-        // Sur la page d'accueil : affiche SEULEMENT les jeux avec featured: true (max 3)
-        if (document.getElementById('featured-games-container') && !game.featured) return;
-        
-        // Sur la page projets : affiche TOUS les jeux
-        if (document.getElementById('projects-list')) {
-            // Affiche tous les jeux
-        }
+        container.innerHTML = ''; 
+        GAMES_DATA.forEach(game => {
+            if (document.getElementById('featured-games-container') && !game.featured) return;
 
-        const anchor = document.createElement('a');
-        anchor.href = game.link || "#";
-        anchor.target = "_blank";
-        anchor.className = 'project-card-link';
+            const anchor = document.createElement('a');
+            anchor.href = game.link || "#";
+            anchor.target = "_blank";
+            anchor.className = 'project-card-link';
 
-        const title = game.title[currentLang] || game.title.fr;
-        const desc = game.shortDescription[currentLang] || game.shortDescription.fr;
+            const title = game.title[currentLang] || game.title.fr;
+            const desc = game.shortDescription[currentLang] || game.shortDescription.fr;
+            
+            // Gestion optionnelle de descriptions longues, créateurs, prix et moteurs si présents dans GAMES_DATA
+            const fullDesc = game.description ? (game.description[currentLang] || game.description.fr) : desc;
+            const devs = game.devs ? (game.devs[currentLang] || game.devs.fr || game.devs) : "Dragonheart Studios";
+            const engine = game.engine || "Godot Engine";
+            const price = game.price || "Gratuit";
+            const statusLabel = game.status === 'released' ? 'Released' : 'In Dev';
 
-        let cleanPath = game.image.trim().replace(/^(\.\/|\/)/, ''); 
-        const imgPath = game.image.startsWith('http') ? game.image : getBaseUrl() + cleanPath;
+            let cleanPath = game.image.trim().replace(/^(\.\/|\/)/, ''); 
+            const imgPath = game.image.startsWith('http') ? game.image : getBaseUrl() + cleanPath;
 
-        anchor.innerHTML = `
-            <div class="project-card" data-title="${title}">
-                <img src="${imgPath}" alt="${title}" class="project-image" onerror="this.src='https://placehold.co/600x400?text=Image+Introuvable'">
-                <div class="project-content">
-                    <h3 class="project-title">${title}</h3>
-                    <p class="project-description">${desc}</p>
-                    <span class="project-tag ${game.status}">${game.status}</span>
+            // Ajout des attributs "data-*" sur la div "project-card game-card"
+            anchor.innerHTML = `
+                <div class="project-card game-card ${game.status}" 
+                     data-title="${title}"
+                     data-status="${statusLabel}"
+                     data-name="${title}"
+                     data-image="${imgPath}"
+                     data-devs="${devs}"
+                     data-engine="${engine}"
+                     data-desc="${fullDesc}"
+                     data-price="${price}"
+                     data-link="${game.link || '#'}">
+                    <img src="${imgPath}" alt="${title}" class="project-image" onerror="this.src='https://placehold.co/600x400?text=Image+Introuvable'">
+                    <div class="project-content">
+                        <h3 class="project-title">${title}</h3>
+                        <p class="project-description">${desc}</p>
+                        <span class="project-tag ${game.status}">${game.status}</span>
+                    </div>
                 </div>
-            </div>
-        `;
-        container.appendChild(anchor);
-    });
-}
+            `;
+            container.appendChild(anchor);
+        });
+    }
 
     return {
         init: init,

@@ -303,7 +303,7 @@ p {
 .projects-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 50px 30px;
+    gap: 40px;
 }
 
 .project-card-link {
@@ -322,17 +322,18 @@ p {
 
 .project-card {
     position: relative;
-    height: 250px;
+    height: 250px; 
     border-radius: 12px;
     overflow: visible;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.2s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: #000;
 }
 
 .project-card:hover {
     transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(190, 16, 77, 0.4);
 }
 
 .project-image {
@@ -364,7 +365,7 @@ p {
 }
 
 .project-title {
-    font-size: 28px;
+    font-size: 26px; 
     color: #ffff00;
     font-family: 'Poetsen One', sans-serif;
     margin: 0;
@@ -379,10 +380,10 @@ p {
 .project-card::after {
     content: attr(data-title);
     position: absolute;
-    bottom: -20px;
+    bottom: -24px;
     left: 5px;
     color: white;
-    font-size: 12px;
+    font-size: 14px;
     font-family: 'PTSansNarrow-Regular', sans-serif;
     font-weight: bold;
 }
@@ -575,7 +576,6 @@ p {
         display: flex;
     }
 
-    /* CACHE LE MENU PAR DÉFAUT */
     .nav-links-wrapper {
         position: static;
         display: none;
@@ -589,102 +589,249 @@ p {
         left: 0;
         right: 0;
         width: 100%;
-        
-        /* --- GLASSMORPHISME (COMME LA TOPBAR) --- */
         background: rgba(10, 10, 10, 0.747);
         backdrop-filter: blur(15px) saturate(180%);
         -webkit-backdrop-filter: blur(15px) saturate(180%);
         border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         border-radius: 0 0 16px 16px;
-        /* --- FIN GLASSMORPHISME --- */
-        
         padding: 30px 0;
         text-align: center;
         gap: 25px;
         z-index: 999;
     }
 
-    /* AFFICHE LE WRAPPER QUAND C'EST OUVERT */
     .nav-links-wrapper.mobile-open {
         display: contents;
     }
 
-    /* AFFICHE LE MENU QUAND LE WRAPPER EST OUVERT */
     .nav-links-wrapper.mobile-open .nav-links {
         display: flex !important;
         animation: slideDown 0.3s ease;
     }
 }
 
+/* ==========================================================================
+   BADGES DE STATUT DES JEUX (COMPATIBILITÉ CARDS STANDARD)
+   ========================================================================== */
+.game-card::before,
+.project-card::before {
+    content: attr(data-status);
+    position: absolute;
+    top: 15px;
+    left: 15px; /* Aligné en haut à gauche */
+    padding: 6px 14px;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 100px; /* Coins arrondis à fond */
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 10;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.game-card.released::before, .project-card.released::before { background-color: #2ecc71; } /* Vert */
+.game-card.in-dev::before, .project-card.in-dev::before { background-color: #ff3333; } /* Rouge */
+
+/* ==========================================================================
+   INTERFACE DE DÉTAILS DU JEU (MODAL PREMIUM)
+   ========================================================================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    overflow-y: auto; /* Permet le scroll global si l'écran est petit */
+    padding: 80px 0; /* AJOUTÉ : Espace de respiration vide en haut et en bas */
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background-color: #121216;
+    color: #fff;
+    margin: 0 auto; /* Géré proprement avec le padding parent */
+    padding: 0 0 45px 0; 
+    border-radius: 28px; /* MODIFIÉ : Beaucoup plus arrondi et haut de gamme */
+    width: 92%;
+    max-width: 1000px; 
+    position: relative;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden; 
+}
+
+/* Effet dégradé cinéma fondu sur le bas de l'image */
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 450px; 
+    background: linear-gradient(to bottom, rgba(18, 18, 22, 0) 40%, #121216 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Badge Statut spécifique à la fenêtre de détails */
+.modal-status {
+    position: absolute;
+    top: 25px;
+    left: 30px; /* Placé en haut à gauche */
+    padding: 8px 20px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 100px; /* Coins arrondis à fond */
+    z-index: 10;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.modal-status.in-dev { background-color: #ff3333; } /* Rouge vif */
+.modal-status.released { background-color: #2ecc71; } /* Vert vif */
+
+.close-button {
+    color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 25px;
+    right: 30px; /* Équilibré à droite */
+    font-size: 40px; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.close-button:hover { 
+    color: #fff;
+    transform: scale(1.1);
+}
+
+#modal-img {
+    width: 100%;
+    height: 450px; 
+    object-fit: cover;
+    display: block;
+    margin: 0 0 35px 0;
+}
+
+/* Placement intelligent des marges internes pour le texte */
+.modal-content > #modal-title,
+.modal-content > .modal-info,
+.modal-content > .modal-desc,
+.modal-content > .modal-btn {
+    margin-left: 45px;
+    margin-right: 45px;
+    position: relative;
+    z-index: 2;
+}
+
+#modal-title {
+    font-family: 'Poetsen One', sans-serif;
+    font-size: 46px; 
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #ffff00;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal-info {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 24px; 
+    border-radius: 14px;
+    margin-bottom: 30px;
+    border-left: 5px solid #be104d; 
+}
+
+.modal-info p { 
+    margin: 10px 0; 
+    font-size: 19px; 
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+}
+
+/* Description avec Scrollbar Customisée Premium */
+.modal-desc {
+    line-height: 1.7;
+    font-size: 20px; 
+    margin-bottom: 35px;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+    color: rgba(255, 255, 255, 0.95);
+    max-height: 180px; 
+    overflow-y: auto; 
+    padding-right: 20px; 
+}
+
+/* Style Webkit pour la scrollbar interne */
+.modal-desc::-webkit-scrollbar { width: 6px; }
+.modal-desc::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: 10px; }
+.modal-desc::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #be104d, rgb(190, 16, 53)); border-radius: 10px; }
+.modal-desc::-webkit-scrollbar-thumb:hover { background: #ff1e6d; }
+
+.modal-btn {
+    display: inline-block;
+    background: linear-gradient(to top right, #be104d, rgb(190, 16, 53));
+    color: white;
+    padding: 16px 45px; 
+    font-size: 18px; 
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+    margin-bottom: 10px;
+}
+
+.modal-btn:hover { 
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(190, 16, 77, 0.6);
+}
+
 @keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ==========================================================================
-   RESPONSIVE - TRÈS MOBILE (650px)
+   RESPONSIVE - MOBILES
    ========================================================================== */
 @media (max-width: 768px) {
-    #slogan_p {
-        font-size: 48px;
-    }
+    #slogan_p { font-size: 48px; }
+    #slogan_boost { font-size: 18px; }
+    #projects_p, .medias_p { font-size: 28px; }
+    #about_us_p { font-size: 24px; }
 
-    #slogan_boost {
-        font-size: 18px;
+    .projects-container { grid-template-columns: 1fr; }
+    .project-card { margin-bottom: 20px; height: 250px; }
+    #social_buttons { gap: 20px; }
+    #itch, #discord, #youtube, #github { width: 60px; height: 60px; }
+    #itch_img, #discord_img, #youtube_img, #github_img { width: 40px; height: 40px; }
+    
+    .modal { padding: 40px 0; }
+    .modal-content { border-radius: 20px; padding: 0 0 30px 0; }
+    .modal-content::before { height: 230px; }
+    
+    .modal-content > #modal-title,
+    .modal-content > .modal-info,
+    .modal-content > .modal-desc,
+    .modal-content > .modal-btn {
+        margin-left: 20px;
+        margin-right: 20px;
     }
-
-    #projects_p,
-    .medias_p {
-        font-size: 28px;
-    }
-
-    #about_us_p {
-        font-size: 24px;
-    }
-
-    .projects-container {
-        grid-template-columns: 1fr;
-    }
-
-    .project-card {
-        margin-bottom: 20px;
-    }
-
-    #social_buttons {
-        gap: 20px;
-    }
-
-    #itch,
-    #discord,
-    #youtube,
-    #github {
-        width: 60px;
-        height: 60px;
-    }
-
-    #itch_img,
-    #discord_img,
-    #youtube_img,
-    #github_img {
-        width: 40px;
-        height: 40px;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    
+    #modal-title { font-size: 30px; }
+    #modal-img { height: 230px; }
+    .modal-status { top: 15px; left: 15px; padding: 6px 14px; font-size: 11px; }
+    .close-button { top: 12px; right: 15px; font-size: 34px; }
 }
