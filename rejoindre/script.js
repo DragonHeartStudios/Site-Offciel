@@ -153,3 +153,38 @@ const RecruitmentApp = (() => {
 })();
 
 document.addEventListener('DOMContentLoaded', () => { RecruitmentApp.init(); });
+
+// --- Modal helpers (global) ---
+function showSuccessModal() {
+  const modal = document.getElementById('success-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    if (typeof updateModalTranslations === 'function') updateModalTranslations();
+  }
+}
+window.showSuccessModal = showSuccessModal;
+
+function closeSuccessModal() {
+  const modal = document.getElementById('success-modal');
+  if (modal) modal.classList.add('hidden');
+}
+window.closeSuccessModal = closeSuccessModal;
+
+function updateModalTranslations() {
+  const modal = document.getElementById('success-modal');
+  if (!modal || typeof TRANSLATIONS === 'undefined') return;
+  const lang = document.documentElement.lang || 'fr';
+  modal.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    try {
+      const keys = key.split('.');
+      let value = TRANSLATIONS;
+      for (const k of keys) value = value[k];
+      const translation = (value && (value[lang] || value.fr)) || null;
+      if (translation) el.innerHTML = translation;
+    } catch (e) {
+      // ignore missing translations
+    }
+  });
+}
+window.updateModalTranslations = updateModalTranslations;
