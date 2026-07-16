@@ -67,19 +67,49 @@ const RecruitmentApp = (() => {
     }
   }
 
-  function createModal() {
+function createModal() {
     if (document.getElementById('success-modal')) return;
+
     const modalHTML = `
       <div id="success-modal" class="modal hidden">
         <div class="modal-content">
-          <div class="modal-header"><h2>✅ <span data-i18n="recruitment.successTitle">Candidature envoyée !</span></h2></div>
-          <div class="modal-body"><p class="modal-success-message" data-i18n="recruitment.successMessage">Votre candidature a été envoyée avec succès !</p></div>
-          <div class="modal-footer"><button class="modal-btn" onclick="closeSuccessModal()">Fermer</button></div>
+          <div class="modal-header">
+            <h2>✅ <span data-i18n="recruitment.successTitle">Candidature envoyée !</span></h2>
+          </div>
+          
+          <div class="modal-body">
+            <p class="modal-success-message" data-i18n="recruitment.successMessage">
+              Votre candidature a été envoyée avec succès !
+            </p>
+            
+            <div class="modal-info-box">
+              <h3 data-i18n="recruitment.trialTitle">Période d'essai</h3>
+              <p data-i18n="recruitment.trialDescription">
+                Si votre candidature est acceptée, vous serez en période d'essai pendant un mois. Si tout se passe bien, vous serez accepté définitivement. Sinon, la période d'essai sera prolongée d'encore un mois.
+              </p>
+            </div>
+          </div>
+          
+          <div class="modal-footer">
+            <button class="modal-btn" onclick="closeSuccessModal()">Fermer</button>
+          </div>
         </div>
       </div>
     `;
+    
     document.body.insertAdjacentHTML('beforeend', modalHTML);
   }
+
+  // Fonctions d'ouverture et de fermeture de la modale de succès
+  window.showSuccessModal = function() {
+    const modal = document.getElementById('success-modal');
+    if (modal) modal.classList.remove('hidden');
+  };
+
+  window.closeSuccessModal = function() {
+    const modal = document.getElementById('success-modal');
+    if (modal) modal.classList.add('hidden');
+  };
 
   // Fonctions d'affichage et de fermeture de la modale de succès
   window.showSuccessModal = function() {

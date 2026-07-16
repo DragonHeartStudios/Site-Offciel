@@ -594,6 +594,39 @@ button[type="submit"]:disabled {
     transform: translateY(0);
 }
 
+/* =========================================
+   CORRECTION DISPOSITION MODALE SUCCÈS
+   ========================================= */
+
+#success-modal .modal-body {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+#success-modal .modal-success-message {
+    width: 100%;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+}
+
+#success-modal .modal-info-box {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(190, 16, 77, 0.1);
+    border-left: 4px solid rgba(190, 16, 77, 1);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
 @keyframes slideUp {
     from {
         opacity: 0;
