@@ -68,6 +68,7 @@ const RecruitmentApp = (() => {
   }
 
   function createModal() {
+    if (document.getElementById('success-modal')) return;
     const modalHTML = `
       <div id="success-modal" class="modal hidden">
         <div class="modal-content">
@@ -79,6 +80,17 @@ const RecruitmentApp = (() => {
     `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);
   }
+
+  // Fonctions d'affichage et de fermeture de la modale de succès
+  window.showSuccessModal = function() {
+    const modal = document.getElementById('success-modal');
+    if (modal) modal.classList.remove('hidden');
+  };
+
+  window.closeSuccessModal = function() {
+    const modal = document.getElementById('success-modal');
+    if (modal) modal.classList.add('hidden');
+  };
 
   function getCurrentLang() { return document.documentElement.lang || 'fr'; }
 

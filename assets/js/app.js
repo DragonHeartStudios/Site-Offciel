@@ -30,8 +30,9 @@ const DragonheartApp = (() => {
     function injectModalHTML() {
         if (document.getElementById('game-modal')) return;
 
+        // Ajout de style="display: none;" pour éviter qu'elle ne s'ouvre toute seule sur le formulaire
         const modalHTML = `
-            <div id="game-modal" class="modal">
+            <div id="game-modal" class="modal" style="display: none;">
                 <div class="modal-content">
                     <button class="close-button" aria-label="Fermer">&times;</button>
                     
