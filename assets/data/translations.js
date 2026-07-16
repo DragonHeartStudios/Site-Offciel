@@ -39,7 +39,7 @@ const TRANSLATIONS = {
 
     // Statuts des projets
     status: {
-        inDevelopment: { fr: 'En développement', en: 'In Development', es: 'En Desarrollo', de: 'In Entwicklung', it: 'In Sviluppo' },
+        inDevelopment: { fr: 'En cours', en: 'In Development', es: 'En Desarrollo', de: 'In Entwicklung', it: 'In Sviluppo' },
         completed: { fr: 'Terminé', en: 'Completed', es: 'Completado', de: 'Abgeschlossen', it: 'Completato' },
         upcoming: { fr: 'À venir', en: 'Upcoming', es: 'Próximamente', de: 'Demnächst', it: 'Prossimamente' }
     },

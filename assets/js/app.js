@@ -1,5 +1,5 @@
 /**
- * DRAGONHEART STUDIOS - Script Principal Unifié (Optimisé)
+ * DRAGONHEART STUDIOS - Script Principal Unifié
  */
 'use strict';
 
@@ -22,7 +22,108 @@ const DragonheartApp = (() => {
     function init() {
         loadLanguage();
         loadHeader();
+        initModal(); // On active la modal sur toutes les pages
         console.log('✅ Dragonheart Studios - App prête');
+    }
+
+    // ===== GESTION DE LA MODAL =====
+    function injectModalHTML() {
+        if (document.getElementById('game-modal')) return;
+
+        const modalHTML = `
+            <div id="game-modal" class="modal">
+                <div class="modal-content">
+                    <button class="close-button" aria-label="Fermer">&times;</button>
+                    
+                    <div class="modal-body">
+                        <!-- Colonne de Gauche : Image Media -->
+                        <div class="modal-media">
+                            <img id="modal-img" src="" alt="Image du jeu">
+                        </div>
+                        
+                        <!-- Colonne de Droite : Informations du Jeu -->
+                        <div class="modal-details">
+                            <h2 id="modal-title">Titre du jeu</h2>
+                            
+                            <div class="modal-info-grid">
+                                <div class="info-card">
+                                    <span class="info-label">Contributeurs</span>
+                                    <span id="modal-devs" class="info-value"></span>
+                                </div>
+                                <div class="info-card">
+                                    <span class="info-label">Moteur</span>
+                                    <span id="modal-engine" class="info-value"></span>
+                                </div>
+                                <div class="info-card">
+                                    <span class="info-label">Prix</span>
+                                    <span id="modal-price" class="info-value"></span>
+                                </div>
+                            </div>
+                            
+                            <p id="modal-desc" class="modal-desc"></p>
+                            
+                            <div class="modal-actions">
+                                <a id="modal-link" href="#" target="_blank" class="modal-btn" data-i18n="modal.playBtn">Jouer / Voir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+    }
+
+    function initModal() {
+        // 1. Injecte dynamiquement le HTML de la modal
+        injectModalHTML();
+
+        const modal = document.getElementById('game-modal');
+
+        // 2. Écoute les clics globaux (cartes de jeu + fermeture)
+        document.addEventListener('click', (event) => {
+            const cardLink = event.target.closest('.project-card-link');
+            
+            if (cardLink && modal) {
+                event.preventDefault(); // Annule la redirection directe
+                
+                const card = cardLink.querySelector('.project-card');
+                if (card) {
+                    const data = card.dataset;
+                    
+                    document.getElementById('modal-title').textContent = data.name || "Titre inconnu";
+                    document.getElementById('modal-img').src = data.image || "";
+                    document.getElementById('modal-devs').textContent = data.devs || "Dragonheart Studios";
+                    document.getElementById('modal-engine').textContent = data.engine || "Godot Engine";
+                    document.getElementById('modal-desc').textContent = data.desc || "";
+                    document.getElementById('modal-link').href = data.link || "#";
+
+                    const priceElem = document.getElementById('modal-price');
+                    if (priceElem) {
+                        if (!data.price || data.price === "0" || data.price.toLowerCase() === "gratuit" || data.price.toLowerCase() === "free") {
+                            priceElem.textContent = "Gratuit";
+                        } else {
+                            priceElem.textContent = data.price + (data.price.includes('€') ? '' : ' €');
+                        }
+                    }
+
+                    // Met à jour la traduction du bouton dans la modal
+                    updateAllContent();
+
+                    modal.style.display = 'block';
+                }
+            }
+
+            // Fermeture avec la croix
+            if (event.target.classList.contains('close-button')) {
+                modal.style.display = 'none';
+            }
+
+            // Fermeture au clic à l'extérieur
+            if (modal && event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
     }
 
     // ===== GESTION DU HEADER =====
@@ -40,13 +141,11 @@ const DragonheartApp = (() => {
             .then(html => {
                 container.innerHTML = html;
                 
-                // On lance tout ce qui dépend du header ICI
                 updateAllContent();
                 updateLanguageButtonUI();
                 renderFeaturedGames();
                 initMobileMenu();
                 
-                // Fix Logo
                 const logo = document.getElementById('logo');
                 if (logo) {
                     logo.parentElement.href = getBaseUrl() + "index.html";
@@ -65,19 +164,14 @@ const DragonheartApp = (() => {
         const navWrapper = document.getElementById('nav-wrapper');
         const navLinks = document.querySelector('.nav-links');
 
-        if (!burgerBtn || !navWrapper) {
-            console.warn('⚠️ Éléments du menu burger non trouvés');
-            return;
-        }
+        if (!burgerBtn || !navWrapper) return;
 
-        // Toggle du menu au clic sur le burger
         burgerBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             navWrapper.classList.toggle('mobile-open');
             burgerBtn.classList.toggle('active');
         });
 
-        // Fermeture automatique au clic sur un lien
         if (navLinks) {
             navLinks.querySelectorAll('a, p').forEach(link => {
                 link.addEventListener('click', () => {
@@ -87,7 +181,6 @@ const DragonheartApp = (() => {
             });
         }
 
-        // Fermeture au clic en dehors du menu
         document.addEventListener('click', (e) => {
             if (!burgerBtn.contains(e.target) && !navWrapper.contains(e.target)) {
                 navWrapper.classList.remove('mobile-open');
@@ -96,7 +189,7 @@ const DragonheartApp = (() => {
         });
     }
 
-    // ===== GESTION DE LA LANGUE & TRADUCTION =====
+    // ===== GESTION DE LA LANGUE =====
     function loadLanguage() {
         const saved = localStorage.getItem(config.storageKey);
         if (saved && config.supportedLangs.includes(saved)) {
@@ -111,7 +204,6 @@ const DragonheartApp = (() => {
         updateAllContent();
         updateLanguageButtonUI();
         renderFeaturedGames();
-        console.log(`🌍 Langue : ${lang}`);
     }
 
     function updateLanguageButtonUI() {
@@ -152,50 +244,81 @@ const DragonheartApp = (() => {
         const container = document.getElementById('featured-games-container') || document.getElementById('projects-list');
         if (!container || typeof GAMES_DATA === 'undefined') return;
 
-        container.innerHTML = ''; 
+        container.innerHTML = '';
+
+        const STATUS_MAP = {
+            'in-development': { css: 'in-dev', key: 'inDevelopment' },
+            'in_dev':        { css: 'in-dev', key: 'inDevelopment' },
+            'in-dev':        { css: 'in-dev', key: 'inDevelopment' },
+            'finished':      { css: 'released', key: 'completed' },
+            'completed':     { css: 'released', key: 'completed' },
+            'released':      { css: 'released', key: 'completed' },
+            'upcoming':      { css: 'upcoming', key: 'upcoming' }
+        };
+
         GAMES_DATA.forEach(game => {
             if (document.getElementById('featured-games-container') && !game.featured) return;
 
             const anchor = document.createElement('a');
             anchor.href = game.link || "#";
-            anchor.target = "_blank";
             anchor.className = 'project-card-link';
 
-            const title = game.title[currentLang] || game.title.fr;
-            const desc = game.shortDescription[currentLang] || game.shortDescription.fr;
-            
-            // Gestion optionnelle de descriptions longues, créateurs, prix et moteurs si présents dans GAMES_DATA
+            const title = (game.title && (game.title[currentLang] || game.title.fr)) || game.title || game.id || 'Titre';
+            const desc = (game.shortDescription && (game.shortDescription[currentLang] || game.shortDescription.fr)) || game.shortDescription || '';
             const fullDesc = game.description ? (game.description[currentLang] || game.description.fr) : desc;
             const devs = game.devs ? (game.devs[currentLang] || game.devs.fr || game.devs) : "Dragonheart Studios";
             const engine = game.engine || "Godot Engine";
             const price = game.price || "Gratuit";
-            const statusLabel = game.status === 'released' ? 'Released' : 'In Dev';
 
-            let cleanPath = game.image.trim().replace(/^(\.\/|\/)/, ''); 
-            const imgPath = game.image.startsWith('http') ? game.image : getBaseUrl() + cleanPath;
+            const rawStatus = (game.status || '').toString().toLowerCase();
+            const mapping = STATUS_MAP[rawStatus] || { css: 'upcoming', key: 'upcoming' };
+            const statusClass = mapping.css || 'upcoming';
 
-            // Ajout des attributs "data-*" sur la div "project-card game-card"
+            let statusLabel = '';
+            try {
+                if (typeof TRANSLATIONS !== 'undefined' && TRANSLATIONS.status && TRANSLATIONS.status[mapping.key]) {
+                    statusLabel = TRANSLATIONS.status[mapping.key][currentLang] || TRANSLATIONS.status[mapping.key].fr;
+                } else {
+                    statusLabel = (rawStatus.indexOf('dev') !== -1) ? 'In Dev' : (rawStatus.indexOf('fin') !== -1 || rawStatus.indexOf('rele') !== -1) ? 'Released' : 'Upcoming';
+                }
+            } catch (e) {
+                statusLabel = 'Status';
+            }
+
+            let cleanPath = (game.image || '').toString().trim().replace(/^(\.\/|\/)/, '');
+            const imgPath = (game.image && game.image.startsWith('http')) ? game.image : getBaseUrl() + cleanPath;
+
             anchor.innerHTML = `
-                <div class="project-card game-card ${game.status}" 
-                     data-title="${title}"
-                     data-status="${statusLabel}"
-                     data-name="${title}"
-                     data-image="${imgPath}"
-                     data-devs="${devs}"
-                     data-engine="${engine}"
-                     data-desc="${fullDesc}"
-                     data-price="${price}"
-                     data-link="${game.link || '#'}">
-                    <img src="${imgPath}" alt="${title}" class="project-image" onerror="this.src='https://placehold.co/600x400?text=Image+Introuvable'">
+                <div class="project-card game-card ${statusClass}" 
+                    data-title="${escapeHtml(title)}"
+                    data-status="${escapeHtml(statusLabel)}"
+                    data-name="${escapeHtml(title)}"
+                    data-image="${escapeHtml(imgPath)}"
+                    data-devs="${escapeHtml(devs)}"
+                    data-engine="${escapeHtml(engine)}"
+                    data-desc="${escapeHtml(fullDesc)}"
+                    data-price="${escapeHtml(price)}"
+                    data-link="${escapeHtml(game.link || '#')}">
+                    <img src="${imgPath}" alt="${escapeHtml(title)}" class="project-image" onerror="this.src='https://placehold.co/600x400?text=Image+Introuvable'">
                     <div class="project-content">
-                        <h3 class="project-title">${title}</h3>
-                        <p class="project-description">${desc}</p>
-                        <span class="project-tag ${game.status}">${game.status}</span>
+                        <h3 class="project-title">${escapeHtml(title)}</h3>
+                        <p class="project-description">${escapeHtml(desc)}</p>
+                        <span class="project-tag ${statusClass}">${escapeHtml(statusLabel)}</span>
                     </div>
                 </div>
             `;
             container.appendChild(anchor);
         });
+    }
+
+    function escapeHtml(str) {
+        if (!str && str !== 0) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
     }
 
     return {
@@ -205,5 +328,4 @@ const DragonheartApp = (() => {
     };
 })();
 
-// Lancement unique
 document.addEventListener('DOMContentLoaded', DragonheartApp.init);

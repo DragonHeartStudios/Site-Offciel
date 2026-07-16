@@ -16,46 +16,37 @@
     </div>
 
     <div id="header-container"></div>
-    <script>
-        // On lance le chargement du header proprement
-        document.addEventListener('DOMContentLoaded', () => {
-            DragonheartApp.loadHeader();
-        });
-    </script>
-
+    
     <div id="gradient">
-        <div id="slogan">
+        <!-- 1. Bloc Slogan -->
+        <section id="slogan">
             <p id="slogan_p" data-i18n="home.slogan">Votre studio de jeux indé</p>
             <p id="slogan_boost"><span data-i18n="home.poweredBy">Propulsé par</span> <span class="godot-engine">Godot Engine</span></p>
-        </div>
+        </section>
 
-        <div id="medias">
+        <!-- 2. Section Médias -->
+        <section id="medias">
             <p class="medias_p" data-i18n="home.socialMedia">Nos réseaux</p>
             <div id="social_buttons">
-                <button id="discord" aria-label="Rejoindre notre Discord">
-                    <img src="assets/images/discord.png" alt="Discord" id="discord_img">
-                </button>
-                <button id="youtube" aria-label="Visiter notre chaîne YouTube">
-                    <img src="assets/images/youtube.png" alt="YouTube" id="youtube_img">
-                </button>
-                <button id="github" aria-label="Voir notre GitHub">
-                    <img src="assets/images/github.png" alt="GitHub" id="github_img">
-                </button>
-                <button id="itch" aria-label="Page itch.io">
-                    <img src="assets/images/itch.png" alt="itch" id="itch_img">
-                </button>
+                <button id="discord" aria-label="Rejoindre notre Discord"><img src="assets/images/discord.png" alt="Discord" id="discord_img"></button>
+                <button id="youtube" aria-label="Visiter notre chaîne YouTube"><img src="assets/images/youtube.png" alt="YouTube" id="youtube_img"></button>
+                <button id="github" aria-label="Voir notre GitHub"><img src="assets/images/github.png" alt="GitHub" id="github_img"></button>
+                <button id="itch" aria-label="Page itch.io"><img src="assets/images/itch.png" alt="itch" id="itch_img"></button>
             </div>
+        </section>
+
+        <!-- 3. Bloc Projets (Carte verre) -->
+        <div class="glass-card projects-wrapper">
+            <section id="projects">
+                <p id="projects_p" data-i18n="home.featuredProjects">Projets en vedette</p>
+                <div class="projects-container" id="featured-games-container"></div>
+            </section>
         </div>
 
-        <div id="projects">
-            <p id="projects_p" data-i18n="home.featuredProjects">Projets en vedette</p>
-            <!-- C'est ici que app.js va injecter les cartes -->
-            <div class="projects-container" id="featured-games-container"></div>
-        </div>
-
+        <!-- 4. Bloc À Propos -->
         <div id="about_us">
             <p id="about_us_p" data-i18n="home.aboutTitle">À propos de nous</p>
-            <p id="about_us_text" data-i18n="home.aboutText">Dragonheart Studios est un studio de développement de jeux vidéo indépendant fondé en 2023. Notre mission è de créer des jeux touchants avec des expériences immersives et innovantes.</p>
+            <p id="about_us_text" data-i18n="home.aboutText">Dragonheart Studios est un studio de développement de jeux vidéo indépendant fondé en 2023.</p>
             <ul>
                 <li data-i18n="home.aboutPoints.openSource">Solutions open-source</li>
                 <li data-i18n="home.aboutPoints.innovative">Création de jeux innovants</li>
@@ -64,36 +55,16 @@
                 <li data-i18n="home.aboutPoints.community">Communauté passionnée</li>
             </ul>
         </div>
-
-        <div id="footer">
-            <p>© <span id="year"></span> Dragonheart Studios. <span data-i18n="footer.rights">Tous droits réservés.</span></p>
-        </div>
     </div>
-
-    <!-- ============================================== -->
-    <!-- MODAL POUR LES DETAILS DES JEUX                -->
-    <!-- ============================================== -->
-    <div id="game-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <img id="modal-img" src="" alt="Image du jeu">
-            <h2 id="modal-title">Titre du jeu</h2>
-            
-            <div class="modal-info">
-                <p><strong>Contributeurs :</strong> <span id="modal-devs"></span></p>
-                <p><strong>Moteur :</strong> <span id="modal-engine"></span></p>
-                <p><strong>Prix :</strong> <span id="modal-price"></span></p>
-            </div>
-            
-            <p id="modal-desc" class="modal-desc"></p>
-            <a id="modal-link" href="#" target="_blank" class="modal-btn" data-i18n="modal.playBtn">Jouer / Voir plus</a>
-        </div>
-    </div>
-    <!-- ============================================== -->
 
     <script src="assets/data/translations.js"></script>
     <script src="assets/data/games.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            DragonheartApp.loadHeader();
+        });
+    </script>
 </body>
 </html>

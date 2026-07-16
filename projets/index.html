@@ -4,59 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../css/global.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&family=ADLaM+Display&display=swap" rel="stylesheet">
     <title>Projets - Dragonheart Studios</title>
     <link rel="icon" type="image/png" href="../assets/images/favicon.png">
     <style>
-        #projects { margin-top: 50px; }
-        .page-header { text-align: center; margin-bottom: 40px; padding: 0 20px; }
+        /* Styles spécifiques à l'en-tête de la page Projets */
+        .page-header {
+            max-width: 1200px;
+            width: calc(100% - 80px);
+            margin: 40px auto 30px auto;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
         .page-title {
             font-size: 48px;
             font-weight: bold;
-            font-family: 'Mooli', 'Poetsen One', sans-serif;
-            background: linear-gradient(to top right, rgb(190, 16, 170), rgb(190, 16, 53));
+            font-family: 'ADLaM Display', 'Poetsen One', sans-serif;
+            text-transform: uppercase;
+            background: linear-gradient(to top right, #be104d, rgb(190, 16, 53));
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
+            filter: drop-shadow(0 0 20px rgba(255, 58, 127, 0.884));
+            margin: 0 0 10px 0;
         }
+
         .page-description {
             color: rgba(255, 255, 255, 0.8);
             font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto;
+            font-family: 'PTSansNarrow-Regular', sans-serif;
+            margin: 0;
             line-height: 1.6;
+        }
+
+        @media (max-width: 900px) {
+            .page-header {
+                width: calc(100% - 30px);
+            }
+            .page-title {
+                font-size: 36px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Image de fond fixe -->
     <div id="background">
         <img src="../assets/images/background.png" alt="Background Image">
     </div>
 
+    <!-- Emplacement de la Topbar dynamique -->
     <div id="header-container"></div>
 
     <div id="gradient">
+        <!-- En-tête de la page -->
         <div class="page-header">
             <h1 class="page-title" data-i18n="projectsPage.title">Tous nos projets</h1>
-            <p class="page-description" data-i18n="projectsPage.description">Découvrez l'ensemble de nos créations...</p>
+            <p class="page-description" data-i18n="projectsPage.description">Découvrez l'ensemble de nos créations et jeux en cours de développement.</p>
         </div>
 
-        <div id="projects">
-            <div class="projects-container" id="projects-list"></div>
+        <!-- Grille des projets dans une carte verre unifiée -->
+        <div class="glass-card">
+            <section id="projects">
+                <div class="projects-container" id="projects-list"></div>
+            </section>
         </div>
 
+        <!-- Pied de page -->
         <div id="footer">
             <p>© <span id="year"></span> Dragonheart Studios. <span data-i18n="footer.rights">Tous droits réservés.</span></p>
         </div>
     </div>
 
+    <!-- Scripts de l'application -->
     <script src="../assets/data/translations.js"></script>
     <script src="../assets/data/games.js"></script>
     <script src="../assets/js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialisation du header
+            if (typeof DragonheartApp !== 'undefined' && DragonheartApp.loadHeader) {
+                DragonheartApp.loadHeader();
+            }
 
+            // Chargement dynamique de la liste des projets
+            if (typeof DragonheartApp !== 'undefined' && DragonheartApp.renderAllProjects) {
+                DragonheartApp.renderAllProjects('projects-list');
+            } else if (typeof renderProjects === 'function') {
+                renderProjects('projects-list');
+            }
+
+            // Année automatique dans le footer
+            const yearSpan = document.getElementById('year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
 </body>
 </html>
