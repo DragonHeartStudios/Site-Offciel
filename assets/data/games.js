@@ -56,7 +56,7 @@ const GAMES_DATA = [
 		status: 'in-development',
 		engine: 'Godot Engine',
 		price: '0',
-		devs: 'Dragonheart Studios',
+		devs: 'Zalyto',
 		technologies: ['Godot Engine', 'GDScript', 'Blender'],
 		featured: true,
 		link: "https://www.youtube.com/watch?v=L-Zzn5X-17Q&t=50s"
@@ -108,7 +108,7 @@ const GAMES_DATA = [
 		status: 'finished',
 		engine: 'GDevelop',
 		price: 'Gratuit',
-		devs: 'Dragonheart Studios',
+		devs: 'Farlos',
 		technologies: ['GDevelop'],
 		featured: false,
 		link: "https://wildbattle.page.gd/?i=2"
@@ -134,7 +134,7 @@ const GAMES_DATA = [
 		status: 'upcoming',
 		engine: 'Flutter',
 		price: 'Gratuit',
-		devs: 'Dragonheart Studios',
+		devs: 'Redcreazy',
 		technologies: ['Flutter', 'Firebase'],
 		featured: false,
 		link: "https://www.youtube.com/watch?v=Aq5WXmQQooo"
