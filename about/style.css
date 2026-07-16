@@ -2,294 +2,353 @@
    PAGE À PROPOS - DRAGONHEART STUDIOS
    ========================================= */
 
+/* =========================================
+   DÉGRADÉ DU FOND (Contenu en haut, noir plus bas)
+   ========================================= */
+
+#gradient {
+    /* SURTOUT PAS DE MARGIN-TOP ICI */
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 500px,            /* Totalement transparent sur les 300 premiers pixels */
+        rgba(10, 10, 12, 0.85) 580px, /* Assombrissement rapide (transition de 80px) */
+        rgba(10, 10, 12, 0.98) 730px, /* Fond sombre/opacifié */
+        rgba(10, 10, 12, 0.98) 100%
+    );
+}
+
 main {
-	position: relative;
-	z-index: 2;
-	max-width: 1200px;
-	margin: 80px auto;
-	padding: 0 20px;
-	animation: fadeIn 0.6s ease-out;
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 40px auto 80px auto;
+    padding: 0 20px;
+    animation: fadeIn 0.6s ease-out;
 }
 
 .page-title {
-	font-size: 48px;
-	font-weight: bold;
-	font-family: 'Mooli', 'Poetsen One', sans-serif;
-	text-align: center;
-	margin-bottom: 50px;
-	background: linear-gradient(to top right, rgb(190, 16, 170), rgb(190, 16, 53));
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    font-size: 48px;
+    font-weight: bold;
+    font-family: 'Mooli', 'Poetsen One', sans-serif;
+    text-align: center;
+    margin-bottom: 40px;
+    background: linear-gradient(to top right, rgb(190, 16, 170), rgb(190, 16, 53));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-/* ================
+/* =========================================
    SECTION À PROPOS
-   ================ */
+   ========================================= */
 .about-section {
-	margin-bottom: 80px;
+    margin-bottom: 60px;
 }
 
 .about-container {
-	background: rgba(20, 20, 20, 0.6);
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	border-radius: 16px;
-	padding: 40px;
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 35px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .about-text {
-	color: rgba(255, 255, 255, 0.8);
-	font-size: 18px;
-	line-height: 1.8;
-	text-align: justify;
-	margin-bottom: 30px;
-	font-family: 'PTSansNarrow-Regular', sans-serif;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 17px;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 25px;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
 }
 
 .contact-box {
-	background: rgba(190, 16, 77, 0.1);
-	border-left: 4px solid rgba(190, 16, 77, 1);
-	padding: 20px;
-	border-radius: 8px;
-	display: flex;
-	align-items: center;
-	gap: 15px;
+    background: rgba(190, 16, 77, 0.1);
+    border-left: 4px solid rgba(190, 16, 77, 1);
+    padding: 16px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .contact-label {
-	color: rgba(255, 255, 255, 0.8);
-	font-weight: bold;
-	font-size: 16px;
-	margin: 0;
-	font-family: 'PTSansNarrow-Regular', sans-serif;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
 }
 
 .contact-email {
-	color: rgba(190, 16, 77, 1);
-	text-decoration: none;
-	font-size: 16px;
-	font-family: 'PTSansNarrow-Regular', sans-serif;
-	transition: all 0.3s ease;
-	border-bottom: 2px solid transparent;
+    color: rgba(190, 16, 77, 1);
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
 }
 
 .contact-email:hover {
-	border-bottom-color: rgba(190, 16, 77, 1);
-	color: rgba(190, 16, 170, 1);
+    border-bottom-color: rgba(190, 16, 77, 1);
+    color: rgba(190, 16, 170, 1);
 }
 
-/* ================
-   SECTION ÉQUIPE
-   ================ */
+/* =========================================
+   SECTION ÉQUIPE (Cartes compactes & alignées)
+   ========================================= */
 .team-section {
-	margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .section-title {
-	font-size: 40px;
-	font-weight: bold;
-	font-family: 'ADLaM Display', sans-serif;
-	text-align: center;
-	margin-bottom: 50px;
-	text-transform: uppercase;
-	background: linear-gradient(to top right, rgb(190, 16, 170), rgb(190, 16, 53));
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'ADLaM Display', sans-serif;
+    text-align: center;
+    margin-bottom: 35px;
+    text-transform: uppercase;
+    background: linear-gradient(to top right, rgb(190, 16, 170), rgb(190, 16, 53));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .members-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	gap: 40px;
-	justify-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
 }
 
 .member-card {
-	background: rgba(20, 20, 20, 0.6);
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	border-radius: 16px;
-	padding: 30px;
-	text-align: center;
-	transition: all 0.3s ease;
-	max-width: 300px;
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
+    background: rgba(15, 15, 15, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px 15px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .member-card:hover {
-	border-color: rgba(190, 16, 77, 0.6);
-	box-shadow: 0 10px 30px rgba(190, 16, 77, 0.2);
-	transform: translateY(-8px);
+    border-color: rgba(190, 16, 77, 0.5);
+    box-shadow: 0 10px 25px -5px rgba(190, 16, 77, 0.3);
+    transform: translateY(-5px);
+    background: rgba(22, 22, 22, 0.8);
 }
 
 .member-image {
-	margin-bottom: 20px;
-	overflow: hidden;
-	border-radius: 50%;
-	width: 200px;
-	height: 200px;
-	flex-shrink: 0; /* Empêche le rétrécissement */
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    margin-bottom: 14px;
+    overflow: hidden;
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(190, 16, 77, 0.4);
+    box-shadow: 0 0 15px rgba(190, 16, 77, 0.15);
+    transition: all 0.3s ease;
+}
+
+.member-card:hover .member-image {
+    border-color: rgba(190, 16, 170, 0.8);
+    box-shadow: 0 0 20px rgba(190, 16, 170, 0.4);
 }
 
 .member-image img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	transition: transform 0.3s ease;
-	display: block;
-	border-radius: 50%; /* Double sécurité */
-	min-width: 100%;
-	min-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
 }
 
 .member-card:hover .member-image img {
-	transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .member-info {
-	color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
 }
 
 .member-name {
-	font-size: 24px;
-	font-weight: bold;
-	font-family: 'Mooli', 'Poetsen One', sans-serif;
-	margin: 0 0 10px 0;
-	color: white;
+    font-size: 19px;
+    font-weight: bold;
+    font-family: 'Mooli', 'Poetsen One', sans-serif;
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: 0.5px;
 }
 
 .member-role {
-	font-size: 14px;
-	color: rgba(190, 16, 77, 1);
-	margin: 0;
-	font-family: 'PTSansNarrow-Regular', sans-serif;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: bold;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'PTSansNarrow-Regular', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    background: rgba(190, 16, 77, 0.18);
+    border: 1px solid rgba(190, 16, 77, 0.4);
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: inline-block;
 }
 
-/* ================
-   FOOTER
-   ================ */
+/* =========================================
+   FOOTER & ANIMATIONS
+   ========================================= */
 #footer {
-	position: relative;
-	z-index: 2;
-	color: rgba(255, 255, 255, 0.6);
-	text-align: center;
-	padding: 30px;
-	margin-top: 80px;
-	border-top: 1px solid rgba(255, 255, 255, 0.1);
-	font-size: 14px;
+    position: relative;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    padding: 30px;
+    margin-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
 }
 
-/* ================
-   ANIMATIONS
-   ================ */
 @keyframes fadeIn {
-	from {
-		opacity: 0;
-		transform: translateY(20px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* ================
-   RESPONSIVE
-   ================ */
+/* =========================================
+   RESPONSIVE PROPRE (Règle unique pour Mobile)
+   ========================================= */
 @media (max-width: 768px) {
-	main {
-		margin: 60px auto;
-		padding: 0 16px;
-	}
+    main {
+        margin: 30px auto 60px auto;
+        padding: 0 16px;
+    }
 
-	.page-title {
-		font-size: 36px;
-		margin-bottom: 40px;
-	}
+    .page-title {
+        font-size: 34px;
+        margin-bottom: 30px;
+    }
 
-	.section-title {
-		font-size: 28px;
-		margin-bottom: 40px;
-	}
+    .section-title {
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
 
-	.about-container {
-		padding: 25px;
-	}
+    .about-container {
+        padding: 24px;
+    }
 
-	.about-text {
-		font-size: 16px;
-	}
+    .about-text {
+        font-size: 15px;
+    }
 
-	.members-grid {
-		grid-template-columns: 1fr;
-		gap: 30px;
-	}
+    .contact-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
 
-	.member-card {
-		padding: 25px;
-		max-width: 100%;
-	}
+    /* Force l'affichage 2 par 2 sur Mobile/Tablette */
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
 
-	.member-image img {
-		width: 150px;
-		height: 150px;
-	}
+    .member-card {
+        padding: 16px 10px;
+    }
 
-	.member-name {
-		font-size: 20px;
-	}
+    .member-image {
+        width: 85px;
+        height: 85px;
+        margin-bottom: 10px;
+    }
 
-	.contact-box {
-		flex-direction: column;
-		align-items: flex-start;
-	}
+    .member-name {
+        font-size: 16px;
+    }
+
+    .member-role {
+        font-size: 10px;
+        padding: 2px 8px;
+    }
 }
 
-@media (max-width: 480px) {
-	main {
-		margin: 40px auto;
-	}
+@media (max-width: 420px) {
+    .page-title {
+        font-size: 28px;
+    }
 
-	.page-title {
-		font-size: 28px;
-		margin-bottom: 30px;
-	}
+    .section-title {
+        font-size: 22px;
+    }
 
-	.section-title {
-		font-size: 22px;
-	}
+    .member-image {
+        width: 75px;
+        height: 75px;
+    }
 
-	.about-container {
-		padding: 20px;
-	}
-
-	.member-card {
-		padding: 20px;
-	}
+    .member-name {
+        font-size: 15px;
+    }
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-	.member-image {
-		width: 150px;
-		height: 150px;
-		margin: 0 auto 20px auto; /* Centre la photo */
-	}
+
+/* =========================================
+   CARTES MEMBRES AVEC EFFET FLOU (GLASSMORPHISM)
+   ========================================= */
+
+.member-card {
+    /* Fond très légèrement semi-transparent pour faire ressortir le flou */
+    background: rgba(0, 0, 0, 0.514);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 20px 15px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Puissant effet de flou en arrière-plan */
+    backdrop-filter: blur(30px) saturate(120%);
+    -webkit-backdrop-filter: blur(16px) saturate(120%);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    
+    /* Petite ombre douce pour détacher la carte du fond */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
 }
 
-@media (max-width: 480px) {
-	.member-image {
-		width: 120px;
-		height: 120px;
-		margin: 0 auto 20px auto;
-	}
+/* Au survol : accentuation du flou et teinte rosée/violette */
+.member-card:hover {
+    background: rgba(190, 16, 77, 0.12);
+    border-color: rgba(190, 16, 170, 0.6);
+    box-shadow: 0 12px 35px -5px rgba(190, 16, 77, 0.35);
+    transform: translateY(-5px);
+    
+    backdrop-filter: blur(30px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
